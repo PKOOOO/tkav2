@@ -46,10 +46,21 @@ jobs:
             # hvc1 tag is what makes Safari recognise the track at all (an untagged
             # hev1 stream plays as nothing). -allow_sw 1 lets it fall back to the
             # software encoder if the runner has no hardware path.
-            ffmpeg -v warning -framerate 24 -i "$RUNNER_TEMP/frames/$name/%04d.png" \
-              -c:v hevc_videotoolbox -pix_fmt bgra \
-              -alpha_quality 0.9 -q:v 60 -allow_sw 1 \
-              -tag:v hvc1 -movflags +faststart -an -y "out/$name.hevc.mp4"
+            #
+            # Constant quality first, bitrate second: videotoolbox only offers
+            # -q:v on some host/encoder combinations and errors out elsewhere,
+            # and a macOS runner minute is too expensive to spend discovering
+            # that one commit at a time.
+            common="-c:v hevc_videotoolbox -pix_fmt bgra -alpha_quality 0.9 \
+              -allow_sw 1 -tag:v hvc1 -movflags +faststart -an"
+            if ! ffmpeg -v warning -framerate 24 \
+                 -i "$RUNNER_TEMP/frames/$name/%04d.png" \
+                 $common -q:v 60 -y "out/$name.hevc.mp4"; then
+              echo "::notice::-q:v rejected for $name, falling back to -b:v"
+              ffmpeg -v warning -framerate 24 \
+                -i "$RUNNER_TEMP/frames/$name/%04d.png" \
+                $common -b:v 1500k -y "out/$name.hevc.mp4"
+            fi
           done
           ls -la out
 

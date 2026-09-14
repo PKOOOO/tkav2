@@ -47,6 +47,7 @@ DECOR = {
         'lo': 6.0,
         'hi': 22.0,
         'scale': (440, 318),
+        'frames': 121,
     },
     # The red ladybug. Shot on dark navy, NOT black, so a luma key lifts nothing.
     # Keying on distance-to-background is wrong too: the contact shadow is a
@@ -70,6 +71,7 @@ DECOR = {
         # detached haze while keeping the antialiased edges and antennae.
         'dilate': 7,
         'scale': (348, 350),
+        'frames': 121,
     },
 }
 
@@ -80,9 +82,15 @@ def keyed_frames(name, cfg, workdir):
     """Extract, key and crop every source frame. Returns them in order."""
     raw = os.path.join(workdir, 'raw')
     os.makedirs(raw, exist_ok=True)
+    # No rate flags here on purpose. Both sources are constant-rate 24fps, so a
+    # plain extraction already yields every frame exactly once -- and the flag
+    # that used to say so, `-vsync 0`, was REMOVED in ffmpeg 8 and fails outright
+    # there. Its replacement, `-fps_mode`, does not exist before ffmpeg 5. This
+    # script runs on both sides of that split (the webm is built on Linux, the
+    # HEVC on a macOS runner with whatever Homebrew ships), so it names neither.
     subprocess.run(
         ['ffmpeg', '-v', 'error', '-i', os.path.join(ROOT, cfg['source']),
-         '-vsync', '0', os.path.join(raw, '%04d.png')],
+         os.path.join(raw, '%04d.png')],
         check=True,
     )
 
@@ -108,8 +116,14 @@ def keyed_frames(name, cfg, workdir):
         im.putalpha(Image.fromarray(np.rint(alpha * 255).astype('uint8')))
         out.append(im)
 
-    if not out:
-        sys.exit('%s: no frames extracted from %s' % (name, cfg['source']))
+    # The two output formats are built on different machines with different
+    # ffmpeg majors, from this one function. If they ever disagreed about how
+    # many frames the source has, the webm and the MP4 would quietly end up
+    # different lengths. Pin it instead of discovering that on a phone.
+    if len(out) != cfg['frames']:
+        sys.exit('%s: extracted %d frames from %s, expected %d -- check the '
+                 'ffmpeg version and the `frames` value in this script'
+                 % (name, len(out), cfg['source'], cfg['frames']))
     return out
 
 

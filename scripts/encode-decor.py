@@ -143,7 +143,15 @@ def encode_webm(seq, cfg, dest):
          '-vf', 'scale=%d:%d:flags=lanczos' % (w, h),
          '-c:v', 'libvpx-vp9', '-pix_fmt', 'yuva420p',
          '-b:v', '0', '-crf', str(CRF), '-row-mt', '1', '-cpu-used', '2',
-         '-g', '240', '-an', '-y', dest],
+         '-g', '240', '-an',
+         # Without these the Matroska muxer stamps a random 16-byte SegmentUID
+         # at offset 285 and its own version string, so two runs over identical
+         # frames produce files of identical length that differ in content. The
+         # encode was always deterministic; only the container was not. Being
+         # able to re-run this and diff the result against what shipped is the
+         # whole point of the script, so make the bytes stable too.
+         '-fflags', '+bitexact', '-flags:v', '+bitexact',
+         '-y', dest],
         check=True,
     )
 

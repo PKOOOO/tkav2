@@ -49,28 +49,17 @@ DECOR = {
         'scale': (440, 318),
         'frames': 121,
     },
-    # The red ladybug. Shot on dark navy, NOT black, so a luma key lifts nothing.
-    # Keying on distance-to-background is wrong too: the contact shadow is a
-    # *darker* navy, which is far from the background by distance and would
-    # survive as a dark blob. The shadow is the background colour scaled down,
-    # though -- collinear with it -- so keying on the PERPENDICULAR distance to
-    # that colour's direction collapses background and shadow together while
-    # leaving the red body and grey panel alone.
+    # The red ladybug. `lady.webm` replaced an earlier take that was shot on dark
+    # navy and needed the 'perp' key below; this one is on pure black like the
+    # crab, with the same clean gap (66.8% of the frame at luma 0-7, 0.18%
+    # between 8 and 23), so it keys the simple way and needs no shadow cleanup.
     'ladybug': {
-        'source': 'public/brand/ladybug.webm',
-        'box': (134, 98, 826, 794),
-        'key': 'perp',
-        'bg': (0, 36, 74),
-        'lo': 8.0,
-        'hi': 28.0,
-        # Whatever is left of the shadow is removed by shape, not by threshold.
-        # Raising `lo` instead looks obvious and is wrong: the glossy black face
-        # panel reflects the navy background, so it sits close to it in colour
-        # and a higher floor turns the robot's face translucent. Dilating the
-        # confident silhouette and masking the soft alpha with it drops the
-        # detached haze while keeping the antialiased edges and antennae.
-        'dilate': 7,
-        'scale': (348, 350),
+        'source': 'public/brand/lady.webm',
+        'box': (180, 102, 811, 758),
+        'key': 'luma',
+        'lo': 6.0,
+        'hi': 22.0,
+        'scale': (336, 350),
         'frames': 121,
     },
 }
@@ -102,6 +91,12 @@ def keyed_frames(name, cfg, workdir):
         if cfg['key'] == 'luma':
             metric = np.asarray(im.convert('L'), dtype=np.float64)
         else:
+            # 'perp' is for a source shot on a coloured background rather than
+            # black. No clip uses it today, but one did and another might: the
+            # trick is that a contact shadow is the background colour scaled
+            # down, so it is collinear with it. Distance-to-background keeps
+            # such a shadow (it is far away, just darker) while distance to the
+            # background's *direction* collapses the two together.
             bg = np.array(cfg['bg'], dtype=np.float64)
             u = bg / np.linalg.norm(bg)
             metric = np.linalg.norm(arr - (arr @ u)[..., None] * u, axis=-1)
@@ -112,6 +107,19 @@ def keyed_frames(name, cfg, workdir):
             confident = Image.fromarray(((alpha >= 0.5) * 255).astype('uint8'))
             confident = confident.filter(ImageFilter.MaxFilter(cfg['dilate']))
             alpha = alpha * (np.asarray(confident, dtype=np.float64) / 255.0)
+
+        # Blank the colour underneath anything fully transparent.
+        #
+        # Alpha is a separate, lossily-compressed plane, so "transparent" comes
+        # back as a small non-zero value rather than exactly nothing -- and
+        # whatever colour was left under it then tints the whole frame. The crab
+        # got away with it because its studio background is pure black; the
+        # ladybug's is navy, which painted a blue rectangle around it on iOS.
+        # Only fully-transparent pixels are touched, so the soft edge keeps its
+        # real colours and no halo appears along the silhouette.
+        flat = np.asarray(im).copy()
+        flat[alpha <= 0] = 0
+        im = Image.fromarray(flat)
 
         im.putalpha(Image.fromarray(np.rint(alpha * 255).astype('uint8')))
         out.append(im)
@@ -162,11 +170,20 @@ def main():
                     help='which clips to build (default: all of %s)' % ', '.join(DECOR))
     ap.add_argument('--frames-only', metavar='DIR',
                     help='write DIR/<name>/%%04d.png keyed RGBA sequences and stop')
+    ap.add_argument('--print-scale', action='store_true',
+                    help="print each clip's target WIDTH:HEIGHT and stop, so the "
+                         'macOS workflow encodes at the same size as the webm '
+                         'instead of hardcoding a second copy of the numbers')
     args = ap.parse_args()
     names = args.names or list(DECOR)
     unknown = [n for n in names if n not in DECOR]
     if unknown:
         sys.exit('unknown clip(s): %s -- known: %s' % (', '.join(unknown), ', '.join(DECOR)))
+
+    if args.print_scale:
+        for name in names:
+            print('%d:%d' % DECOR[name]['scale'])
+        return
 
     for name in names:
         cfg = DECOR[name]

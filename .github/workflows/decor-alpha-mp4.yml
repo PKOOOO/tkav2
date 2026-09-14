@@ -51,8 +51,20 @@ jobs:
             # -q:v on some host/encoder combinations and errors out elsewhere,
             # and a macOS runner minute is too expensive to spend discovering
             # that one commit at a time.
-            common="-c:v hevc_videotoolbox -pix_fmt bgra -alpha_quality 0.9 \
-              -allow_sw 1 -tag:v hvc1 -movflags +faststart -an"
+            # Same size as the webm. The frames come out of the script at full
+            # crop resolution, so without this the MP4s ship at ~3.3MB against
+            # the webm's ~370KB for the same 200px decoration. The number comes
+            # from the script rather than being written down twice here.
+            scale=$(python3 scripts/encode-decor.py --print-scale "$name")
+
+            # alpha_quality 1.0, not 0.9: the alpha plane is compressed
+            # separately, and anything less than fully transparent lets the
+            # colour underneath tint the frame. The script now blanks that
+            # colour to black as well, so these two guard the same failure from
+            # both sides.
+            common="-c:v hevc_videotoolbox -pix_fmt bgra -alpha_quality 1.0 \
+              -allow_sw 1 -tag:v hvc1 -movflags +faststart -an \
+              -vf scale=$scale:flags=lanczos"
             if ! ffmpeg -v warning -framerate 24 \
                  -i "$RUNNER_TEMP/frames/$name/%04d.png" \
                  $common -q:v 60 -y "out/$name.hevc.mp4"; then
@@ -81,11 +93,24 @@ jobs:
                               '-vf', 'select=eq(n\\,10)', '-frames:v', '1',
                               '-y', png], check=True)
               im = Image.open(png).convert('RGBA')
-              corner = im.getpixel((1, 1))
-              size = os.path.getsize(src)
-              print('%-8s %s  corner=%s  %d bytes' % (name, im.size, corner, size))
-              if corner[3] > 8:
-                  bad.append('%s: corner alpha %d, expected ~0' % (name, corner[3]))
+              w, h = im.size
+              # The four corners only -- NOT the whole border. Every clip is
+              # cropped to the figure's union bounding box, so legs and antennae
+              # genuinely touch the frame edges; scanning the border reads those
+              # as leaked alpha and fails a perfectly good file. A 24px corner
+              # patch is background in every frame of both clips (measured:
+              # worst alpha 1 and 3), which is what makes it a fair test.
+              k = 24
+              px = im.load()
+              corners = ([(x, y) for x in range(k) for y in range(k)]
+                         + [(w - 1 - x, y) for x in range(k) for y in range(k)]
+                         + [(x, h - 1 - y) for x in range(k) for y in range(k)]
+                         + [(w - 1 - x, h - 1 - y) for x in range(k) for y in range(k)])
+              worst = max(px[p][3] for p in corners)
+              print('%-8s %dx%d  worst corner alpha=%d  %d bytes'
+                    % (name, w, h, worst, os.path.getsize(src)))
+              if worst > 8:
+                  bad.append('%s: corner alpha reaches %d, expected ~0' % (name, worst))
           if bad:
               sys.exit('ALPHA DID NOT SURVIVE:\n  ' + '\n  '.join(bad))
           print('alpha verified on both clips')

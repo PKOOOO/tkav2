@@ -1,26 +1,301 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Framer authors each component at a fixed breakpoint width (1200 / 810 / 390),
+ * so the exported roots render at that width and sit flush left in a wider
+ * viewport. A published Framer site stretches the breakpoint frame instead, so
+ * do the same here: let each top-level section span the viewport while its own
+ * inner containers keep their max-widths and stay centered.
+ */
+.unframer-page > * {
+    width: 100% !important;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/*
+ * Decorative elements (the curved ticker ribbon in the Home hero) are authored
+ * wider than the viewport on purpose so they bleed off both edges. Framer's own
+ * hero frame does not clip them, so a published page clips at the page level --
+ * do the same, or they add ~80px of horizontal scroll at every width.
+ * `clip` rather than `hidden`: `hidden` would make this a scroll container and
+ * break `position: sticky` descendants.
+ */
+.unframer-page {
+    overflow-x: clip;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+
+/* ---------------------------------------------------------------------------
+ * Colour scheme override — blue / purple
+ *
+ * The palette lives in Framer as 27 colour styles, and these 22 have already
+ * been updated there. Normally `pnpm framer` would pull the new values into
+ * `framer/styles.css` and this block would not exist — but the project's React
+ * Export subscription has lapsed, so the generated CSS still carries the old
+ * green-and-cream values.
+ *
+ * `framer/styles.css` defines each colour as `--token-<uuid>` on `:root` and
+ * `.dark`, and every component reads them through `var(--token-…, <fallback>)`.
+ * Redefining the variables therefore repaints the whole site without touching a
+ * single generated file.
+ *
+ * Specificity, not order, is what makes this win: `globals.css` is imported
+ * *before* `framer/styles.css` in `app/layout.tsx`, so a plain `:root` block
+ * would lose. `:root:root` and `:root.dark` outrank the generated selectors
+ * wherever they sit in the cascade.
+ *
+ * Once the subscription is active, run `pnpm framer` and delete this block —
+ * the regenerated stylesheet will carry these values on its own.
+ * Original values: scripts/color-styles.backup.json
+ * ------------------------------------------------------------------------- */
+:root:root,
+:root.dark {
+    --token-3c675309-91c5-4b64-a956-9189118d694b: rgb(238, 244, 250); /* Ice Blue */
+    --token-fdb51f6b-45dc-4aed-81bb-6b8f7124dad5: rgba(238, 244, 250, 0.2); /* Ice Blue 20% */
+    --token-6305a857-db22-42a8-bc08-cd171ff4e647: rgba(238, 244, 250, 0.6); /* Ice Blue 60% */
+    --token-ba50d2e5-600e-4acb-b91c-6cca2f86f1d6: rgb(0, 43, 91); /* Dark Blue */
+    --token-dbb48573-48d8-403f-ad86-7009a5265b2f: rgba(0, 43, 91, 0.2); /* Dark Blue 20% */
+    --token-d88c44a0-507a-42e1-b318-37f7d04d3c06: rgba(0, 43, 91, 0.1); /* Dark Blue 10% */
+    --token-864efae0-958b-4f0c-94c1-0e67aaf77b9c: rgba(0, 43, 91, 0.7); /* Dark Blue 70% */
+    --token-a225ace6-638e-469b-9793-3ab54fcf3b3a: rgb(0, 55, 111); /* Deepest Blue */
+    --token-e7e6c389-54de-40d3-bd41-8072dc4a41a5: rgb(65, 89, 122); /* Muted Navy */
+    --token-1d403a9e-a47a-49fa-b259-3726165583a7: rgb(28, 87, 150); /* Brand Blue */
+    --token-e079c459-c6e9-4577-8c52-a24b838cfa37: rgb(223, 234, 246); /* Pale Blue */
+    --token-9be2179a-d4c3-4b1c-a57e-66ad0ebb844d: rgb(106, 19, 131); /* Vivid Purple */
+    --token-23b59c71-bcd9-4239-8358-53b6c3cc209e: rgb(93, 44, 110); /* Deep Purple */
+    --token-225c056c-536e-4289-9276-3f52376896b4: rgb(83, 14, 104); /* Purple Pressed */
+    --token-78006fc2-4aed-468c-a9d5-0eb0993d6aea: rgb(214, 236, 255); /* Soft Sky */
+    --token-d46389a1-c11a-499f-a8d1-1f5543960045: rgb(56, 182, 255); /* Light Blue */
+    --token-e8cec243-b334-4568-a85b-a75cea534593: rgb(198, 220, 240); /* Soft Azure */
+    --token-5bafd284-4248-4179-8fdd-7a454d5f3ef0: rgb(0, 86, 158); /* Vivid Azure */
+    --token-d0e4cb96-2373-4292-a52b-0c70e08d9898: rgb(230, 214, 240); /* Soft Violet */
+    --token-1155d13b-37e2-47ed-93ce-c08c2cfdd816: rgb(139, 59, 168); /* Violet */
+    --token-9f7780f5-af12-4101-9125-2580d35c4118: rgb(207, 233, 230); /* Soft Teal */
+    --token-a059f435-bb0e-48c5-ac68-2aad5474e6d7: rgb(46, 143, 140); /* Teal */
+}
+
+/* The same values under unframer's friendly aliases, kept in step. The old
+ * names are retained because they are what the generated stylesheet declares. */
+:root:root,
+:root.dark {
+    --unframer-ivory-cream: rgb(238, 244, 250);
+    --unframer-ivory-cream-20: rgba(238, 244, 250, 0.2);
+    --unframer-ivory-cream-60: rgba(238, 244, 250, 0.6);
+    --unframer-deep-forest-green: rgb(0, 43, 91);
+    --unframer-deep-forest-green-10: rgba(0, 43, 91, 0.1);
+    --unframer-deep-forest-green-20: rgba(0, 43, 91, 0.2);
+    --unframer-deep-forest-green-70: rgba(0, 43, 91, 0.7);
+    --unframer-dark-pine-green: rgb(0, 55, 111);
+    --unframer-slate-green: rgb(65, 89, 122);
+    --unframer-sage-green: rgb(28, 87, 150);
+    --unframer-warm-beige: rgb(223, 234, 246);
+    --unframer-burnt-orange: rgb(106, 19, 131);
+    --unframer-terracotta-brown: rgb(93, 44, 110);
+    --unframer-deep-orange: rgb(83, 14, 104);
+    --unframer-powder-blue: rgb(214, 236, 255);
+    --unframer-dusty-blue: rgb(56, 182, 255);
+    --unframer-soft-lime-green: rgb(198, 220, 240);
+    --unframer-olive-sage: rgb(0, 86, 158);
+    --unframer-soft-blush-pink: rgb(230, 214, 240);
+    --unframer-dusty-rose: rgb(139, 59, 168);
+    --unframer-peach-cream: rgb(207, 233, 230);
+    --unframer-muted-sand: rgb(46, 143, 140);
+}
+
+/* ---------------------------------------------------------------------------
+ * Asset overrides — logo and heading decor
+ *
+ * Companion to the colour override above, and needed for the same reason: the
+ * Framer project has the new logo and the recoloured decor, but `pnpm framer`
+ * cannot run while the React Export subscription is lapsed, so the generated
+ * components still point at the old orange artwork.
+ *
+ * Colours could be redirected through their CSS variables. These cannot — they
+ * are `<img src>` values compiled into the components — so they are swapped by
+ * attribute selector plus `content: url(...)`, which replaces what an <img>
+ * renders without touching the generated markup.
+ *
+ * The replacements are served from `public/brand/`, NOT from Framer's CDN. Every
+ * other image on the site is still hot-linked to framerusercontent.com; these are
+ * the first assets this repo actually owns, and the same targets a Sanity-backed
+ * loader would take over later. Keeping them local means the brand marks survive
+ * the Framer project going away.
+ *
+ * Delete this block along with the colour one after a successful `pnpm framer`.
+ * ------------------------------------------------------------------------- */
+
+/* Heading squiggle and sparkle. Identical geometry to the originals — only the
+ * fill changed — so no sizing correction is needed. */
+img[src*="JrJVDghR4XSfM4fEkVG4YlBTu0E"] {
+    content: url("/brand/heading-squiggle.svg");
+}
+img[src*="AKsn6ZsWzZYFuQbOLWjDXQOBfU"] {
+    content: url("/brand/heading-sparkle.svg");
+}
+
+/* Brand logo, both the Default and Light variants.
+ *
+ * Two corrections beyond the swap. The mark is 4:1, so at the old 32px height it
+ * rendered too small to read — it is set to 48px here (192px wide), matching the
+ * component in Framer.
+ * And the whole chain has to grow with it: the anchor Framer emits is a fixed
+ * 169x32 with `overflow: hidden`, so raising the image alone just clips it. */
+/* Default -> the navigation (full colour on the light ground). */
+img[src*="avN1cce8Zki60Z66UMnTm9elu0"] {
+    content: url("/brand/logo-nav.png");
+}
+
+/* Light -> the footer (white knockout on the navy ground). */
+img[src*="KTieEL9wk3X3EhTtn7dtL7PBslM"] {
+    content: url("/brand/logo-footer.png");
+}
+
+img[src*="avN1cce8Zki60Z66UMnTm9elu0"],
+img[src*="KTieEL9wk3X3EhTtn7dtL7PBslM"] {
+    width: auto !important;
+    height: 48px !important;
+    object-fit: contain;
+}
+
+a:has(> div > img[src*="avN1cce8Zki60Z66UMnTm9elu0"]),
+a:has(> div > img[src*="KTieEL9wk3X3EhTtn7dtL7PBslM"]),
+a:has(> div > img[src*="avN1cce8Zki60Z66UMnTm9elu0"]) > div,
+a:has(> div > img[src*="KTieEL9wk3X3EhTtn7dtL7PBslM"]) > div,
+div:has(> a > div > img[src*="avN1cce8Zki60Z66UMnTm9elu0"]),
+div:has(> a > div > img[src*="KTieEL9wk3X3EhTtn7dtL7PBslM"]) {
+    height: 48px !important;
+    /* fit-content alone loses to flex-basis, so the anchor keeps stretching to
+     * its slot and leaves ~115px of invisible click target beside the mark. */
+    width: fit-content !important;
+    flex: 0 0 auto !important;
+    overflow: visible !important;
+}
+
+/* Home hero photographs — the three portraits under the headline.
+ *
+ * Sources live in `public/brand/` at full camera resolution (4.8MB for the set);
+ * these are centre-cropped to each slot's 0.85 aspect at 2x and served from
+ * `public/hero/` at 115KB for the set. Same `content: url(...)` mechanism and
+ * the same reason as the brand marks above. */
+img[src*="DXRnxyyhPn9LDKJmKPngzjLAtOs"] { content: url("/hero/hero-left.jpg"); }
+img[src*="IDvbnPdgekBiLQ5t2Zb7H2CZoY"] { content: url("/hero/hero-center.jpg"); }
+img[src*="shr65hij8XWEG6PZ5jRXwqv0Ggs"] { content: url("/hero/hero-right.jpg"); }
+
+/* Cloud divider at the page foot.
+ *
+ * A background-image, not an <img>, so it is swapped on the property rather than
+ * through `content`. The original bakes #497E64 (the old Sage Green) into the SVG,
+ * which is why it stayed green when the colour tokens changed — image assets carry
+ * no tokens.
+ *
+ * The source in `public/brand/cloud.svg` draws its clouds in the bottom tenth of a
+ * 4320x1785 canvas; dropped in whole it collapses to an invisible sliver in this
+ * ~16:1 slot. `cloud-band.svg` is the same file with the viewBox trimmed to the
+ * artwork (15.16:1), which matches the original band's 15.87:1. */
+/* Both bands: the one under the hero (was #EAE4D3 Warm Beige) and the one at the
+ * page foot (was #497E64 Sage Green). */
+[style*="Gs4oYCae5IMouFY2S2iiOM1YJeQ"],
+[style*="7zv2VrxsbuiQOtfU00fIbVQ7p5I"] {
+    background-image: url("/brand/cloud-band.svg") !important;
+}
+
+/* ---------------------------------------------------------------------------
+ * Home hero: lift the three photographs into the first screen.
+ *
+ * As authored, the hero opens 682px down at a 934px viewport, so barely half of
+ * the 468px-tall centre photograph is above the fold. This reclaims ~160px from
+ * the space above it — most of it the section's own top padding — so the images
+ * read as part of the first impression rather than a scroll reward.
+ *
+ * `!important` because `lib/useCompactSections.ts` writes the section padding as
+ * an inline style (it scales each section's authored value by 2/3), and inline
+ * beats a plain rule.
+ *
+ * Scoped two ways: to `[data-route="/"]` so only the home hero moves, and to
+ * >=1200px because the measurements above are the Desktop breakpoint's — Tablet
+ * and Phone stack this section differently and are left as authored.
+ * ------------------------------------------------------------------------- */
+@media (min-width: 1200px) {
+    [data-route="/"] section[data-framer-name="Hero"] {
+        padding-top: 36px !important;
+        gap: 18px !important;
+    }
+
+    /* The row that holds the photographs carries its own 40px lead-in. */
+    [data-route="/"] section[data-framer-name="Hero"] [data-framer-name="Content Row"] {
+        padding-top: 4px !important;
+    }
+}
+
+/* Program CTA mascots — the two decorations flanking the "Book your spot" band.
+ *
+ * Notebook -> LadyBug, graduation cap -> Crab. Sources in `public/brand/` are at
+ * camera/export resolution (5.1MB for the crab); these are alpha-trimmed and
+ * scaled to fit each slot at 2x, in `public/decor/`.
+ *
+ * The notebook slot is `object-fit: cover`, which is right for a photo but would
+ * clip a mascot's antennae — forced to `contain` so the whole robot reads. The
+ * cap slot is already `contain`. */
+/* Both mascots animate — `lib/useVideoDecor.ts` lays a clip over each <img> and
+ * hides it once the video is playing. See the note on the crab below; these
+ * stills are what WebKit and any failed decode fall back to, so they stay. */
+img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"] {
+    content: url("/decor/ladybug.png");
+    object-fit: contain !important;
+}
+/* The crab slot is the one decoration that animates: `lib/useVideoDecor.ts`
+ * lays `/decor/crab.webm` over this <img> and hides it once the video is
+ * playing. That clip is VP9 with a real alpha channel, which WebKit decodes but
+ * flattens to black -- so the hook probes for alpha support by decoding a frame,
+ * and every browser on iOS keeps this still frame instead. It also covers a
+ * failed decode or a blocked autoplay anywhere else, so it stays. */
+img[src*="WIi0h4VBtEtbQNYaatXFHT8TzDg"] {
+    content: url("/decor/crab.png");
+}
+
+/* Home CTA figure — the person on the left of the "Start learning with
+ * confidence" band.
+ *
+ * `public/brand/peter.svg` is 7.4MB: an SVG wrapping two 3873x2581 PNGs, one of
+ * them 5.5MB. Rasterised at 1372px — twice the slot's 686px height, so it stays
+ * sharp under the slot's `object-fit: cover` — then trimmed to its alpha bounds.
+ *
+ * WebP, not JPEG or PNG: the cutout is 43% transparent, which JPEG cannot carry
+ * at all, and PNG costs 1781KB against WebP's 148KB for the same pixels. */
+img[src*="KITCFqoLDqQXdqMCCYX4dCTzRNo"] {
+    content: url("/decor/peter.webp");
+}
+
+/* The slot, not the <img>, is what has to be resized — and this is the whole
+ * reason the figure was arriving cut off down its right edge.
+ *
+ * unframer's Image is passed `fitImageDimension="width"`, so it writes
+ * `width: auto` plus the *source* photo's `aspect-ratio` (684/763 = 0.897) as an
+ * inline style on the slot, and the slot's own generated rule adds
+ * `overflow: hidden`. The slot is therefore always `height x 0.897` wide,
+ * whatever the <img> inside it is told, and everything past that is clipped.
+ * Sizing the <img> to 760px only made a 760px image inside a ~495px window.
+ *
+ * `public/decor/peter.webp` is 1519x1217 — 1.248, so 39% wider than the slot it
+ * lands in. Restating the slot's own aspect-ratio as the photo's widens the
+ * window to the whole figure, and the <img>'s stock `width/height: 100%` +
+ * `object-fit: cover` then fills it with no crop and no distortion. `!important`
+ * wins because important author rules outrank author *inline* styles.
+ *
+ * This works at all three breakpoints with one value: the slot's height is what
+ * the variants set (fluid on Desktop, 400px on Tablet, 200px on Phone) and the
+ * width follows from it. The slot is already bottom-anchored (`bottom: 0`), so
+ * the photograph's own lower edge — which cuts through a desk — still sits on
+ * the section boundary the way the original artwork was bled off the bottom.
+ *
+ * `:has(> div > img)` rather than the class: unframer wraps every background
+ * image in an inset-0 `[data-framer-background-image-wrapper]` div, so the slot
+ * is exactly two levels up, and the shape survives `pnpm framer` renaming the
+ * generated classes. It matches the Mentor CTA's copy of this figure too, which
+ * is authored identically. */
+div:has(> div > img[src*="KITCFqoLDqQXdqMCCYX4dCTzRNo"]) {
+    aspect-ratio: 1519 / 1217 !important;
 }

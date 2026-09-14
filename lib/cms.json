@@ -1,0 +1,2300 @@
+{
+  "Program": [
+    {
+      "id": "eg3CKmJ_Y",
+      "slug": "mathematics",
+      "byId": {
+        "hUvhbUSVS": "Mathematics",
+        "H6kmmKUBd": "rgb(201, 224, 242)",
+        "pebU2aYgK": "https://framerusercontent.com/images/a3k4SgWsuzCuaE9M7cwYgP4fZ8.svg",
+        "t_8_0uuO4": "rgb(84, 136, 178)",
+        "mM9g1EDjS": "rgb(84, 136, 178)",
+        "FVT0W9tsX": "rgb(201, 224, 242)",
+        "EnXNFcio9": "Build strong foundations in numbers, arithmetic, algebra, geometry, and problem solving through clear, engaging, practical lessons.",
+        "qJKErpwZ2": "https://framerusercontent.com/images/mqo52Fpiq1k4hI7X4ZqKWuqzMo.jpg",
+        "K6guXv55O": "https://framerusercontent.com/images/SvD1bnjktLvnBuYfC2hBIX6cXzM.jpg",
+        "HNtd_VJxB": "All level",
+        "TsxYJujxI": "We rebuild confidence first, then speed. From number sense to calculus, every learner gets a plan built around their actual gaps not a generic worksheet pile.",
+        "BuzbVg2cg": "Topic tracks",
+        "gZLQKE2TD": "05",
+        "QxkZWvI2z": "Sessions weekly",
+        "XxkBqqz4U": "3×",
+        "mWtmbqNAt": "Per session",
+        "lNQa0DDFI": "60 min",
+        "AlYJU3rfd": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Foundations",
+              "subject": "Number sense",
+              "listItem01": "Arithmetic fluency",
+              "listItem02": "Fractions & decimals",
+              "listItem03": "Mental math",
+              "listItem04": "Word problems",
+              "listItem05": "",
+              "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "Atet3qL3U": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Core",
+              "subject": "Algebra & geometry",
+              "listItem01": "Equations  & Graphing",
+              "listItem02": "Functions & expressions",
+              "listItem03": "Shapes & proofs",
+              "listItem04": "Ratios & percent's",
+              "listItem05": "",
+              "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "WKiK9v9LC": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Advanced",
+              "subject": "Functions & data",
+              "listItem01": "Functions",
+              "listItem02": "Trigonometry",
+              "listItem03": "Probability",
+              "listItem04": "Statistics",
+              "listItem05": "",
+              "topicBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+              "topicBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+              ]
+            }
+          }
+        ],
+        "B3GrEvcRf": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Mastery",
+              "subject": "Pre-calc & calculus",
+              "listItem01": "Limits",
+              "listItem02": "Derivatives",
+              "listItem03": "Integrals",
+              "listItem04": "Exam technique",
+              "listItem05": "",
+              "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ],
+        "o2t1Enj0m": [
+          {
+            "component": "n7fi7gTQ_",
+            "width": "fill",
+            "props": {
+              "title": "Private",
+              "description": "A dedicated mentor, fully personal pace. Best for catching up fast or pushing well ahead.",
+              "icon": "https://framerusercontent.com/images/LNXFvVO0mJ0vaTxzuCALGDD66g.svg",
+              "iconBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+              "iconBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+              "iconShadow": [
+                "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+              ]
+            }
+          }
+        ],
+        "ym1ibWGrd": [
+          {
+            "component": "n7fi7gTQ_",
+            "width": "fill",
+            "props": {
+              "title": "Small group",
+              "description": "Max four learners at the same level. Great energy, steady practice, friendlier price, and more opportunities to learn together.",
+              "icon": "https://framerusercontent.com/images/ptGEy1jKYAkMsMMVstywE93QH9Q.svg",
+              "iconBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "iconBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "iconShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "DoMyhitd7": "",
+        "bw5wYLxeb": "maya-chen",
+        "bw5wYLxeb_QLObxbGfm": "Maya Chen",
+        "bw5wYLxeb_uWfN5in9C": true,
+        "bw5wYLxeb_pueVll7k6": "Mathematics",
+        "bw5wYLxeb_koQ7t_K7p": "https://framerusercontent.com/images/QoXhr69JES9Sz1oPnPDbV8cOVQw.jpg",
+        "bw5wYLxeb_vb4FeIzT_": "Former math teacher with 9 years turning \"I hate math\" into \"That's it?\"",
+        "bw5wYLxeb_yWvfHilm6": "rgb(73, 126, 100)",
+        "bw5wYLxeb_HpvuLvKB8": "rgb(244, 240, 229)",
+        "bw5wYLxeb_ovElfr2M4": "rgb(244, 240, 229)",
+        "bw5wYLxeb_DogFf1FfV": "4.9/5  ★ 120 reviews",
+        "bw5wYLxeb_s9bPlqbuP": "Lead mentor",
+        "bw5wYLxeb_zGSu5TpRv": [
+          {
+            "component": "dGuk6jhMX",
+            "width": "fill",
+            "props": {
+              "title01": "Confidence rebuilding",
+              "title02": "Exam prep",
+              "title03": "Algebra & geometry",
+              "title04": "Ages 10–16",
+              "title05": ""
+            }
+          }
+        ],
+        "bw5wYLxeb_YfmS2tChU": "Nine years as a school math teacher, five at BrightPath. Maya's specialty is the learner who has decided they're \"just not a math person\" she disagrees, and she's usually right within a month. Her sessions run on questions, not lectures: learners do the talking, she does the steering.",
+        "bw5wYLxeb_ZcVHBg5Yy": "9 yrs",
+        "bw5wYLxeb_M5IcI2Sjv": "180+",
+        "bw5wYLxeb_THai84wa4": "98%",
+        "bw5wYLxeb_XNLdspowH": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "First 10 min",
+              "title": "Find the gap",
+              "info": "The first ten minutes are diagnostic. Maya works backwards from the question that caused the trouble until she finds the step where the confusion actually started — usually two topics earlier than anyone expected.",
+              "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "bw5wYLxeb_EJZU77C18": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Middle 40",
+              "title": "Rebuild the floor",
+              "info": "Once the gap is named, it gets rebuilt properly rather than patched. Short, repeated practice on the underlying idea until it is automatic, so the harder work has something solid to stand on.",
+              "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "bw5wYLxeb_EkhrKhG8k": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Last 10",
+              "title": "Make them prove it",
+              "info": "Every session ends with the learner explaining the method back, unaided. If they can teach it, they own it — and that is the point where \"I'm not a math person\" quietly stops being true.",
+              "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ],
+        "dhFBoRH5X": [
+          {
+            "component": "wde271kTF",
+            "width": "fill",
+            "props": {
+              "variant": "Desktop",
+              "_01Question": "My child is behind how fast can they catch up?",
+              "_01Answer": "Most learners close a level gap in one to two terms with two sessions a week. Our free assessment gives you an honest estimate before you commit.",
+              "_02Question": "Do you follow the school curriculum?",
+              "_02Answer": "Yes. We follow your child’s school curriculum while filling the gaps that make new topics harder to follow. Our sessions build understanding before moving ahead.",
+              "_03Question": "What about exam and test prep?",
+              "_03Answer": "Yes. We focus on key topics, practice questions, and exam strategies that help your child prepare with confidence. Our sessions target the skills they need most.",
+              "_04Question": "Can we switch between private and group?",
+              "_04Answer": "Yes. You can switch between private and group sessions as your child’s needs change. We’ll help you choose the format that gives them the right support.",
+              "_05Question": "",
+              "_05Answer": ""
+            }
+          }
+        ]
+      },
+      "Title": "Mathematics",
+      "BG Color": "rgb(201, 224, 242)",
+      "Icon": {
+        "url": "https://framerusercontent.com/images/a3k4SgWsuzCuaE9M7cwYgP4fZ8.svg",
+        "alt": "Program Icon"
+      },
+      "Icon Shadow BG": "rgb(84, 136, 178)",
+      "Icon Border": "rgb(84, 136, 178)",
+      "Icon BG Color": "rgb(201, 224, 242)",
+      "Info": "Build strong foundations in numbers, arithmetic, algebra, geometry, and problem solving through clear, engaging, practical lessons.",
+      "Thumbnail": {
+        "url": "https://framerusercontent.com/images/mqo52Fpiq1k4hI7X4ZqKWuqzMo.jpg",
+        "alt": "Program Image"
+      },
+      "Image": {
+        "url": "https://framerusercontent.com/images/SvD1bnjktLvnBuYfC2hBIX6cXzM.jpg",
+        "alt": "Program Image"
+      },
+      "Level Tag": "All level",
+      "Description": "We rebuild confidence first, then speed. From number sense to calculus, every learner gets a plan built around their actual gaps not a generic worksheet pile.",
+      "Label 01": "Topic tracks",
+      "Value 01": "05",
+      "Label 02": "Sessions weekly",
+      "Value 02": "3×",
+      "Label 03": "Per session",
+      "Value 03": "60 min",
+      "Syllabus Part 01": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Foundations",
+            "subject": "Number sense",
+            "listItem01": "Arithmetic fluency",
+            "listItem02": "Fractions & decimals",
+            "listItem03": "Mental math",
+            "listItem04": "Word problems",
+            "listItem05": "",
+            "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+            "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+            ]
+          }
+        }
+      ],
+      "Syllabus Part 02": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Core",
+            "subject": "Algebra & geometry",
+            "listItem01": "Equations  & Graphing",
+            "listItem02": "Functions & expressions",
+            "listItem03": "Shapes & proofs",
+            "listItem04": "Ratios & percent's",
+            "listItem05": "",
+            "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+            "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+            ]
+          }
+        }
+      ],
+      "Syllabus Part 03": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Advanced",
+            "subject": "Functions & data",
+            "listItem01": "Functions",
+            "listItem02": "Trigonometry",
+            "listItem03": "Probability",
+            "listItem04": "Statistics",
+            "listItem05": "",
+            "topicBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+            "topicBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+            ]
+          }
+        }
+      ],
+      "Syllabus Part 04": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Mastery",
+            "subject": "Pre-calc & calculus",
+            "listItem01": "Limits",
+            "listItem02": "Derivatives",
+            "listItem03": "Integrals",
+            "listItem04": "Exam technique",
+            "listItem05": "",
+            "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+            "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+            ]
+          }
+        }
+      ],
+      "Session Type 01": [
+        {
+          "component": "n7fi7gTQ_",
+          "width": "fill",
+          "props": {
+            "title": "Private",
+            "description": "A dedicated mentor, fully personal pace. Best for catching up fast or pushing well ahead.",
+            "icon": "https://framerusercontent.com/images/LNXFvVO0mJ0vaTxzuCALGDD66g.svg",
+            "iconBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+            "iconBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+            "iconShadow": [
+              "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+            ]
+          }
+        }
+      ],
+      "Session Type 02": [
+        {
+          "component": "n7fi7gTQ_",
+          "width": "fill",
+          "props": {
+            "title": "Small group",
+            "description": "Max four learners at the same level. Great energy, steady practice, friendlier price, and more opportunities to learn together.",
+            "icon": "https://framerusercontent.com/images/ptGEy1jKYAkMsMMVstywE93QH9Q.svg",
+            "iconBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+            "iconBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+            "iconShadow": [
+              "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+            ]
+          }
+        }
+      ],
+      "Team": "maya-chen",
+      "FAQs": [
+        {
+          "component": "wde271kTF",
+          "width": "fill",
+          "props": {
+            "variant": "Desktop",
+            "_01Question": "My child is behind how fast can they catch up?",
+            "_01Answer": "Most learners close a level gap in one to two terms with two sessions a week. Our free assessment gives you an honest estimate before you commit.",
+            "_02Question": "Do you follow the school curriculum?",
+            "_02Answer": "Yes. We follow your child’s school curriculum while filling the gaps that make new topics harder to follow. Our sessions build understanding before moving ahead.",
+            "_03Question": "What about exam and test prep?",
+            "_03Answer": "Yes. We focus on key topics, practice questions, and exam strategies that help your child prepare with confidence. Our sessions target the skills they need most.",
+            "_04Question": "Can we switch between private and group?",
+            "_04Answer": "Yes. You can switch between private and group sessions as your child’s needs change. We’ll help you choose the format that gives them the right support.",
+            "_05Question": "",
+            "_05Answer": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "ysmeRXRkx",
+      "slug": "science",
+      "byId": {
+        "hUvhbUSVS": "Science",
+        "H6kmmKUBd": "rgb(214, 229, 154)",
+        "pebU2aYgK": "https://framerusercontent.com/images/qpoAerqTRpaQhvDQleTOMNS8rE.svg",
+        "t_8_0uuO4": "rgb(160, 175, 100)",
+        "mM9g1EDjS": "rgb(160, 175, 100)",
+        "FVT0W9tsX": "rgb(214, 229, 154)",
+        "EnXNFcio9": "Explore the world through experiments, discovery, and hands-on learning across biology, chemistry, physics, and exciting research projects.",
+        "qJKErpwZ2": "https://framerusercontent.com/images/mXR8DWJmCxOBN93NPiBLOyyc.jpg",
+        "K6guXv55O": "https://framerusercontent.com/images/g4m5txDwArVyptNCMlROYqCoTW0.jpg",
+        "HNtd_VJxB": "All stages",
+        "TsxYJujxI": "We make science easier to understand, explore, and enjoy. From core concepts to experiments and exam prep, every learner gets a clear path built around their level.",
+        "BuzbVg2cg": "Topic tracks",
+        "gZLQKE2TD": "04",
+        "QxkZWvI2z": "Sessions weekly",
+        "XxkBqqz4U": "2×",
+        "mWtmbqNAt": "Per session",
+        "lNQa0DDFI": "60 min",
+        "AlYJU3rfd": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Foundations",
+              "subject": "Core science",
+              "listItem01": "Matter & materials",
+              "listItem02": "Forces & motion",
+              "listItem03": "Energy & change",
+              "listItem04": "Scientific thinking",
+              "listItem05": "",
+              "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "Atet3qL3U": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Core",
+              "subject": "Biology & life",
+              "listItem01": "Cells & systems",
+              "listItem02": "Plants & animals",
+              "listItem03": "Human biology",
+              "listItem04": "Ecosystems",
+              "listItem05": "",
+              "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "WKiK9v9LC": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Advanced",
+              "subject": "Physics & chemistry",
+              "listItem01": "Forces & energy",
+              "listItem02": "Electricity",
+              "listItem03": "Reactions",
+              "listItem04": "Chemical changes",
+              "listItem05": "",
+              "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ],
+        "B3GrEvcRf": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Mastery",
+              "subject": "Research & discovery",
+              "listItem01": "Experiments",
+              "listItem02": "Data analysis",
+              "listItem03": "Problem solving",
+              "listItem04": "Scientific research",
+              "listItem05": "",
+              "topicBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+              "topicBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+              ]
+            }
+          }
+        ],
+        "o2t1Enj0m": [
+          {
+            "component": "n7fi7gTQ_",
+            "width": "fill",
+            "props": {
+              "title": "Private",
+              "description": "A dedicated mentor, fully personal pace. Best for catching up fast or pushing well ahead.",
+              "icon": "https://framerusercontent.com/images/LNXFvVO0mJ0vaTxzuCALGDD66g.svg",
+              "iconBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+              "iconBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+              "iconShadow": [
+                "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+              ]
+            }
+          }
+        ],
+        "ym1ibWGrd": [
+          {
+            "component": "n7fi7gTQ_",
+            "width": "fill",
+            "props": {
+              "title": "Small group",
+              "description": "Max five learners at the same level. Great energy, steady practice, and a friendlier price.",
+              "icon": "https://framerusercontent.com/images/ptGEy1jKYAkMsMMVstywE93QH9Q.svg",
+              "iconBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "iconBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "iconShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "DoMyhitd7": "",
+        "bw5wYLxeb": "david-okafor",
+        "bw5wYLxeb_QLObxbGfm": "David Okafor",
+        "bw5wYLxeb_uWfN5in9C": false,
+        "bw5wYLxeb_pueVll7k6": "Science",
+        "bw5wYLxeb_koQ7t_K7p": "https://framerusercontent.com/images/LWDxQ1XDerRUdFtjsenjlUxYUo.jpg",
+        "bw5wYLxeb_vb4FeIzT_": "Chemistry grad who explains concepts with fun kitchen experiments.",
+        "bw5wYLxeb_yWvfHilm6": "rgb(214, 229, 154)",
+        "bw5wYLxeb_HpvuLvKB8": "rgb(69, 86, 75)",
+        "bw5wYLxeb_ovElfr2M4": "rgb(20, 38, 29)",
+        "bw5wYLxeb_DogFf1FfV": "4.8/5  ★ 110 reviews",
+        "bw5wYLxeb_s9bPlqbuP": "Senior mentor",
+        "bw5wYLxeb_zGSu5TpRv": [
+          {
+            "component": "dGuk6jhMX",
+            "width": "fill",
+            "props": {
+              "title01": "Chemistry",
+              "title02": "Biology",
+              "title03": "Research skills",
+              "title04": "Lab work",
+              "title05": "Ages 11–17"
+            }
+          }
+        ],
+        "bw5wYLxeb_YfmS2tChU": "David Okafor turns complicated science topics into clear, memorable ideas through questions, experiments, and conversations that keep learners curious and involved.",
+        "bw5wYLxeb_ZcVHBg5Yy": "7 yrs",
+        "bw5wYLxeb_M5IcI2Sjv": "165+",
+        "bw5wYLxeb_THai84wa4": "97%",
+        "bw5wYLxeb_XNLdspowH": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "First 10 min",
+              "title": "Open with a question",
+              "info": "David starts with something a learner cannot immediately answer — why does the ice melt faster in water than in air? Curiosity does the heavy lifting before any terminology appears.",
+              "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "bw5wYLxeb_EJZU77C18": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Middle 40 min",
+              "title": "Make it physical",
+              "info": "The idea gets demonstrated, usually with something from a kitchen cupboard. Watching a reaction happen fixes it in memory far better than reading the definition of one.",
+              "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "bw5wYLxeb_EkhrKhG8k": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Last 10 min",
+              "title": "Put it in their words",
+              "info": "The learner writes the explanation themselves, in plain language. David corrects the science, never the phrasing — the goal is understanding that survives past the exam.",
+              "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ],
+        "dhFBoRH5X": [
+          {
+            "component": "wde271kTF",
+            "width": "fill",
+            "props": {
+              "variant": "Desktop",
+              "_01Question": "My child finds science difficult. Can they catch up?",
+              "_01Answer": "Yes! We start by identifying exactly where the gap is — whether it's concepts, formulas, or lab work — and build from there. Most students see noticeable improvement within a few sessions.",
+              "_02Question": "Do you follow the school curriculum?",
+              "_02Answer": "Yes, we align with your child's school syllabus so every session directly supports what they're learning in class. We also go beyond the textbook to build real understanding.",
+              "_03Question": "Do you cover experiments and practical work?",
+              "_03Answer": "Absolutely. We include hands-on experiments, virtual labs, and practical demonstrations to make science tangible — not just theory on paper.",
+              "_04Question": "What about exam and test prep?",
+              "_04Answer": "Yes, We cover past papers, marking schemes, and exam technique so students feel confident and prepared, not just knowledgeable.",
+              "_05Question": "Can we switch between private and group?",
+              "_05Answer": "Yes, you can switch anytime based on what works best for your child at that moment. No lock-in, full flexibility."
+            }
+          }
+        ]
+      },
+      "Title": "Science",
+      "BG Color": "rgb(214, 229, 154)",
+      "Icon": {
+        "url": "https://framerusercontent.com/images/qpoAerqTRpaQhvDQleTOMNS8rE.svg",
+        "alt": ""
+      },
+      "Icon Shadow BG": "rgb(160, 175, 100)",
+      "Icon Border": "rgb(160, 175, 100)",
+      "Icon BG Color": "rgb(214, 229, 154)",
+      "Info": "Explore the world through experiments, discovery, and hands-on learning across biology, chemistry, physics, and exciting research projects.",
+      "Thumbnail": {
+        "url": "https://framerusercontent.com/images/mXR8DWJmCxOBN93NPiBLOyyc.jpg",
+        "alt": "Program Image"
+      },
+      "Image": {
+        "url": "https://framerusercontent.com/images/g4m5txDwArVyptNCMlROYqCoTW0.jpg",
+        "alt": "Program Image"
+      },
+      "Level Tag": "All stages",
+      "Description": "We make science easier to understand, explore, and enjoy. From core concepts to experiments and exam prep, every learner gets a clear path built around their level.",
+      "Label 01": "Topic tracks",
+      "Value 01": "04",
+      "Label 02": "Sessions weekly",
+      "Value 02": "2×",
+      "Label 03": "Per session",
+      "Value 03": "60 min",
+      "Syllabus Part 01": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Foundations",
+            "subject": "Core science",
+            "listItem01": "Matter & materials",
+            "listItem02": "Forces & motion",
+            "listItem03": "Energy & change",
+            "listItem04": "Scientific thinking",
+            "listItem05": "",
+            "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+            "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+            ]
+          }
+        }
+      ],
+      "Syllabus Part 02": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Core",
+            "subject": "Biology & life",
+            "listItem01": "Cells & systems",
+            "listItem02": "Plants & animals",
+            "listItem03": "Human biology",
+            "listItem04": "Ecosystems",
+            "listItem05": "",
+            "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+            "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+            ]
+          }
+        }
+      ],
+      "Syllabus Part 03": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Advanced",
+            "subject": "Physics & chemistry",
+            "listItem01": "Forces & energy",
+            "listItem02": "Electricity",
+            "listItem03": "Reactions",
+            "listItem04": "Chemical changes",
+            "listItem05": "",
+            "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+            "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+            ]
+          }
+        }
+      ],
+      "Syllabus Part 04": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Mastery",
+            "subject": "Research & discovery",
+            "listItem01": "Experiments",
+            "listItem02": "Data analysis",
+            "listItem03": "Problem solving",
+            "listItem04": "Scientific research",
+            "listItem05": "",
+            "topicBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+            "topicBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+            ]
+          }
+        }
+      ],
+      "Session Type 01": [
+        {
+          "component": "n7fi7gTQ_",
+          "width": "fill",
+          "props": {
+            "title": "Private",
+            "description": "A dedicated mentor, fully personal pace. Best for catching up fast or pushing well ahead.",
+            "icon": "https://framerusercontent.com/images/LNXFvVO0mJ0vaTxzuCALGDD66g.svg",
+            "iconBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+            "iconBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+            "iconShadow": [
+              "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+            ]
+          }
+        }
+      ],
+      "Session Type 02": [
+        {
+          "component": "n7fi7gTQ_",
+          "width": "fill",
+          "props": {
+            "title": "Small group",
+            "description": "Max five learners at the same level. Great energy, steady practice, and a friendlier price.",
+            "icon": "https://framerusercontent.com/images/ptGEy1jKYAkMsMMVstywE93QH9Q.svg",
+            "iconBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+            "iconBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+            "iconShadow": [
+              "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+            ]
+          }
+        }
+      ],
+      "Team": "david-okafor",
+      "FAQs": [
+        {
+          "component": "wde271kTF",
+          "width": "fill",
+          "props": {
+            "variant": "Desktop",
+            "_01Question": "My child finds science difficult. Can they catch up?",
+            "_01Answer": "Yes! We start by identifying exactly where the gap is — whether it's concepts, formulas, or lab work — and build from there. Most students see noticeable improvement within a few sessions.",
+            "_02Question": "Do you follow the school curriculum?",
+            "_02Answer": "Yes, we align with your child's school syllabus so every session directly supports what they're learning in class. We also go beyond the textbook to build real understanding.",
+            "_03Question": "Do you cover experiments and practical work?",
+            "_03Answer": "Absolutely. We include hands-on experiments, virtual labs, and practical demonstrations to make science tangible — not just theory on paper.",
+            "_04Question": "What about exam and test prep?",
+            "_04Answer": "Yes, We cover past papers, marking schemes, and exam technique so students feel confident and prepared, not just knowledgeable.",
+            "_05Question": "Can we switch between private and group?",
+            "_05Answer": "Yes, you can switch anytime based on what works best for your child at that moment. No lock-in, full flexibility."
+          }
+        }
+      ]
+    },
+    {
+      "id": "Rji1VEJw2",
+      "slug": "english",
+      "byId": {
+        "hUvhbUSVS": "English",
+        "H6kmmKUBd": "rgb(246, 215, 232)",
+        "pebU2aYgK": "https://framerusercontent.com/images/fstVjMRfwl05PfjbsFtFYawj9s.svg",
+        "t_8_0uuO4": "rgb(190, 143, 169)",
+        "mM9g1EDjS": "rgb(190, 143, 169)",
+        "FVT0W9tsX": "rgb(246, 215, 232)",
+        "EnXNFcio9": "Strengthen reading, writing, grammar, vocabulary, and communication skills through engaging stories, creative exercises, and guided practice.",
+        "qJKErpwZ2": "https://framerusercontent.com/images/8iAgcYrLcrHe4KWZAxR1z0L58.jpg",
+        "K6guXv55O": "https://framerusercontent.com/images/kP02n8gT8DivUYwWeob5y3Njfg.jpg",
+        "HNtd_VJxB": "All grades",
+        "TsxYJujxI": "We build confident readers, writers, and speakers. From grammar and vocabulary to essays and conversation, every learner gets a clear path built around their actual goals.",
+        "BuzbVg2cg": "Topic tracks",
+        "gZLQKE2TD": "04",
+        "QxkZWvI2z": "Sessions weekly",
+        "XxkBqqz4U": "2×",
+        "mWtmbqNAt": "Per session",
+        "lNQa0DDFI": "60 min",
+        "AlYJU3rfd": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Foundations",
+              "subject": "Reading & comprehension",
+              "listItem01": "Reading fluency",
+              "listItem02": "Main ideas",
+              "listItem03": "Vocabulary",
+              "listItem04": "Text understanding",
+              "listItem05": "",
+              "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "Atet3qL3U": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Core",
+              "subject": "Grammar & writing",
+              "listItem01": "Sentence structure",
+              "listItem02": "Parts of speech",
+              "listItem03": "Paragraph writing",
+              "listItem04": "Spelling & punctuation",
+              "listItem05": "",
+              "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "WKiK9v9LC": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Advanced",
+              "subject": "Literature & essays",
+              "listItem01": "Literary analysis",
+              "listItem02": "Essay writing",
+              "listItem03": "Critical thinking",
+              "listItem04": "Themes & characters",
+              "listItem05": "",
+              "topicBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+              "topicBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+              ]
+            }
+          }
+        ],
+        "B3GrEvcRf": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Mastery",
+              "subject": "Speaking & communication",
+              "listItem01": "Conversation",
+              "listItem02": "Presentation skills",
+              "listItem03": "Confidence",
+              "listItem04": "Clear expression",
+              "listItem05": "",
+              "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ],
+        "o2t1Enj0m": [
+          {
+            "component": "n7fi7gTQ_",
+            "width": "fill",
+            "props": {
+              "title": "Private",
+              "description": "A dedicated mentor, fully personal pace. Best for catching up fast or pushing well ahead.",
+              "icon": "https://framerusercontent.com/images/LNXFvVO0mJ0vaTxzuCALGDD66g.svg",
+              "iconBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+              "iconBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+              "iconShadow": [
+                "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+              ]
+            }
+          }
+        ],
+        "ym1ibWGrd": [
+          {
+            "component": "n7fi7gTQ_",
+            "width": "fill",
+            "props": {
+              "title": "Small group",
+              "description": "Max four learners at the same level. Great energy, steady practice, and a friendlier price.",
+              "icon": "https://framerusercontent.com/images/ptGEy1jKYAkMsMMVstywE93QH9Q.svg",
+              "iconBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "iconBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "iconShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "DoMyhitd7": "<p dir=\"auto\"><br class=\"trailing-break\"></p>",
+        "bw5wYLxeb": "sarah-whitmore",
+        "bw5wYLxeb_QLObxbGfm": "Sarah Whitmore",
+        "bw5wYLxeb_uWfN5in9C": false,
+        "bw5wYLxeb_pueVll7k6": "English",
+        "bw5wYLxeb_koQ7t_K7p": "https://framerusercontent.com/images/0ZAhqalgo0wtRuDpybmJIhbhGc.jpg",
+        "bw5wYLxeb_vb4FeIzT_": "Essay whisperer. Gets reluctant readers hooked one short story at a time.",
+        "bw5wYLxeb_yWvfHilm6": "rgb(246, 215, 232)",
+        "bw5wYLxeb_HpvuLvKB8": "rgb(69, 86, 75)",
+        "bw5wYLxeb_ovElfr2M4": "rgb(20, 38, 29)",
+        "bw5wYLxeb_DogFf1FfV": "4.9/5  ★ 96 reviews",
+        "bw5wYLxeb_s9bPlqbuP": "Lead mentor",
+        "bw5wYLxeb_zGSu5TpRv": [
+          {
+            "component": "dGuk6jhMX",
+            "width": "fill",
+            "props": {
+              "title01": "Creative writing",
+              "title02": "Grammar",
+              "title03": "Reading skills",
+              "title04": "Literature",
+              "title05": "Ages 9–15"
+            }
+          }
+        ],
+        "bw5wYLxeb_YfmS2tChU": "Sarah Whitmore makes English feel practical and approachable, helping learners express ideas clearly while building stronger reading, writing, and communication skills.",
+        "bw5wYLxeb_ZcVHBg5Yy": "8 yrs",
+        "bw5wYLxeb_M5IcI2Sjv": "150+",
+        "bw5wYLxeb_THai84wa4": "96%",
+        "bw5wYLxeb_XNLdspowH": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "First 10 min",
+              "title": "Start with something worth reading",
+              "info": "Sarah picks a short text the learner actually wants to finish. Reluctant readers are rarely lazy; they have usually just been handed the wrong book.",
+              "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "bw5wYLxeb_EJZU77C18": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Middle 45 min",
+              "title": "Take the writing apart",
+              "info": "Together they work out why a paragraph lands — the order of the ideas, the length of the sentences, the word doing the real work. Structure becomes visible instead of mysterious.",
+              "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "bw5wYLxeb_EkhrKhG8k": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Last 5 min",
+              "title": "Rewrite one paragraph properly",
+              "info": "Rather than a whole essay done adequately, one paragraph gets redrafted until it is genuinely good. That standard then carries into everything else they write.",
+              "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ],
+        "dhFBoRH5X": [
+          {
+            "component": "wde271kTF",
+            "width": "fill",
+            "props": {
+              "variant": "Desktop",
+              "_01Question": "My child is behind in English. Can they catch up?",
+              "_01Answer": "Yes, with guided lessons and steady practice children can close gaps and build confidence in reading, writing, and speaking.",
+              "_02Question": "Do you follow the school curriculum?",
+              "_02Answer": "Yes, lessons are aligned with school standards ensuring progress supports classroom learning and exam requirements.",
+              "_03Question": "Can you help with reading and writing?",
+              "_03Answer": "Yes, we focus on phonics, comprehension, grammar, and structured writing to strengthen both fluency and accuracy.",
+              "_04Question": "What about exam and test prep?",
+              "_04Answer": "Yes, tailored practice sessions, mock tests, and feedback help students prepare effectively for school exams and assessments.",
+              "_05Question": "Can we switch between private and group?",
+              "_05Answer": "Yes, families can choose flexible options moving between one‑to‑one sessions and group classes as needs change."
+            }
+          }
+        ]
+      },
+      "Title": "English",
+      "BG Color": "rgb(246, 215, 232)",
+      "Icon": {
+        "url": "https://framerusercontent.com/images/fstVjMRfwl05PfjbsFtFYawj9s.svg",
+        "alt": ""
+      },
+      "Icon Shadow BG": "rgb(190, 143, 169)",
+      "Icon Border": "rgb(190, 143, 169)",
+      "Icon BG Color": "rgb(246, 215, 232)",
+      "Info": "Strengthen reading, writing, grammar, vocabulary, and communication skills through engaging stories, creative exercises, and guided practice.",
+      "Thumbnail": {
+        "url": "https://framerusercontent.com/images/8iAgcYrLcrHe4KWZAxR1z0L58.jpg",
+        "alt": "Program Image"
+      },
+      "Image": {
+        "url": "https://framerusercontent.com/images/kP02n8gT8DivUYwWeob5y3Njfg.jpg",
+        "alt": "Program Image"
+      },
+      "Level Tag": "All grades",
+      "Description": "We build confident readers, writers, and speakers. From grammar and vocabulary to essays and conversation, every learner gets a clear path built around their actual goals.",
+      "Label 01": "Topic tracks",
+      "Value 01": "04",
+      "Label 02": "Sessions weekly",
+      "Value 02": "2×",
+      "Label 03": "Per session",
+      "Value 03": "60 min",
+      "Syllabus Part 01": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Foundations",
+            "subject": "Reading & comprehension",
+            "listItem01": "Reading fluency",
+            "listItem02": "Main ideas",
+            "listItem03": "Vocabulary",
+            "listItem04": "Text understanding",
+            "listItem05": "",
+            "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+            "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+            ]
+          }
+        }
+      ],
+      "Syllabus Part 02": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Core",
+            "subject": "Grammar & writing",
+            "listItem01": "Sentence structure",
+            "listItem02": "Parts of speech",
+            "listItem03": "Paragraph writing",
+            "listItem04": "Spelling & punctuation",
+            "listItem05": "",
+            "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+            "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+            ]
+          }
+        }
+      ],
+      "Syllabus Part 03": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Advanced",
+            "subject": "Literature & essays",
+            "listItem01": "Literary analysis",
+            "listItem02": "Essay writing",
+            "listItem03": "Critical thinking",
+            "listItem04": "Themes & characters",
+            "listItem05": "",
+            "topicBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+            "topicBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+            ]
+          }
+        }
+      ],
+      "Syllabus Part 04": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Mastery",
+            "subject": "Speaking & communication",
+            "listItem01": "Conversation",
+            "listItem02": "Presentation skills",
+            "listItem03": "Confidence",
+            "listItem04": "Clear expression",
+            "listItem05": "",
+            "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+            "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+            ]
+          }
+        }
+      ],
+      "Session Type 01": [
+        {
+          "component": "n7fi7gTQ_",
+          "width": "fill",
+          "props": {
+            "title": "Private",
+            "description": "A dedicated mentor, fully personal pace. Best for catching up fast or pushing well ahead.",
+            "icon": "https://framerusercontent.com/images/LNXFvVO0mJ0vaTxzuCALGDD66g.svg",
+            "iconBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+            "iconBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+            "iconShadow": [
+              "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+            ]
+          }
+        }
+      ],
+      "Session Type 02": [
+        {
+          "component": "n7fi7gTQ_",
+          "width": "fill",
+          "props": {
+            "title": "Small group",
+            "description": "Max four learners at the same level. Great energy, steady practice, and a friendlier price.",
+            "icon": "https://framerusercontent.com/images/ptGEy1jKYAkMsMMVstywE93QH9Q.svg",
+            "iconBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+            "iconBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+            "iconShadow": [
+              "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+            ]
+          }
+        }
+      ],
+      "Session Type 03": "<p dir=\"auto\"><br class=\"trailing-break\"></p>",
+      "Team": "sarah-whitmore",
+      "FAQs": [
+        {
+          "component": "wde271kTF",
+          "width": "fill",
+          "props": {
+            "variant": "Desktop",
+            "_01Question": "My child is behind in English. Can they catch up?",
+            "_01Answer": "Yes, with guided lessons and steady practice children can close gaps and build confidence in reading, writing, and speaking.",
+            "_02Question": "Do you follow the school curriculum?",
+            "_02Answer": "Yes, lessons are aligned with school standards ensuring progress supports classroom learning and exam requirements.",
+            "_03Question": "Can you help with reading and writing?",
+            "_03Answer": "Yes, we focus on phonics, comprehension, grammar, and structured writing to strengthen both fluency and accuracy.",
+            "_04Question": "What about exam and test prep?",
+            "_04Answer": "Yes, tailored practice sessions, mock tests, and feedback help students prepare effectively for school exams and assessments.",
+            "_05Question": "Can we switch between private and group?",
+            "_05Answer": "Yes, families can choose flexible options moving between one‑to‑one sessions and group classes as needs change."
+          }
+        }
+      ]
+    },
+    {
+      "id": "EgCyxnMJa",
+      "slug": "coding",
+      "byId": {
+        "hUvhbUSVS": "Coding",
+        "H6kmmKUBd": "rgb(249, 216, 192)",
+        "pebU2aYgK": "https://framerusercontent.com/images/k6rc7rJDt550bAz0NUyIQTdPftE.svg",
+        "t_8_0uuO4": "rgb(186, 146, 117)",
+        "mM9g1EDjS": "rgb(186, 146, 117)",
+        "FVT0W9tsX": "rgb(249, 216, 192)",
+        "EnXNFcio9": "Learn Scratch, Python, web development, and AI through practical projects that build creativity, logic, confidence, and real-world skills.",
+        "qJKErpwZ2": "https://framerusercontent.com/images/3y6SuCplLSoD7SQEcaC8i40BQ.jpg",
+        "K6guXv55O": "https://framerusercontent.com/images/2cA7usphZJ3x8tZnp6UntkxZXg.jpg",
+        "HNtd_VJxB": "All tracks",
+        "TsxYJujxI": "We turn curiosity into real coding skills. From programming basics to building websites and projects, every learner gets a clear path built around their interests and level.",
+        "BuzbVg2cg": "Topic tracks",
+        "gZLQKE2TD": "05",
+        "QxkZWvI2z": "Sessions weekly",
+        "XxkBqqz4U": "3×",
+        "mWtmbqNAt": "Per session",
+        "lNQa0DDFI": "60 min",
+        "AlYJU3rfd": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Foundations",
+              "subject": "Coding basics",
+              "listItem01": "Logic & sequences",
+              "listItem02": "Variables",
+              "listItem03": "Loops",
+              "listItem04": "Problem solving",
+              "listItem05": "",
+              "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "Atet3qL3U": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Core",
+              "subject": "Web development",
+              "listItem01": "HTML & CSS",
+              "listItem02": "JavaScript",
+              "listItem03": "Responsive layouts",
+              "listItem04": "Web projects",
+              "listItem05": "",
+              "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "WKiK9v9LC": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Advanced",
+              "subject": "Programming skills",
+              "listItem01": "Functions",
+              "listItem02": "Data structures",
+              "listItem03": "Algorithms",
+              "listItem04": "Debugging",
+              "listItem05": "",
+              "topicBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+              "topicBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+              ]
+            }
+          }
+        ],
+        "B3GrEvcRf": [
+          {
+            "component": "IhND4CwUH",
+            "width": "fill",
+            "props": {
+              "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+              "topic": "Mastery",
+              "subject": "Projects & building",
+              "listItem01": "Project planning",
+              "listItem02": "Creative building",
+              "listItem03": "Problem solving",
+              "listItem04": "Design & making",
+              "listItem05": "",
+              "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ],
+        "o2t1Enj0m": [
+          {
+            "component": "n7fi7gTQ_",
+            "width": "fill",
+            "props": {
+              "title": "Private",
+              "description": "A dedicated mentor, fully personal pace. Best for catching up fast or building projects independently.",
+              "icon": {
+                "src": "https://framerusercontent.com/images/LNXFvVO0mJ0vaTxzuCALGDD66g.svg",
+                "alt": "Group Icon"
+              },
+              "iconBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+              "iconBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+              "iconShadow": [
+                "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+              ]
+            }
+          }
+        ],
+        "ym1ibWGrd": [
+          {
+            "component": "n7fi7gTQ_",
+            "width": "fill",
+            "props": {
+              "title": "Small group",
+              "description": "Max Five learners at the same level. Great energy, steady practice, friendlier price.",
+              "icon": {
+                "src": "https://framerusercontent.com/images/ptGEy1jKYAkMsMMVstywE93QH9Q.svg",
+                "alt": "Group Icon"
+              },
+              "iconBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "iconBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "iconShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "DoMyhitd7": [
+          {
+            "component": "n7fi7gTQ_",
+            "width": "fill",
+            "props": {
+              "title": "Workshop",
+              "description": "Collaborative project building with 6–10 learners mirrors real dev builds teamwork skills.",
+              "icon": "https://framerusercontent.com/images/A9sSgmmhU5WSPBV0u9QuFaUgK04.svg",
+              "iconBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "iconBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "iconShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ],
+        "bw5wYLxeb": "alex-rivera",
+        "bw5wYLxeb_QLObxbGfm": "Alex Rivera",
+        "bw5wYLxeb_uWfN5in9C": false,
+        "bw5wYLxeb_pueVll7k6": "Coding",
+        "bw5wYLxeb_koQ7t_K7p": "https://framerusercontent.com/images/M3azqO7NKrYmve5K6Pd6yIobg.jpg",
+        "bw5wYLxeb_vb4FeIzT_": "Builds games with students from day one the syntax sneaks in on its own.",
+        "bw5wYLxeb_yWvfHilm6": "rgb(249, 216, 192)",
+        "bw5wYLxeb_HpvuLvKB8": "rgb(69, 86, 75)",
+        "bw5wYLxeb_ovElfr2M4": "rgb(20, 38, 29)",
+        "bw5wYLxeb_DogFf1FfV": "4.8/5  ★ 88 reviews",
+        "bw5wYLxeb_s9bPlqbuP": "Senior mentor",
+        "bw5wYLxeb_zGSu5TpRv": [
+          {
+            "component": "dGuk6jhMX",
+            "width": "fill",
+            "props": {
+              "title01": "HTML & CSS",
+              "title02": "JavaScript",
+              "title03": "Web projects",
+              "title04": "Responsive design",
+              "title05": "Ages 11–18"
+            }
+          }
+        ],
+        "bw5wYLxeb_YfmS2tChU": "Alex Rivera helps young learners move from following tutorials to building real projects, developing both technical confidence and practical problem-solving skills.",
+        "bw5wYLxeb_ZcVHBg5Yy": "10 yrs",
+        "bw5wYLxeb_M5IcI2Sjv": "140+",
+        "bw5wYLxeb_THai84wa4": "95%",
+        "bw5wYLxeb_XNLdspowH": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "First 10 min",
+              "title": "Pick something worth building",
+              "info": "The session opens with what the learner wants to make, not the topic that comes next in a syllabus. A game they care about will carry them through concepts a worksheet never could.",
+              "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "bw5wYLxeb_EJZU77C18": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Middle 40 min",
+              "title": "Break it into small wins",
+              "info": "Alex splits the build into pieces that each work on their own. Something runs on screen within the first session — progress you can see beats progress you are told about.",
+              "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "bw5wYLxeb_EkhrKhG8k": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Last 10 min",
+              "title": "Ship it, then break it",
+              "info": "Working code gets deliberately broken so the learner can debug it. Reading an error message without panicking is the skill that separates following tutorials from actually building things.",
+              "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ],
+        "dhFBoRH5X": [
+          {
+            "component": "wde271kTF",
+            "width": "fill",
+            "props": {
+              "variant": "Desktop",
+              "_01Question": "My child has never coded before. Can they start?",
+              "_01Answer": "Absolutely! We start from zero, no experience needed. We begin with Scratch and move to real languages at their own pace.",
+              "_02Question": "Do you teach real programming languages?",
+              "_02Answer": "Yes! We teach Python, HTML, CSS, JavaScript and more. Students move from block-based coding to real code naturally, so it never feels overwhelming.",
+              "_03Question": "Can they build their own website or game?",
+              "_03Answer": "Yes, that's one of the best parts! Students work on real projects like games, apps, and websites. Building something they're proud of keeps them motivated and learning faster.",
+              "_04Question": "What about school or exam preparation?",
+              "_04Answer": "We cover school computer science curriculum, coding theory, and practical exam skills. Whether it's GCSE, IGCSE, or any board exam, we've got it covered.",
+              "_05Question": "Can we switch between private and group?",
+              "_05Answer": "Yes, anytime! Switch between private 1-on-1 sessions and group classes based on what suits your child best. No commitment, full flexibility."
+            }
+          }
+        ]
+      },
+      "Title": "Coding",
+      "BG Color": "rgb(249, 216, 192)",
+      "Icon": {
+        "url": "https://framerusercontent.com/images/k6rc7rJDt550bAz0NUyIQTdPftE.svg",
+        "alt": ""
+      },
+      "Icon Shadow BG": "rgb(186, 146, 117)",
+      "Icon Border": "rgb(186, 146, 117)",
+      "Icon BG Color": "rgb(249, 216, 192)",
+      "Info": "Learn Scratch, Python, web development, and AI through practical projects that build creativity, logic, confidence, and real-world skills.",
+      "Thumbnail": {
+        "url": "https://framerusercontent.com/images/3y6SuCplLSoD7SQEcaC8i40BQ.jpg",
+        "alt": "Program Image"
+      },
+      "Image": {
+        "url": "https://framerusercontent.com/images/2cA7usphZJ3x8tZnp6UntkxZXg.jpg",
+        "alt": "Program Image"
+      },
+      "Level Tag": "All tracks",
+      "Description": "We turn curiosity into real coding skills. From programming basics to building websites and projects, every learner gets a clear path built around their interests and level.",
+      "Label 01": "Topic tracks",
+      "Value 01": "05",
+      "Label 02": "Sessions weekly",
+      "Value 02": "3×",
+      "Label 03": "Per session",
+      "Value 03": "60 min",
+      "Syllabus Part 01": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Foundations",
+            "subject": "Coding basics",
+            "listItem01": "Logic & sequences",
+            "listItem02": "Variables",
+            "listItem03": "Loops",
+            "listItem04": "Problem solving",
+            "listItem05": "",
+            "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+            "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+            ]
+          }
+        }
+      ],
+      "Syllabus Part 02": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Core",
+            "subject": "Web development",
+            "listItem01": "HTML & CSS",
+            "listItem02": "JavaScript",
+            "listItem03": "Responsive layouts",
+            "listItem04": "Web projects",
+            "listItem05": "",
+            "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+            "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+            ]
+          }
+        }
+      ],
+      "Syllabus Part 03": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Advanced",
+            "subject": "Programming skills",
+            "listItem01": "Functions",
+            "listItem02": "Data structures",
+            "listItem03": "Algorithms",
+            "listItem04": "Debugging",
+            "listItem05": "",
+            "topicBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+            "topicBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+            ]
+          }
+        }
+      ],
+      "Syllabus Part 04": [
+        {
+          "component": "IhND4CwUH",
+          "width": "fill",
+          "props": {
+            "icon": "https://framerusercontent.com/images/IMCc1IKcAGwVpb4GHFpE0frpE.svg",
+            "topic": "Mastery",
+            "subject": "Projects & building",
+            "listItem01": "Project planning",
+            "listItem02": "Creative building",
+            "listItem03": "Problem solving",
+            "listItem04": "Design & making",
+            "listItem05": "",
+            "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+            "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+            ]
+          }
+        }
+      ],
+      "Session Type 01": [
+        {
+          "component": "n7fi7gTQ_",
+          "width": "fill",
+          "props": {
+            "title": "Private",
+            "description": "A dedicated mentor, fully personal pace. Best for catching up fast or building projects independently.",
+            "icon": {
+              "src": "https://framerusercontent.com/images/LNXFvVO0mJ0vaTxzuCALGDD66g.svg",
+              "alt": "Group Icon"
+            },
+            "iconBGColor": "var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea)",
+            "iconBorder": "1px solid var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)",
+            "iconShadow": [
+              "3px 4px 0px 0px var(--token-d46389a1-c11a-499f-a8d1-1f5543960045)"
+            ]
+          }
+        }
+      ],
+      "Session Type 02": [
+        {
+          "component": "n7fi7gTQ_",
+          "width": "fill",
+          "props": {
+            "title": "Small group",
+            "description": "Max Five learners at the same level. Great energy, steady practice, friendlier price.",
+            "icon": {
+              "src": "https://framerusercontent.com/images/ptGEy1jKYAkMsMMVstywE93QH9Q.svg",
+              "alt": "Group Icon"
+            },
+            "iconBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+            "iconBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+            "iconShadow": [
+              "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+            ]
+          }
+        }
+      ],
+      "Session Type 03": [
+        {
+          "component": "n7fi7gTQ_",
+          "width": "fill",
+          "props": {
+            "title": "Workshop",
+            "description": "Collaborative project building with 6–10 learners mirrors real dev builds teamwork skills.",
+            "icon": "https://framerusercontent.com/images/A9sSgmmhU5WSPBV0u9QuFaUgK04.svg",
+            "iconBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+            "iconBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+            "iconShadow": [
+              "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+            ]
+          }
+        }
+      ],
+      "Team": "alex-rivera",
+      "FAQs": [
+        {
+          "component": "wde271kTF",
+          "width": "fill",
+          "props": {
+            "variant": "Desktop",
+            "_01Question": "My child has never coded before. Can they start?",
+            "_01Answer": "Absolutely! We start from zero, no experience needed. We begin with Scratch and move to real languages at their own pace.",
+            "_02Question": "Do you teach real programming languages?",
+            "_02Answer": "Yes! We teach Python, HTML, CSS, JavaScript and more. Students move from block-based coding to real code naturally, so it never feels overwhelming.",
+            "_03Question": "Can they build their own website or game?",
+            "_03Answer": "Yes, that's one of the best parts! Students work on real projects like games, apps, and websites. Building something they're proud of keeps them motivated and learning faster.",
+            "_04Question": "What about school or exam preparation?",
+            "_04Answer": "We cover school computer science curriculum, coding theory, and practical exam skills. Whether it's GCSE, IGCSE, or any board exam, we've got it covered.",
+            "_05Question": "Can we switch between private and group?",
+            "_05Answer": "Yes, anytime! Switch between private 1-on-1 sessions and group classes based on what suits your child best. No commitment, full flexibility."
+          }
+        }
+      ]
+    }
+  ],
+  "Mentor": [
+    {
+      "id": "AmSgylQdt",
+      "slug": "maya-chen",
+      "byId": {
+        "QLObxbGfm": "Maya Chen",
+        "uWfN5in9C": true,
+        "pueVll7k6": "Mathematics",
+        "koQ7t_K7p": "https://framerusercontent.com/images/QoXhr69JES9Sz1oPnPDbV8cOVQw.jpg",
+        "vb4FeIzT_": "Former math teacher with 9 years turning \"I hate math\" into \"That's it?\"",
+        "yWvfHilm6": "rgb(73, 126, 100)",
+        "HpvuLvKB8": "rgb(244, 240, 229)",
+        "ovElfr2M4": "rgb(244, 240, 229)",
+        "DogFf1FfV": "4.9/5  ★ 120 reviews",
+        "s9bPlqbuP": "Lead mentor",
+        "zGSu5TpRv": [
+          {
+            "component": "dGuk6jhMX",
+            "width": "fill",
+            "props": {
+              "title01": "Confidence rebuilding",
+              "title02": "Exam prep",
+              "title03": "Algebra & geometry",
+              "title04": "Ages 10–16",
+              "title05": ""
+            }
+          }
+        ],
+        "YfmS2tChU": "Nine years as a school math teacher, five at BrightPath. Maya's specialty is the learner who has decided they're \"just not a math person\" she disagrees, and she's usually right within a month. Her sessions run on questions, not lectures: learners do the talking, she does the steering.",
+        "ZcVHBg5Yy": "9 yrs",
+        "M5IcI2Sjv": "180+",
+        "THai84wa4": "98%",
+        "XNLdspowH": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "First 10 min",
+              "title": "Find the gap",
+              "info": "The first ten minutes are diagnostic. Maya works backwards from the question that caused the trouble until she finds the step where the confusion actually started — usually two topics earlier than anyone expected.",
+              "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "EJZU77C18": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Middle 40",
+              "title": "Rebuild the floor",
+              "info": "Once the gap is named, it gets rebuilt properly rather than patched. Short, repeated practice on the underlying idea until it is automatic, so the harder work has something solid to stand on.",
+              "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "EkhrKhG8k": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Last 10",
+              "title": "Make them prove it",
+              "info": "Every session ends with the learner explaining the method back, unaided. If they can teach it, they own it — and that is the point where \"I'm not a math person\" quietly stops being true.",
+              "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ]
+      },
+      "Title": "Maya Chen",
+      "Founder": true,
+      "Subject": "Mathematics",
+      "Image": {
+        "url": "https://framerusercontent.com/images/QoXhr69JES9Sz1oPnPDbV8cOVQw.jpg",
+        "alt": "Team Image"
+      },
+      "Info": "Former math teacher with 9 years turning \"I hate math\" into \"That's it?\"",
+      "BG Color": "rgb(73, 126, 100)",
+      "Info Color": "rgb(244, 240, 229)",
+      "Title Color": "rgb(244, 240, 229)",
+      "Rating Badge": "4.9/5  ★ 120 reviews",
+      "Role": "Lead mentor",
+      "Expertise": [
+        {
+          "component": "dGuk6jhMX",
+          "width": "fill",
+          "props": {
+            "title01": "Confidence rebuilding",
+            "title02": "Exam prep",
+            "title03": "Algebra & geometry",
+            "title04": "Ages 10–16",
+            "title05": ""
+          }
+        }
+      ],
+      "Description": "Nine years as a school math teacher, five at BrightPath. Maya's specialty is the learner who has decided they're \"just not a math person\" she disagrees, and she's usually right within a month. Her sessions run on questions, not lectures: learners do the talking, she does the steering.",
+      "Teaching Experience": "9 yrs",
+      "Learners": "180+",
+      "Rebook Rate": "98%",
+      "Session 01": [
+        {
+          "component": "XNaU_Oq_y",
+          "width": "fill",
+          "props": {
+            "time": "First 10 min",
+            "title": "Find the gap",
+            "info": "The first ten minutes are diagnostic. Maya works backwards from the question that caused the trouble until she finds the step where the confusion actually started — usually two topics earlier than anyone expected.",
+            "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+            "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+            ]
+          }
+        }
+      ],
+      "Session 02": [
+        {
+          "component": "XNaU_Oq_y",
+          "width": "fill",
+          "props": {
+            "time": "Middle 40",
+            "title": "Rebuild the floor",
+            "info": "Once the gap is named, it gets rebuilt properly rather than patched. Short, repeated practice on the underlying idea until it is automatic, so the harder work has something solid to stand on.",
+            "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+            "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+            ]
+          }
+        }
+      ],
+      "Session 03": [
+        {
+          "component": "XNaU_Oq_y",
+          "width": "fill",
+          "props": {
+            "time": "Last 10",
+            "title": "Make them prove it",
+            "info": "Every session ends with the learner explaining the method back, unaided. If they can teach it, they own it — and that is the point where \"I'm not a math person\" quietly stops being true.",
+            "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+            "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "X7_sbxR9F",
+      "slug": "david-okafor",
+      "byId": {
+        "QLObxbGfm": "David Okafor",
+        "uWfN5in9C": false,
+        "pueVll7k6": "Science",
+        "koQ7t_K7p": "https://framerusercontent.com/images/LWDxQ1XDerRUdFtjsenjlUxYUo.jpg",
+        "vb4FeIzT_": "Chemistry grad who explains concepts with fun kitchen experiments.",
+        "yWvfHilm6": "rgb(214, 229, 154)",
+        "HpvuLvKB8": "rgb(69, 86, 75)",
+        "ovElfr2M4": "rgb(20, 38, 29)",
+        "DogFf1FfV": "4.8/5  ★ 110 reviews",
+        "s9bPlqbuP": "Senior mentor",
+        "zGSu5TpRv": [
+          {
+            "component": "dGuk6jhMX",
+            "width": "fill",
+            "props": {
+              "title01": "Chemistry",
+              "title02": "Biology",
+              "title03": "Research skills",
+              "title04": "Lab work",
+              "title05": "Ages 11–17"
+            }
+          }
+        ],
+        "YfmS2tChU": "David Okafor turns complicated science topics into clear, memorable ideas through questions, experiments, and conversations that keep learners curious and involved.",
+        "ZcVHBg5Yy": "7 yrs",
+        "M5IcI2Sjv": "165+",
+        "THai84wa4": "97%",
+        "XNLdspowH": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "First 10 min",
+              "title": "Open with a question",
+              "info": "David starts with something a learner cannot immediately answer — why does the ice melt faster in water than in air? Curiosity does the heavy lifting before any terminology appears.",
+              "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "EJZU77C18": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Middle 40 min",
+              "title": "Make it physical",
+              "info": "The idea gets demonstrated, usually with something from a kitchen cupboard. Watching a reaction happen fixes it in memory far better than reading the definition of one.",
+              "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "EkhrKhG8k": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Last 10 min",
+              "title": "Put it in their words",
+              "info": "The learner writes the explanation themselves, in plain language. David corrects the science, never the phrasing — the goal is understanding that survives past the exam.",
+              "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ]
+      },
+      "Title": "David Okafor",
+      "Founder": false,
+      "Subject": "Science",
+      "Image": {
+        "url": "https://framerusercontent.com/images/LWDxQ1XDerRUdFtjsenjlUxYUo.jpg",
+        "alt": "Team Image"
+      },
+      "Info": "Chemistry grad who explains concepts with fun kitchen experiments.",
+      "BG Color": "rgb(214, 229, 154)",
+      "Info Color": "rgb(69, 86, 75)",
+      "Title Color": "rgb(20, 38, 29)",
+      "Rating Badge": "4.8/5  ★ 110 reviews",
+      "Role": "Senior mentor",
+      "Expertise": [
+        {
+          "component": "dGuk6jhMX",
+          "width": "fill",
+          "props": {
+            "title01": "Chemistry",
+            "title02": "Biology",
+            "title03": "Research skills",
+            "title04": "Lab work",
+            "title05": "Ages 11–17"
+          }
+        }
+      ],
+      "Description": "David Okafor turns complicated science topics into clear, memorable ideas through questions, experiments, and conversations that keep learners curious and involved.",
+      "Teaching Experience": "7 yrs",
+      "Learners": "165+",
+      "Rebook Rate": "97%",
+      "Session 01": [
+        {
+          "component": "XNaU_Oq_y",
+          "width": "fill",
+          "props": {
+            "time": "First 10 min",
+            "title": "Open with a question",
+            "info": "David starts with something a learner cannot immediately answer — why does the ice melt faster in water than in air? Curiosity does the heavy lifting before any terminology appears.",
+            "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+            "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+            ]
+          }
+        }
+      ],
+      "Session 02": [
+        {
+          "component": "XNaU_Oq_y",
+          "width": "fill",
+          "props": {
+            "time": "Middle 40 min",
+            "title": "Make it physical",
+            "info": "The idea gets demonstrated, usually with something from a kitchen cupboard. Watching a reaction happen fixes it in memory far better than reading the definition of one.",
+            "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+            "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+            ]
+          }
+        }
+      ],
+      "Session 03": [
+        {
+          "component": "XNaU_Oq_y",
+          "width": "fill",
+          "props": {
+            "time": "Last 10 min",
+            "title": "Put it in their words",
+            "info": "The learner writes the explanation themselves, in plain language. David corrects the science, never the phrasing — the goal is understanding that survives past the exam.",
+            "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+            "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ycttoRQpS",
+      "slug": "sarah-whitmore",
+      "byId": {
+        "QLObxbGfm": "Sarah Whitmore",
+        "uWfN5in9C": false,
+        "pueVll7k6": "English",
+        "koQ7t_K7p": "https://framerusercontent.com/images/0ZAhqalgo0wtRuDpybmJIhbhGc.jpg",
+        "vb4FeIzT_": "Essay whisperer. Gets reluctant readers hooked one short story at a time.",
+        "yWvfHilm6": "rgb(246, 215, 232)",
+        "HpvuLvKB8": "rgb(69, 86, 75)",
+        "ovElfr2M4": "rgb(20, 38, 29)",
+        "DogFf1FfV": "4.9/5  ★ 96 reviews",
+        "s9bPlqbuP": "Lead mentor",
+        "zGSu5TpRv": [
+          {
+            "component": "dGuk6jhMX",
+            "width": "fill",
+            "props": {
+              "title01": "Creative writing",
+              "title02": "Grammar",
+              "title03": "Reading skills",
+              "title04": "Literature",
+              "title05": "Ages 9–15"
+            }
+          }
+        ],
+        "YfmS2tChU": "Sarah Whitmore makes English feel practical and approachable, helping learners express ideas clearly while building stronger reading, writing, and communication skills.",
+        "ZcVHBg5Yy": "8 yrs",
+        "M5IcI2Sjv": "150+",
+        "THai84wa4": "96%",
+        "XNLdspowH": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "First 10 min",
+              "title": "Start with something worth reading",
+              "info": "Sarah picks a short text the learner actually wants to finish. Reluctant readers are rarely lazy; they have usually just been handed the wrong book.",
+              "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "EJZU77C18": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Middle 45 min",
+              "title": "Take the writing apart",
+              "info": "Together they work out why a paragraph lands — the order of the ideas, the length of the sentences, the word doing the real work. Structure becomes visible instead of mysterious.",
+              "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "EkhrKhG8k": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Last 5 min",
+              "title": "Rewrite one paragraph properly",
+              "info": "Rather than a whole essay done adequately, one paragraph gets redrafted until it is genuinely good. That standard then carries into everything else they write.",
+              "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ]
+      },
+      "Title": "Sarah Whitmore",
+      "Founder": false,
+      "Subject": "English",
+      "Image": {
+        "url": "https://framerusercontent.com/images/0ZAhqalgo0wtRuDpybmJIhbhGc.jpg",
+        "alt": "Team Image"
+      },
+      "Info": "Essay whisperer. Gets reluctant readers hooked one short story at a time.",
+      "BG Color": "rgb(246, 215, 232)",
+      "Info Color": "rgb(69, 86, 75)",
+      "Title Color": "rgb(20, 38, 29)",
+      "Rating Badge": "4.9/5  ★ 96 reviews",
+      "Role": "Lead mentor",
+      "Expertise": [
+        {
+          "component": "dGuk6jhMX",
+          "width": "fill",
+          "props": {
+            "title01": "Creative writing",
+            "title02": "Grammar",
+            "title03": "Reading skills",
+            "title04": "Literature",
+            "title05": "Ages 9–15"
+          }
+        }
+      ],
+      "Description": "Sarah Whitmore makes English feel practical and approachable, helping learners express ideas clearly while building stronger reading, writing, and communication skills.",
+      "Teaching Experience": "8 yrs",
+      "Learners": "150+",
+      "Rebook Rate": "96%",
+      "Session 01": [
+        {
+          "component": "XNaU_Oq_y",
+          "width": "fill",
+          "props": {
+            "time": "First 10 min",
+            "title": "Start with something worth reading",
+            "info": "Sarah picks a short text the learner actually wants to finish. Reluctant readers are rarely lazy; they have usually just been handed the wrong book.",
+            "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+            "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+            ]
+          }
+        }
+      ],
+      "Session 02": [
+        {
+          "component": "XNaU_Oq_y",
+          "width": "fill",
+          "props": {
+            "time": "Middle 45 min",
+            "title": "Take the writing apart",
+            "info": "Together they work out why a paragraph lands — the order of the ideas, the length of the sentences, the word doing the real work. Structure becomes visible instead of mysterious.",
+            "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+            "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+            ]
+          }
+        }
+      ],
+      "Session 03": [
+        {
+          "component": "XNaU_Oq_y",
+          "width": "fill",
+          "props": {
+            "time": "Last 5 min",
+            "title": "Rewrite one paragraph properly",
+            "info": "Rather than a whole essay done adequately, one paragraph gets redrafted until it is genuinely good. That standard then carries into everything else they write.",
+            "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+            "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GdsZo_6pk",
+      "slug": "alex-rivera",
+      "byId": {
+        "QLObxbGfm": "Alex Rivera",
+        "uWfN5in9C": false,
+        "pueVll7k6": "Coding",
+        "koQ7t_K7p": "https://framerusercontent.com/images/M3azqO7NKrYmve5K6Pd6yIobg.jpg",
+        "vb4FeIzT_": "Builds games with students from day one the syntax sneaks in on its own.",
+        "yWvfHilm6": "rgb(249, 216, 192)",
+        "HpvuLvKB8": "rgb(69, 86, 75)",
+        "ovElfr2M4": "rgb(20, 38, 29)",
+        "DogFf1FfV": "4.8/5  ★ 88 reviews",
+        "s9bPlqbuP": "Senior mentor",
+        "zGSu5TpRv": [
+          {
+            "component": "dGuk6jhMX",
+            "width": "fill",
+            "props": {
+              "title01": "HTML & CSS",
+              "title02": "JavaScript",
+              "title03": "Web projects",
+              "title04": "Responsive design",
+              "title05": "Ages 11–18"
+            }
+          }
+        ],
+        "YfmS2tChU": "Alex Rivera helps young learners move from following tutorials to building real projects, developing both technical confidence and practical problem-solving skills.",
+        "ZcVHBg5Yy": "10 yrs",
+        "M5IcI2Sjv": "140+",
+        "THai84wa4": "95%",
+        "XNLdspowH": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "First 10 min",
+              "title": "Pick something worth building",
+              "info": "The session opens with what the learner wants to make, not the topic that comes next in a syllabus. A game they care about will carry them through concepts a worksheet never could.",
+              "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+              "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+              ]
+            }
+          }
+        ],
+        "EJZU77C18": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Middle 40 min",
+              "title": "Break it into small wins",
+              "info": "Alex splits the build into pieces that each work on their own. Something runs on screen within the first session — progress you can see beats progress you are told about.",
+              "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+              "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+              ]
+            }
+          }
+        ],
+        "EkhrKhG8k": [
+          {
+            "component": "XNaU_Oq_y",
+            "width": "fill",
+            "props": {
+              "time": "Last 10 min",
+              "title": "Ship it, then break it",
+              "info": "Working code gets deliberately broken so the learner can debug it. Reading an error message without panicking is the skill that separates following tutorials from actually building things.",
+              "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+              "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+              "topicShadow": [
+                "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+              ]
+            }
+          }
+        ]
+      },
+      "Title": "Alex Rivera",
+      "Founder": false,
+      "Subject": "Coding",
+      "Image": {
+        "url": "https://framerusercontent.com/images/M3azqO7NKrYmve5K6Pd6yIobg.jpg",
+        "alt": "Team Image"
+      },
+      "Info": "Builds games with students from day one the syntax sneaks in on its own.",
+      "BG Color": "rgb(249, 216, 192)",
+      "Info Color": "rgb(69, 86, 75)",
+      "Title Color": "rgb(20, 38, 29)",
+      "Rating Badge": "4.8/5  ★ 88 reviews",
+      "Role": "Senior mentor",
+      "Expertise": [
+        {
+          "component": "dGuk6jhMX",
+          "width": "fill",
+          "props": {
+            "title01": "HTML & CSS",
+            "title02": "JavaScript",
+            "title03": "Web projects",
+            "title04": "Responsive design",
+            "title05": "Ages 11–18"
+          }
+        }
+      ],
+      "Description": "Alex Rivera helps young learners move from following tutorials to building real projects, developing both technical confidence and practical problem-solving skills.",
+      "Teaching Experience": "10 yrs",
+      "Learners": "140+",
+      "Rebook Rate": "95%",
+      "Session 01": [
+        {
+          "component": "XNaU_Oq_y",
+          "width": "fill",
+          "props": {
+            "time": "First 10 min",
+            "title": "Pick something worth building",
+            "info": "The session opens with what the learner wants to make, not the topic that comes next in a syllabus. A game they care about will carry them through concepts a worksheet never could.",
+            "topicBGColor": "var(--token-e8cec243-b334-4568-a85b-a75cea534593)",
+            "topicBorder": "1px solid var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-5bafd284-4248-4179-8fdd-7a454d5f3ef0)"
+            ]
+          }
+        }
+      ],
+      "Session 02": [
+        {
+          "component": "XNaU_Oq_y",
+          "width": "fill",
+          "props": {
+            "time": "Middle 40 min",
+            "title": "Break it into small wins",
+            "info": "Alex splits the build into pieces that each work on their own. Something runs on screen within the first session — progress you can see beats progress you are told about.",
+            "topicBGColor": "var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898)",
+            "topicBorder": "1px solid var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-1155d13b-37e2-47ed-93ce-c08c2cfdd816)"
+            ]
+          }
+        }
+      ],
+      "Session 03": [
+        {
+          "component": "XNaU_Oq_y",
+          "width": "fill",
+          "props": {
+            "time": "Last 10 min",
+            "title": "Ship it, then break it",
+            "info": "Working code gets deliberately broken so the learner can debug it. Reading an error message without panicking is the skill that separates following tutorials from actually building things.",
+            "topicBGColor": "var(--token-9f7780f5-af12-4101-9125-2580d35c4118)",
+            "topicBorder": "1px solid var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)",
+            "topicShadow": [
+              "3px 4px 0px 0px var(--token-a059f435-bb0e-48c5-ac68-2aad5474e6d7)"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Legal Pages": [
+    {
+      "id": "KeY8Mb9ib",
+      "slug": "privacy-policy",
+      "byId": {
+        "cIAqrINar": "Privacy Policy",
+        "o9lwaUOE4": "2026-08-25T00:00:00.000Z",
+        "Uh0oKOql9": "<h2 dir=\"auto\">Introduction</h2><p dir=\"auto\">Your privacy matters to us. This Privacy Policy explains how BrightPath collects, uses, stores, and protects your personal information when you use our website, learning services, and mentoring sessions.</p><p dir=\"auto\">By using BrightPath, you agree to the practices described in this Privacy Policy.</p><h3 dir=\"auto\">Information we collect</h3><p dir=\"auto\"><strong>We may collect information that helps us provide a better learning experience, including:</strong></p><ul dir=\"auto\"><li data-preset-tag=\"p\"><p>Name and contact details</p></li><li data-preset-tag=\"p\"><p>Email address and phone number</p></li><li data-preset-tag=\"p\"><p>Learner age and education level</p></li><li data-preset-tag=\"p\"><p>Learning goals and subject preferences</p></li><li data-preset-tag=\"p\"><p>Session attendance and scheduling information</p></li><li data-preset-tag=\"p\"><p>Learning progress and mentor notes</p></li><li data-preset-tag=\"p\"><p>Messages and information submitted through forms</p></li><li data-preset-tag=\"p\"><p>Payment and billing information</p></li><li data-preset-tag=\"p\"><p>Device, browser, and website usage information</p></li></ul><h3 dir=\"auto\">How we use your information</h3><p dir=\"auto\"><strong>We use your information to:</strong></p><ul dir=\"auto\"><li data-preset-tag=\"p\"><p>Create and manage learner accounts</p></li><li data-preset-tag=\"p\"><p>Plan and personalise learning sessions</p></li><li data-preset-tag=\"p\"><p>Match learners with suitable mentors</p></li><li data-preset-tag=\"p\"><p>Track learning progress and provide feedback</p></li><li data-preset-tag=\"p\"><p>Schedule and manage sessions</p></li><li data-preset-tag=\"p\"><p>Process payments and manage subscriptions</p></li><li data-preset-tag=\"p\"><p>Respond to questions and support requests</p></li><li data-preset-tag=\"p\"><p>Send important service and account updates</p></li><li data-preset-tag=\"p\"><p>Improve our learning experience and website</p></li><li data-preset-tag=\"p\"><p>Protect BrightPath against fraud, misuse, and security threats</p></li></ul><h3 dir=\"auto\">Learning information</h3><p dir=\"auto\">We may use information about a learner’s level, goals, progress, attendance, and session feedback to help mentors prepare effective and personalised learning experiences. This information is used only for providing and improving our educational services.</p><h3 dir=\"auto\">Cookies</h3><p dir=\"auto\">BrightPath uses cookies and similar technologies to remember preferences, understand website activity, and improve website performance. You can manage or disable cookies through your browser settings, although some features may not work as intended.</p><h3 dir=\"auto\">Payment information</h3><p dir=\"auto\">If you pay online, payment details are processed securely by our payment provider. BrightPath does not see or store your full card number or payment credentials.</p><h3 dir=\"auto\">Data security</h3><p dir=\"auto\">We use reasonable technical and organisational measures to protect your personal information from unauthorised access, loss, misuse, or disclosure. However, no online service or storage system can be guaranteed to be completely secure.</p><h3 dir=\"auto\">Third-party services</h3><p dir=\"auto\">We may work with trusted third-party providers for services such as payment processing, scheduling, communications, analytics, hosting, and website functionality. These providers only receive the information needed to provide their services and are expected to handle it appropriately.</p><h3 dir=\"auto\">Sharing your information</h3><p dir=\"auto\">We do not sell your personal information. We may share relevant information with mentors, service providers, or other trusted partners when necessary to provide BrightPath services, operate our platform, or meet legal requirements.</p><h3 dir=\"auto\">Your rights</h3><p dir=\"auto\"><strong>Depending on applicable law, you may request to:</strong></p><ul dir=\"auto\"><li data-preset-tag=\"p\"><p>Access the personal information we hold about you</p></li><li data-preset-tag=\"p\"><p>Correct inaccurate or outdated information</p></li><li data-preset-tag=\"p\"><p>Request deletion of your personal information</p></li><li data-preset-tag=\"p\"><p>Withdraw consent where applicable</p></li><li data-preset-tag=\"p\"><p>Opt out of marketing communications</p></li><li data-preset-tag=\"p\"><p>Ask questions about how your information is used</p></li></ul><h3 dir=\"auto\">Children's information</h3><p dir=\"auto\">BrightPath may provide learning services to children and young learners. Where appropriate, we rely on a parent or guardian to provide information and manage the learner's account. We take reasonable steps to protect learner information and use it only for providing our educational services.</p><h3 dir=\"auto\">Data retention</h3><p dir=\"auto\">We keep personal information only for as long as reasonably necessary to provide our services, maintain appropriate records, meet legal obligations, resolve disputes, and protect our legitimate interests. When information is no longer needed, we take reasonable steps to delete or securely dispose of it.</p><h3 dir=\"auto\">Policy updates</h3><p dir=\"auto\">We may update this Privacy Policy from time to time to reflect changes to our services, technology, or legal requirements. Any changes will become effective when the updated policy is published on our website.</p><h3 dir=\"auto\">Contact</h3><p dir=\"auto\">If you have questions about this Privacy Policy, how we handle your information, or your privacy rights, <a href=\"/contact\">please contact</a> the BrightPath team.</p>"
+      },
+      "Title": "Privacy Policy",
+      "Date": "2026-08-25T00:00:00.000Z",
+      "Content": "<h2 dir=\"auto\">Introduction</h2><p dir=\"auto\">Your privacy matters to us. This Privacy Policy explains how BrightPath collects, uses, stores, and protects your personal information when you use our website, learning services, and mentoring sessions.</p><p dir=\"auto\">By using BrightPath, you agree to the practices described in this Privacy Policy.</p><h3 dir=\"auto\">Information we collect</h3><p dir=\"auto\"><strong>We may collect information that helps us provide a better learning experience, including:</strong></p><ul dir=\"auto\"><li data-preset-tag=\"p\"><p>Name and contact details</p></li><li data-preset-tag=\"p\"><p>Email address and phone number</p></li><li data-preset-tag=\"p\"><p>Learner age and education level</p></li><li data-preset-tag=\"p\"><p>Learning goals and subject preferences</p></li><li data-preset-tag=\"p\"><p>Session attendance and scheduling information</p></li><li data-preset-tag=\"p\"><p>Learning progress and mentor notes</p></li><li data-preset-tag=\"p\"><p>Messages and information submitted through forms</p></li><li data-preset-tag=\"p\"><p>Payment and billing information</p></li><li data-preset-tag=\"p\"><p>Device, browser, and website usage information</p></li></ul><h3 dir=\"auto\">How we use your information</h3><p dir=\"auto\"><strong>We use your information to:</strong></p><ul dir=\"auto\"><li data-preset-tag=\"p\"><p>Create and manage learner accounts</p></li><li data-preset-tag=\"p\"><p>Plan and personalise learning sessions</p></li><li data-preset-tag=\"p\"><p>Match learners with suitable mentors</p></li><li data-preset-tag=\"p\"><p>Track learning progress and provide feedback</p></li><li data-preset-tag=\"p\"><p>Schedule and manage sessions</p></li><li data-preset-tag=\"p\"><p>Process payments and manage subscriptions</p></li><li data-preset-tag=\"p\"><p>Respond to questions and support requests</p></li><li data-preset-tag=\"p\"><p>Send important service and account updates</p></li><li data-preset-tag=\"p\"><p>Improve our learning experience and website</p></li><li data-preset-tag=\"p\"><p>Protect BrightPath against fraud, misuse, and security threats</p></li></ul><h3 dir=\"auto\">Learning information</h3><p dir=\"auto\">We may use information about a learner’s level, goals, progress, attendance, and session feedback to help mentors prepare effective and personalised learning experiences. This information is used only for providing and improving our educational services.</p><h3 dir=\"auto\">Cookies</h3><p dir=\"auto\">BrightPath uses cookies and similar technologies to remember preferences, understand website activity, and improve website performance. You can manage or disable cookies through your browser settings, although some features may not work as intended.</p><h3 dir=\"auto\">Payment information</h3><p dir=\"auto\">If you pay online, payment details are processed securely by our payment provider. BrightPath does not see or store your full card number or payment credentials.</p><h3 dir=\"auto\">Data security</h3><p dir=\"auto\">We use reasonable technical and organisational measures to protect your personal information from unauthorised access, loss, misuse, or disclosure. However, no online service or storage system can be guaranteed to be completely secure.</p><h3 dir=\"auto\">Third-party services</h3><p dir=\"auto\">We may work with trusted third-party providers for services such as payment processing, scheduling, communications, analytics, hosting, and website functionality. These providers only receive the information needed to provide their services and are expected to handle it appropriately.</p><h3 dir=\"auto\">Sharing your information</h3><p dir=\"auto\">We do not sell your personal information. We may share relevant information with mentors, service providers, or other trusted partners when necessary to provide BrightPath services, operate our platform, or meet legal requirements.</p><h3 dir=\"auto\">Your rights</h3><p dir=\"auto\"><strong>Depending on applicable law, you may request to:</strong></p><ul dir=\"auto\"><li data-preset-tag=\"p\"><p>Access the personal information we hold about you</p></li><li data-preset-tag=\"p\"><p>Correct inaccurate or outdated information</p></li><li data-preset-tag=\"p\"><p>Request deletion of your personal information</p></li><li data-preset-tag=\"p\"><p>Withdraw consent where applicable</p></li><li data-preset-tag=\"p\"><p>Opt out of marketing communications</p></li><li data-preset-tag=\"p\"><p>Ask questions about how your information is used</p></li></ul><h3 dir=\"auto\">Children's information</h3><p dir=\"auto\">BrightPath may provide learning services to children and young learners. Where appropriate, we rely on a parent or guardian to provide information and manage the learner's account. We take reasonable steps to protect learner information and use it only for providing our educational services.</p><h3 dir=\"auto\">Data retention</h3><p dir=\"auto\">We keep personal information only for as long as reasonably necessary to provide our services, maintain appropriate records, meet legal obligations, resolve disputes, and protect our legitimate interests. When information is no longer needed, we take reasonable steps to delete or securely dispose of it.</p><h3 dir=\"auto\">Policy updates</h3><p dir=\"auto\">We may update this Privacy Policy from time to time to reflect changes to our services, technology, or legal requirements. Any changes will become effective when the updated policy is published on our website.</p><h3 dir=\"auto\">Contact</h3><p dir=\"auto\">If you have questions about this Privacy Policy, how we handle your information, or your privacy rights, <a href=\"/contact\">please contact</a> the BrightPath team.</p>"
+    },
+    {
+      "id": "QGSquR7cO",
+      "slug": "terms-conditions",
+      "byId": {
+        "cIAqrINar": "Terms & Conditions",
+        "o9lwaUOE4": "2026-08-27T00:00:00.000Z",
+        "Uh0oKOql9": "<h2 dir=\"auto\">Acceptance of terms</h2><p dir=\"auto\">By using BrightPath, you agree to these Terms &amp; Conditions. If you do not agree with them, please discontinue using our website and services.</p><h3 dir=\"auto\">Using BrightPath</h3><p dir=\"auto\">BrightPath provides personalised learning sessions, educational resources, and mentoring support for learners. Users agree to provide accurate information and use our services responsibly.</p><h3 dir=\"auto\">Learner accounts</h3><p dir=\"auto\">Parents, guardians, or learners are responsible for keeping account information accurate and login details secure. Please let us know if you believe your account has been accessed without permission.</p><h3 dir=\"auto\">Learning sessions</h3><p dir=\"auto\">Sessions are intended for the learner registered with BrightPath and should not be shared with another person. Session times, formats, and mentor assignments may vary based on the learner’s needs and availability.</p><h3 dir=\"auto\">Payments</h3><p dir=\"auto\">All payments must be completed through the payment methods provided by BrightPath. Prices and available plans may change from time to time. Any applicable payment, cancellation, or refund terms will be communicated before purchase.</p><h3 dir=\"auto\">Our content</h3><p dir=\"auto\">Learning materials, lesson plans, videos, text, graphics, worksheets, branding, and other BrightPath content belong to BrightPath or our content partners. They may not be copied, reproduced, shared, or redistributed without permission.</p><h3 dir=\"auto\">User conduct</h3><p dir=\"auto\"><strong>When using BrightPath, users agree not to:</strong></p><ul dir=\"auto\"><li data-preset-tag=\"p\"><p>Share or distribute BrightPath learning materials without permission</p></li><li data-preset-tag=\"p\"><p>Upload harmful, misleading, or inappropriate content</p></li><li data-preset-tag=\"p\"><p>Attempt to access accounts, systems, or information without authorisation</p></li><li data-preset-tag=\"p\"><p>Interfere with or disrupt our website or learning services</p></li><li data-preset-tag=\"p\"><p>Use BrightPath in a way that violates applicable laws</p></li></ul><h3 dir=\"auto\">Mentor and learner interactions</h3><p dir=\"auto\">Learners are expected to communicate respectfully with mentors and other members of the BrightPath community. We may take appropriate action if behaviour negatively affects the safety, learning experience, or wellbeing of others.</p><h3 dir=\"auto\">Account suspension</h3><p dir=\"auto\">We may suspend or terminate access to BrightPath if an account is used in violation of these Terms, our policies, or applicable laws.</p><h3 dir=\"auto\">Educational disclaimer</h3><p dir=\"auto\">BrightPath is designed to support learning, confidence, and academic development. While our mentors provide personalised guidance and support, we cannot guarantee specific academic, examination, professional, or other outcomes.</p><h3 dir=\"auto\">Third-party services</h3><p dir=\"auto\">BrightPath may use trusted third-party services for payments, scheduling, communications, or other platform features. Their services may be subject to their own terms and privacy policies.</p><h3 dir=\"auto\">Changes to these terms</h3><p dir=\"auto\">We may update these Terms &amp; Conditions from time to time to reflect changes to our services or legal requirements. Continued use of BrightPath after an update means you accept the revised terms.</p><h3 dir=\"auto\">Questions</h3><p dir=\"auto\">If you have questions about these Terms &amp; Conditions, please contact the BrightPath team.</p>"
+      },
+      "Title": "Terms & Conditions",
+      "Date": "2026-08-27T00:00:00.000Z",
+      "Content": "<h2 dir=\"auto\">Acceptance of terms</h2><p dir=\"auto\">By using BrightPath, you agree to these Terms &amp; Conditions. If you do not agree with them, please discontinue using our website and services.</p><h3 dir=\"auto\">Using BrightPath</h3><p dir=\"auto\">BrightPath provides personalised learning sessions, educational resources, and mentoring support for learners. Users agree to provide accurate information and use our services responsibly.</p><h3 dir=\"auto\">Learner accounts</h3><p dir=\"auto\">Parents, guardians, or learners are responsible for keeping account information accurate and login details secure. Please let us know if you believe your account has been accessed without permission.</p><h3 dir=\"auto\">Learning sessions</h3><p dir=\"auto\">Sessions are intended for the learner registered with BrightPath and should not be shared with another person. Session times, formats, and mentor assignments may vary based on the learner’s needs and availability.</p><h3 dir=\"auto\">Payments</h3><p dir=\"auto\">All payments must be completed through the payment methods provided by BrightPath. Prices and available plans may change from time to time. Any applicable payment, cancellation, or refund terms will be communicated before purchase.</p><h3 dir=\"auto\">Our content</h3><p dir=\"auto\">Learning materials, lesson plans, videos, text, graphics, worksheets, branding, and other BrightPath content belong to BrightPath or our content partners. They may not be copied, reproduced, shared, or redistributed without permission.</p><h3 dir=\"auto\">User conduct</h3><p dir=\"auto\"><strong>When using BrightPath, users agree not to:</strong></p><ul dir=\"auto\"><li data-preset-tag=\"p\"><p>Share or distribute BrightPath learning materials without permission</p></li><li data-preset-tag=\"p\"><p>Upload harmful, misleading, or inappropriate content</p></li><li data-preset-tag=\"p\"><p>Attempt to access accounts, systems, or information without authorisation</p></li><li data-preset-tag=\"p\"><p>Interfere with or disrupt our website or learning services</p></li><li data-preset-tag=\"p\"><p>Use BrightPath in a way that violates applicable laws</p></li></ul><h3 dir=\"auto\">Mentor and learner interactions</h3><p dir=\"auto\">Learners are expected to communicate respectfully with mentors and other members of the BrightPath community. We may take appropriate action if behaviour negatively affects the safety, learning experience, or wellbeing of others.</p><h3 dir=\"auto\">Account suspension</h3><p dir=\"auto\">We may suspend or terminate access to BrightPath if an account is used in violation of these Terms, our policies, or applicable laws.</p><h3 dir=\"auto\">Educational disclaimer</h3><p dir=\"auto\">BrightPath is designed to support learning, confidence, and academic development. While our mentors provide personalised guidance and support, we cannot guarantee specific academic, examination, professional, or other outcomes.</p><h3 dir=\"auto\">Third-party services</h3><p dir=\"auto\">BrightPath may use trusted third-party services for payments, scheduling, communications, or other platform features. Their services may be subject to their own terms and privacy policies.</p><h3 dir=\"auto\">Changes to these terms</h3><p dir=\"auto\">We may update these Terms &amp; Conditions from time to time to reflect changes to our services or legal requirements. Continued use of BrightPath after an update means you accept the revised terms.</p><h3 dir=\"auto\">Questions</h3><p dir=\"auto\">If you have questions about these Terms &amp; Conditions, please contact the BrightPath team.</p>"
+    }
+  ]
+}

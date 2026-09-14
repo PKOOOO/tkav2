@@ -1,0 +1,87 @@
+# Builds the HEVC-with-alpha MP4s that iOS needs for the animated mascots.
+#
+# WHY THIS EXISTS AS A WORKFLOW. Every browser on iOS renders with WebKit, and
+# WebKit decodes VP9 but flattens its alpha channel to black -- so the .webm
+# clips in public/decor/ cannot animate there, and iPhones fall back to the still
+# PNG. The only format that carries transparency on WebKit is HEVC with an alpha
+# channel in MP4, and the only encoder that produces it is `hevc_videotoolbox`,
+# which exists on macOS alone. This runs the same encode on a macOS runner so
+# nobody needs to own a Mac.
+#
+# HOW TO USE IT. Run it from the Actions tab ("Run workflow"), download the
+# `decor-alpha-mp4` artifact, and drop the files into public/decor/. That is all:
+# `lib/useVideoDecor.ts` already looks for them, verifies their alpha actually
+# survived on the device, and keeps the PNG if they are missing or unusable.
+#
+# It re-runs the keying from public/brand/ through scripts/encode-decor.py, the
+# same pipeline the .webm files come from, so the two formats cannot drift.
+
+name: Build alpha MP4s for iOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  encode:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg and Python deps
+        run: |
+          brew install ffmpeg
+          python3 -m pip install --break-system-packages --quiet pillow numpy
+          ffmpeg -hide_banner -encoders | grep hevc_videotoolbox
+
+      - name: Key and crop the frames
+        run: python3 scripts/encode-decor.py --frames-only "$RUNNER_TEMP/frames"
+
+      - name: Encode HEVC with alpha
+        run: |
+          mkdir -p out
+          for name in crab ladybug; do
+            # -pix_fmt bgra is what keeps the alpha channel through videotoolbox;
+            # -alpha_quality sets how hard the alpha plane is compressed; and the
+            # hvc1 tag is what makes Safari recognise the track at all (an untagged
+            # hev1 stream plays as nothing). -allow_sw 1 lets it fall back to the
+            # software encoder if the runner has no hardware path.
+            ffmpeg -v warning -framerate 24 -i "$RUNNER_TEMP/frames/$name/%04d.png" \
+              -c:v hevc_videotoolbox -pix_fmt bgra \
+              -alpha_quality 0.9 -q:v 60 -allow_sw 1 \
+              -tag:v hvc1 -movflags +faststart -an -y "out/$name.hevc.mp4"
+          done
+          ls -la out
+
+      - name: Verify the alpha channel survived
+        # Neither the repo's machine nor CI can open Safari, so this is the only
+        # check that the file is actually what iOS needs. A clip whose corner
+        # comes back opaque would paint a black card on every iPhone -- worse
+        # than the still it replaces -- so fail here rather than ship that.
+        run: |
+          python3 - <<'PY'
+          import subprocess, sys, tempfile, os
+          from PIL import Image
+          bad = []
+          for name in ('crab', 'ladybug'):
+              src = 'out/%s.hevc.mp4' % name
+              png = os.path.join(tempfile.mkdtemp(), 'f.png')
+              subprocess.run(['ffmpeg', '-v', 'error', '-i', src,
+                              '-vf', 'select=eq(n\\,10)', '-frames:v', '1',
+                              '-y', png], check=True)
+              im = Image.open(png).convert('RGBA')
+              corner = im.getpixel((1, 1))
+              size = os.path.getsize(src)
+              print('%-8s %s  corner=%s  %d bytes' % (name, im.size, corner, size))
+              if corner[3] > 8:
+                  bad.append('%s: corner alpha %d, expected ~0' % (name, corner[3]))
+          if bad:
+              sys.exit('ALPHA DID NOT SURVIVE:\n  ' + '\n  '.join(bad))
+          print('alpha verified on both clips')
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: decor-alpha-mp4
+          path: out/*.mp4
+          if-no-files-found: error

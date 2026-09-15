@@ -2,6 +2,12 @@ import { createElement, Fragment } from 'react'
 import type { ReactElement } from 'react'
 
 import data from './cms.json'
+import {
+    PROGRAM_FIELD_IDS,
+    PROGRAM_MENTOR_FIELD_ID,
+    PROGRAM_OVERRIDES,
+    type ProgramFieldName,
+} from './cms-overrides'
 
 import SubjectCard from '../framer/subject-card.jsx'
 import SessionTypeCard from '../framer/session-type-card.jsx'
@@ -72,17 +78,16 @@ const cms = data as unknown as {
 }
 
 export const mentors = cms.Mentor
-export const programs = cms.Program
 export const legalPages = cms['Legal Pages']
-
-export const findMentor = (slug?: string) => mentors.find((m) => m.slug === slug)
-export const findProgram = (slug?: string) => programs.find((p) => p.slug === slug)
-export const findLegalPage = (slug?: string) => legalPages.find((l) => l.slug === slug)
 
 /**
  * A CMS rich-text cell whose content is a Framer component embed rather than
  * text -- see the comment in scripts/export-cms.framer.js for why these need
  * their own representation in cms.json.
+ *
+ * Declared up here because the override layer below runs at module load and
+ * calls `isEmbedList`; a `const` defined further down would still be in its
+ * temporal dead zone by then.
  */
 export type CmsEmbed = {
     /** Framer component id, resolved through EMBED_COMPONENTS below. */
@@ -90,6 +95,77 @@ export type CmsEmbed = {
     width?: string
     props: Record<string, unknown>
 }
+
+const isEmbedList = (value: unknown): value is CmsEmbed[] =>
+    Array.isArray(value) &&
+    value.length > 0 &&
+    value.every((e) => !!e && typeof e === 'object' && 'component' in e && 'props' in e)
+
+/**
+ * Applies `lib/cms-overrides.ts` on top of the snapshot -- see that file for why
+ * the content lives there rather than in `cms.json`.
+ *
+ * Every write lands twice, on the Framer field id and on the human field name.
+ * Only the id reaches the rendered page (`ProgramDetail` binds `program.byId`),
+ * but `generateMetadata` and the route helpers read the named fields, and a
+ * programme whose <title> disagreed with its own heading would be a genuinely
+ * confusing bug to chase.
+ */
+const overrideProgram = (item: Program): Program => {
+    const override = PROGRAM_OVERRIDES[item.slug]
+    if (!override) return item
+
+    const next: Program = { ...item, byId: { ...item.byId } }
+    const write = (name: ProgramFieldName, value: unknown) => {
+        next.byId[PROGRAM_FIELD_IDS[name]] = value
+        // The named fields are individually typed (Title: string, and so on) and
+        // the override values arrive as `unknown`, so the write needs the cast.
+        ;(next as Record<string, unknown>)[name] = value
+    }
+
+    for (const [name, value] of Object.entries(override.fields ?? {})) {
+        write(name as ProgramFieldName, value)
+    }
+
+    // Embeds are patched rather than replaced, so the override only restates
+    // text and the snapshot keeps supplying icons and `--token-` colours.
+    for (const [name, patches] of Object.entries(override.embeds ?? {})) {
+        const current = next.byId[PROGRAM_FIELD_IDS[name as ProgramFieldName]]
+        if (!isEmbedList(current)) {
+            console.warn(`cms: ${item.slug}.${name} is not an embed list; override skipped`)
+            continue
+        }
+        write(
+            name as ProgramFieldName,
+            current.map((embed, i) =>
+                patches[i] ? { ...embed, props: { ...embed.props, ...patches[i] } } : embed,
+            ),
+        )
+    }
+
+    if (override.mentor) {
+        const mentor = mentors.find((m) => m.slug === override.mentor)
+        if (!mentor) {
+            console.warn(`cms: no mentor "${override.mentor}" for ${item.slug}; link left as-is`)
+        } else {
+            // The link field carries the slug; the mentor block reads the copy
+            // flattened beside it, so both have to move together.
+            next.byId[PROGRAM_MENTOR_FIELD_ID] = mentor.slug
+            ;(next as Record<string, unknown>).Team = mentor.slug
+            for (const [id, value] of Object.entries(mentor.byId)) {
+                next.byId[`${PROGRAM_MENTOR_FIELD_ID}_${id}`] = value
+            }
+        }
+    }
+
+    return next
+}
+
+export const programs = cms.Program.map(overrideProgram)
+
+export const findMentor = (slug?: string) => mentors.find((m) => m.slug === slug)
+export const findProgram = (slug?: string) => programs.find((p) => p.slug === slug)
+export const findLegalPage = (slug?: string) => legalPages.find((l) => l.slug === slug)
 
 /**
  * The components those embeds resolve to. Each must stay ticked in Framer's
@@ -104,11 +180,6 @@ const EMBED_COMPONENTS: Record<string, any> = {
     dGuk6jhMX: TeamExpertise,
     XNaU_Oq_y: SessionCard,
 }
-
-const isEmbedList = (value: unknown): value is CmsEmbed[] =>
-    Array.isArray(value) &&
-    value.length > 0 &&
-    value.every((e) => !!e && typeof e === 'object' && 'component' in e && 'props' in e)
 
 /** Framer image controls want {src, alt}; the CMS gives a bare URL or {url, alt}. */
 const toImageProp = (value: unknown) => {

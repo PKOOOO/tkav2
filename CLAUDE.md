@@ -64,8 +64,15 @@ lib/
   cms.json               **generated** by `pnpm cms`
   useSmoothScroll.ts     Lenis, matching Framer's Smooth Scroll component
   useCompactSections.ts  scales section padding to ⅔ of the template's
+  useVideoDecor.ts       plays the two animated mascots over their still <img>
 framer/                  **generated** by `pnpm framer`
+public/
+  brand/                 unprocessed sources — logos, photographs, mascot clips
+  decor/ hero/           the processed assets actually served
 scripts/                 bind-cms.mjs, export-cms.mjs, export-cms.framer.js
+  encode-decor.py        rebuilds public/decor/*.webm from public/brand/*.webm
+.github/workflows/
+  decor-alpha-mp4.yml    the macOS-only half of the same encode — see below
 next.config.ts           reactStrictMode: false — required, see Gotchas
 ```
 
@@ -122,6 +129,115 @@ Navigation has its own map: `Phone - Close`, `Tablet - Close`, `Desktop`.
 2. The curved ticker ribbon in the Home hero is deliberately wider than the
    viewport. `clip` not `hidden` — `hidden` would make this a scroll container
    and break `position: sticky` descendants.
+
+---
+
+## The asset override layer — `app/globals.css`
+
+The Framer project's React Export subscription has lapsed, so `pnpm framer`
+cannot pull the current colours or artwork. Both are therefore **overridden in
+`globals.css` instead of regenerated**: colour styles by redefining the
+`--token-<uuid>` variables (`:root:root` to outrank the generated stylesheet by
+specificity, since it is imported later), and artwork by `content: url(...)`,
+which replaces what an `<img>` renders without touching generated markup. Delete
+both blocks after a successful `pnpm framer`; the file says so where they live.
+
+Two mechanics are worth knowing before adding or moving any of these.
+
+**Select the slot by shape, not by class.** unframer's `Image` renders
+
+```
+<div class="framer-xxxxxx">            <- the slot; generated class, renamed by pnpm framer
+  <div data-framer-background-image-wrapper>
+    <img src="…framerusercontent.com/images/<id>…">
+```
+
+so the slot is `div:has(> div > img[src*="<id>"])`. That survives regeneration;
+a class name does not.
+
+**`fitImageDimension` is why replacements get clipped.** When a slot has it,
+unframer writes `width: auto` (or `height`) **plus the original image's
+`aspect-ratio`** as an *inline* style on the slot, and the generated rule adds
+`overflow: hidden`. A replacement with a different aspect ratio is therefore cut
+off at the slot's edge, and **sizing the `<img>` does nothing** — the window is
+the slot. Restate the slot's `aspect-ratio` with `!important`, which wins because
+important author rules outrank author inline styles.
+
+### Animated decor — `lib/useVideoDecor.ts`
+
+The two CTA mascots animate; every other asset is a still. `content: url()`
+takes images only, so this is **the only DOM surgery in the repo**: a `<video>`
+is added beside the `<img>`, and the `<img>` is hidden only once the video fires
+`playing`. Every failure path — missing file, decode failure, blocked autoplay,
+hook not running — leaves the still PNG on screen, which is why those
+`content: url()` rules stay.
+
+Three rules hold it together:
+
+1. **Never decide alpha support from the user agent.** *Every* browser on iOS
+   renders with WebKit — Chrome there is `CriOS`, Firefox `FxiOS` — and WebKit
+   decodes VP9 but flattens its alpha to black. A UA check gets this exactly
+   backwards. The hook inlines a 661-byte VP9 clip, decodes one frame to a
+   canvas and reads a pixel.
+2. **Two formats, because no single one works everywhere.** VP9-in-WebM for
+   Blink and Gecko; HEVC-in-MP4 for WebKit, which only `hevc_videotoolbox`
+   produces — macOS only, hence the workflow. The MP4s are optional: absent they
+   404 and iOS keeps the still.
+3. **A source that fails must be remembered** (module-level `broken` set).
+   Everything is MutationObserver-driven, and removing a failed `<video>` is
+   itself a mutation — without this, one missing file becomes an endless stream
+   of requests for it.
+
+### Rebuilding the clips
+
+```bash
+python3 scripts/encode-decor.py            # both webm files, from public/brand/
+python3 scripts/encode-decor.py --print-scale
+```
+
+Each source is a robot on a flat studio background with no alpha. The script
+keys that out, crops to the figure, ping-pongs and encodes. The macOS workflow
+calls the same script with `--frames-only` and encodes those frames as HEVC, so
+the two formats cannot drift. Run it from the Actions tab, download the
+`decor-alpha-mp4` artifact, drop the files in `public/decor/`, hard-reload.
+
+Non-obvious constraints, all learned the hard way and all commented in place:
+
+- **Blank the RGB under fully-transparent pixels.** Alpha is a separately,
+  lossily compressed plane, so "transparent" decodes as a small non-zero value
+  and whatever colour sat beneath it tints the frame. One source shot on navy
+  put a blue rectangle around the mascot on iOS; the other hid the same flaw
+  because its background was black.
+- **Name neither `-vsync` nor `-fps_mode`.** The first was removed in ffmpeg 8,
+  the second does not exist before ffmpeg 5, and this script runs on both sides
+  of that split. Both sources are constant-rate, so no flag is needed — and the
+  frame count is asserted so a future divergence fails loudly.
+- **`+bitexact` or the output is not reproducible.** The Matroska muxer stamps a
+  random 16-byte SegmentUID, so two runs over identical frames give files of
+  identical length and different content.
+- **Linux ffmpeg cannot see HEVC alpha.** Apple stores it as an auxiliary
+  picture layer; decoding the MP4s here reports `yuv420p`, alpha 255 everywhere,
+  even when the alpha is fine. The workflow's own check is the only real one.
+- **Check corners, not borders.** Clips are cropped to the figure's union
+  bounding box, so legs and antennae genuinely touch the frame edge; a border
+  scan reads those as leaked alpha and fails a good file.
+
+### What was tried and does not work
+
+Do not spend the time again:
+
+- **Baking the section colour into an opaque clip** (to give WebKit motion
+  without alpha). The rectangle stayed visible on every device, through exact
+  colour pre-compensation and full BT.709 tagging. Never diagnosed. If it is
+  ever retried, start by reading the section's real `backgroundColor` and the
+  video's real decoded corner pixel out of a live browser — neither could be
+  established from the generated source.
+- **A CSS gradient mask to feather the clip's edge.** Masking a video promotes
+  it to its own composited layer, which on iOS escapes an ancestor's
+  `overflow: hidden` and paints an opaque backing — a pale box hanging below the
+  section. Worse than the problem it was hiding.
+- **Animated WebP instead of video.** 1.3MB against VP9's 368KB for the same
+  clip; the mascots move too much for inter-frame compression to be optional.
 
 ---
 
@@ -195,6 +311,45 @@ Three rules, all load-bearing:
 Any component in `EMBED_COMPONENTS` must stay ticked or the import breaks the
 build.
 
+### Local content overrides — `lib/cms-overrides.ts`
+
+`cms.json` is regenerated by `pnpm cms`, so content written into it is lost on
+the next export. `lib/cms-overrides.ts` is the text equivalent of the artwork
+block in `globals.css`: the snapshot stays exactly as Framer produced it, and
+`lib/cms.ts` layers the overrides on top when it builds `programs`. Anything
+there belongs in the Framer CMS eventually — move it, run `pnpm cms`, delete the
+entry.
+
+Two things it has to get right:
+
+- **Write the field id *and* the field name.** Only `byId` reaches the rendered
+  page (`ProgramDetail` binds `program.byId`), but `generateMetadata` reads the
+  named fields, so writing one and not the other gives a page whose `<title>`
+  disagrees with its own `<h1>`. The name → id table lives in the override file
+  and was checked against the ids the generated files actually bind.
+- **Patch embeds, never replace them.** An override restates only the text and
+  is merged over the existing `props`, so `--token-` colours and icons keep
+  coming from the snapshot — and the empty-string props rule above survives for
+  free, since `listItem05: ""` is simply never overwritten.
+
+Repointing a `Team` link means rewriting the flattened mentor copy beside it
+(`<linkFieldId>_<mentorFieldId>`, verified to be exactly the linked Mentor's
+`byId` keys), not just the link field.
+
+### Two different data paths for the same collection
+
+**The programme *detail* pages read `cms.json`; the `/program` listing does
+not.** The listing cards are fetched at runtime from Framer, as
+`framerusercontent.com/cms/.../*.framercms` — the card text exists nowhere in
+this repo, which is why grepping for it finds only `cms.json` (a different copy
+that the listing never reads). So a `cms-overrides.ts` entry renames a programme
+on its own page and in the `<title>` while its listing card keeps the old name,
+and the only fix for the card is the Framer CMS itself. Confirm with the
+Network panel, or `curl` the `.framercms` chunk and grep the bytes.
+
+This also means the listing needs network to render at all, same as the
+hot-linked images.
+
 ---
 
 ## Gotchas
@@ -215,6 +370,18 @@ build.
   "already animated" flag survives, so the second mount never replays it. Every
   section below the fold then stays invisible forever and the page reads as a
   hero and nothing else.
+
+  **Seeing the setting in the file is not evidence it reached Next.** A second,
+  bare `module.exports = { ... }` once sat below the `nextConfig` object to add
+  `allowedDevOrigins`; it replaced the whole exports object and threw
+  `reactStrictMode: false` away, so Strict Mode was on while the file said
+  otherwise. Every key belongs in the one `nextConfig` object. Confirm at
+  runtime, not by reading: with the appear effects broken, a stack trace taken
+  inside `IntersectionObserver.prototype.unobserve` shows React tearing the
+  refs down through `commitDoubleInvokeEffectsInDEV` →
+  `disappearLayoutEffects` → `safelyDetachRef`. `unobserve` calls ≈ `observe`
+  calls is the fingerprint: unframer never re-observes after that teardown, so
+  the section can never animate no matter how long it sits in view.
 
   What makes this one expensive to diagnose: **an element at `opacity: 0`
   occupies exactly the space a visible one does.** Page heights, section counts,
@@ -239,9 +406,18 @@ build.
   RAF-driven animation stay frozen at their initial state even when the code is
   correct. Headless or background-tab checks will report a broken page that is
   fine; confirm animation behaviour in a real, visible window.
-- Images are **not in this repo**. Every one is a hot-link to
+- **Most** images are not in this repo — they are hot-links to
   `framerusercontent.com`, so the site needs network to look right and dies if
-  that Framer project is deleted.
+  that Framer project is deleted. The exceptions are everything under `public/`:
+  the brand marks, hero photographs and mascots, which are swapped in over the
+  hot-linked originals by `globals.css` and are the only assets this repo owns.
+- **Check a browser before blaming the code, and get numbers out of it.** Most
+  of what is documented above was found by reading a live DOM, not the generated
+  source: the real `backgroundColor` behind a slot, the alpha a decoder actually
+  produced, whether a `:has()` selector matched anything. Reasoning about a
+  rendering from `framer/*.jsx` alone is how several wrong diagnoses got made
+  here. `document.querySelectorAll('div:has(> div > img[src*="<id>"])').length`
+  answers the selector question in one line.
 - The `AGENTS.md` block is rewritten by `next dev`. Commit it with your work
   rather than fighting it.
 
@@ -249,3 +425,11 @@ build.
 
 - **Site has never been published** — no production URL exists.
 - The Vite original's dev page-switcher was not ported; use the URL bar.
+- **iOS shows the mascots as stills until the HEVC MP4s are built.** They are
+  not committed: `public/decor/*.hevc.mp4` comes from the macOS workflow and is
+  copied in by hand, so a fresh clone has none. Two 404s per page load on WebKit
+  is the expected steady state, not a fault — it is what makes dropping the
+  files in later work with no code change.
+- The React 19 `element.ref` deprecation warning in the console comes from
+  unframer's runtime (~130 call sites), not from anything here. It clears when
+  unframer updates; `framer/` is generated, so it is not ours to patch.

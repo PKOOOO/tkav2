@@ -1,0 +1,117 @@
+.section {
+    background: var(--token-3c675309-91c5-4b64-a956-9189118d694b, #eef4fa);
+    padding: 80px 40px 100px;
+}
+
+.inner {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.headingRow {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 42px;
+}
+
+.eyebrow,
+.count,
+.topicsLabel {
+    margin: 0;
+    color: var(--token-e7e6c389-54de-40d3-bd41-8072dc4a41a5, #41597a);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 16px;
+}
+
+.eyebrow {
+    margin-bottom: 10px;
+}
+
+.heading {
+    margin: 0;
+    color: var(--token-ba50d2e5-600e-4acb-b91c-6cca2f86f1d6, #002b5b);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(40px, 4vw, 64px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+}
+
+.count {
+    white-space: nowrap;
+    padding-bottom: 6px;
+}
+
+.focusBlock {
+    margin-top: 26px;
+}
+
+.topicsLabel {
+    margin-bottom: 12px;
+}
+
+.topicList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.topic {
+    border: 1px solid #d0dbe8;
+    border-radius: 999px;
+    background: #fff;
+    color: #002b5b;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+    padding: 7px 14px;
+}
+
+.cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    margin-top: 22px;
+    border-radius: 999px;
+    padding: 0 30px;
+    background: var(--token-9be2179a-d4c3-4b1c-a57e-66ad0ebb844d, #6a1383);
+    box-shadow: 0 4px 0 var(--token-225c056c-536e-4289-9276-3f52376896b4, #530e68);
+    color: #fff;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 var(--token-225c056c-536e-4289-9276-3f52376896b4, #530e68);
+}
+
+.cta:focus-visible {
+    outline: 2px solid #6a1383;
+    outline-offset: 4px;
+}
+
+@media (max-width: 767px) {
+    .section {
+        padding: 64px 24px 80px;
+    }
+
+    .headingRow {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 34px;
+    }
+
+    .cta {
+        width: 100%;
+    }
+}

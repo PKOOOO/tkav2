@@ -1,0 +1,98 @@
+.section {
+    width: 100%;
+    overflow: clip;
+    background: #eef4fa;
+    color: #002b5b;
+}
+
+/* Keep the academy's Framer Mission/Vision panel, dashed animation and logos;
+ * only the unrelated upper half of that exported section is removed. */
+.section :global(section.framer-dhZo8) {
+    width: 100% !important;
+    height: auto !important;
+    padding: 72px 24px !important;
+    background: transparent !important;
+}
+
+.section :global([data-framer-name="Container"]) {
+    width: 100% !important;
+    max-width: 1200px;
+    margin-inline: auto;
+    gap: 0 !important;
+}
+
+.section :global([data-framer-name="Content Wrapper"]) {
+    display: none !important;
+}
+
+.section :global([data-framer-name="Lower Content"]) {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.section :global([data-framer-name="Content Wrapper 1"]),
+.section :global([data-framer-name="Content Wrapper 2"]) {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+}
+
+.section :global([data-framer-name="Lower Content"] h2) {
+    font-family: "Bricolage Grotesque", "Bricolage Grotesque Placeholder", sans-serif !important;
+    color: #002b5b !important;
+}
+
+.section :global([data-framer-name="Lower Content"] p) {
+    font-family: "Instrument Sans", "Instrument Sans Placeholder", sans-serif !important;
+    color: #25496d !important;
+    font-size: clamp(16px, 1.3vw, 18px) !important;
+    line-height: 1.5 !important;
+}
+
+@media (min-width: 768px) {
+    /* The two descriptions have different heights. Framer's space-between
+       pushes Vision's heading lower, so use the same icon-to-text gap. */
+    .section :global([data-framer-name="Content Wrapper 1"]),
+    .section :global([data-framer-name="Content Wrapper 2"]) {
+        justify-content: flex-start !important;
+        gap: clamp(36px, 6.8vw, 98px) !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .section :global(section.framer-dhZo8) {
+        padding: 48px 20px !important;
+    }
+
+    .section :global([data-framer-name="Lower Content"]) {
+        flex-direction: column !important;
+        gap: 24px !important;
+        padding: 24px !important;
+    }
+
+    .section :global([data-framer-name="Content Wrapper 1"]),
+    .section :global([data-framer-name="Content Wrapper 2"]) {
+        flex: none !important;
+        width: 100% !important;
+    }
+
+    .section :global([data-framer-name="Line"]) {
+        width: 100% !important;
+        height: 2px !important;
+        flex-direction: row !important;
+    }
+
+    .section :global([data-framer-name="Lower Content"] h2) {
+        font-size: clamp(28px, 8vw, 36px) !important;
+        line-height: 1.15 !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+    }
+
+    .section :global([data-framer-name="Lower Content"] p) {
+        font-size: 16px !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+    }
+}

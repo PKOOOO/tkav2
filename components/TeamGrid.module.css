@@ -1,0 +1,291 @@
+/* Styles for components/TeamGrid.tsx.
+ *
+ * Every value here was measured off the live Framer cards this section
+ * replaces, so the two read as the same design: 20px card radius, 10px image
+ * radius, 30px gap, 24px/28.8px Bricolage name at -0.96px tracking, 16px/22.4px
+ * Instrument Sans for everything else. Colours are `--token-` variables rather
+ * than literals, so they keep following the block in app/globals.css.
+ *
+ * A CSS module rather than globals.css: globals.css is the override layer for
+ * generated output, and this is a component we own outright.
+ */
+
+.section {
+    /* Matches the vertical rhythm of the generated sections around it. */
+    padding: 60px 40px 100px;
+}
+
+/* Counted columns rather than `repeat(auto-fill, minmax(...))`.
+ *
+ * The featured card spans two tracks, and auto-fill decides the track count
+ * from the container width -- so at any width where it settles on one track,
+ * that span conjures an implicit second column sized to whatever is left. The
+ * result is a grid whose columns are different widths (measured: 380px beside
+ * 333px at a 838px viewport), which is not something a span-2 card can be
+ * written defensively enough to avoid. Explicit counts keep the two decisions
+ * in step. */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    /* Without this every row stretches to the tallest card in it, and since
+     * these cards carry no bio there is nothing to fill the extra height. */
+    align-items: start;
+}
+
+@media (min-width: 880px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 3 x 446 + 2 x 30 = 1398, the width the generated section laid its own cards
+ * out at, reached once the container hits its 1400px cap. */
+@media (min-width: 1240px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 20px 10px;
+    overflow: hidden;
+}
+
+/* The installed notch demo's display-card treatment, without its controls. */
+.profileLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.profileLink:focus-visible {
+    outline: 3px solid #6a1383;
+    outline-offset: 5px;
+}
+
+.displayCard {
+    position: relative;
+    isolation: isolate;
+    border-radius: 16px;
+    padding: 4px 4px 32px;
+    box-shadow: 0 12px 20px -10px rgba(0, 43, 91, 0.25);
+}
+
+.cardColor {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    mask-image: linear-gradient(to bottom, transparent, #000 35%);
+}
+
+.displayCard .portrait {
+    margin-top: 0;
+    border-radius: 12px;
+    aspect-ratio: 427 / 410;
+    box-shadow: 0 12px 22px -12px rgba(0, 43, 91, 0.35);
+}
+
+.cardBody {
+    padding: 0 16px;
+    margin-top: 24px;
+}
+
+.displayCard .name {
+    margin: 0;
+    color: var(--token-ba50d2e5-600e-4acb-b91c-6cca2f86f1d6, rgb(0, 43, 91));
+    font-size: 22px;
+    line-height: 28px;
+}
+
+.displayCard .role {
+    margin: 4px 0 0;
+    color: var(--token-e7e6c389-54de-40d3-bd41-8072dc4a41a5, rgb(65, 89, 122));
+    font-size: 15px;
+    line-height: 21px;
+}
+
+.name {
+    font-family: 'Bricolage Grotesque', 'Bricolage Grotesque Placeholder', sans-serif;
+    font-size: 24px;
+    line-height: 28.8px;
+    font-weight: 500;
+    letter-spacing: -0.96px;
+    color: var(--token-ba50d2e5-600e-4acb-b91c-6cca2f86f1d6, rgb(0, 43, 91));
+    margin: 0 6px;
+}
+
+.role {
+    font-family: 'Instrument Sans', 'Instrument Sans Placeholder', sans-serif;
+    font-size: 16px;
+    line-height: 22.4px;
+    color: var(--token-e7e6c389-54de-40d3-bd41-8072dc4a41a5, rgb(65, 89, 122));
+    margin: 2px 6px 0;
+}
+
+.portrait {
+    margin-top: 14px;
+    border-radius: 10px;
+    /* 427x410 on the template's card. */
+    aspect-ratio: 427 / 410;
+    /* The portraits are cut-outs on transparency, so the box needs a ground of
+     * its own or they read as text floating in the card. A wash of the name
+     * colour sits correctly on all four card backgrounds. */
+    background: var(--token-d88c44a0-507a-42e1-b318-37f7d04d3c06, rgba(0, 43, 91, 0.1));
+    overflow: hidden;
+}
+
+.portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* `contain`, never `cover`: these are cut-out figures, and a crop through
+     * someone's arms or the crown of their head reads as a mistake where the
+     * same figure sitting whole on the card colour reads as deliberate.
+     *
+     * scripts/extract-team.py honours each source's own viewBox, so every grid
+     * portrait arrives square against this 1.041 box and `contain` barely has
+     * anything to do -- they all fill about 96% of it. Bottom alignment spends
+     * that last 4% below the figure rather than splitting it. */
+    object-fit: contain;
+    object-position: bottom center;
+}
+
+/* --- the wide leading card --- */
+
+.featured {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 30px;
+    padding: 20px;
+    background: var(--token-1d403a9e-a47a-49fa-b259-3726165583a7, rgb(28, 87, 150));
+}
+
+/* Spans two tracks only from the width where there are two -- see the note on
+ * .grid above. */
+@media (min-width: 880px) {
+    .featured {
+        grid-column: span 2;
+        /* The original is 923 wide: 30px padding either side and a 30px gap
+         * leave 417 for the portrait and 416 for the text, so an even split. */
+        grid-template-columns: 1fr 1fr;
+        padding: 30px;
+    }
+}
+
+.featured .portrait {
+    margin-top: 0;
+    /* The template's box is 417x530, but its card carried a bio and a button
+     * that this one has not, so at that height the featured card stood 590 tall
+     * against the grid cards' 517. 417x457 is the box that makes the two match:
+     * 457 + the 30px padding top and bottom comes to exactly 517.
+     *
+     * It holds at both column counts, because the featured card's portrait
+     * column is always (card width - 30) wide -- 417 against 447 at three
+     * columns, 415 against 445 at two -- so the required ratio moves by less
+     * than a pixel. */
+    aspect-ratio: 417 / 457;
+    /* No wash behind this one. The grid portraits are square in a 1.041 box and
+     * fill it, but Paul's is 0.928 in a 0.912 box, so a tinted ground would
+     * show as a paler band under his feet rather than as the frame it is
+     * elsewhere. Transparent, the 8px shortfall just reads as card. */
+    background: none;
+}
+
+.featured .portrait img {
+    /* Centred rather than bottom-aligned, unlike the grid cards. This is the
+     * one source whose viewBox is not square (0.928 against the others' 1.0),
+     * and its crop already carries transparent headroom above the figure --
+     * paul.svg's window starts 124px above the top of its own raster -- so
+     * bottom-aligning would push him down by exactly that padding. */
+    object-position: center;
+}
+
+.featuredBody {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* The template filled this column with a bio and a button. There is no bio
+     * for the team, so the name block centres against the portrait instead of
+     * hanging from the top edge with a void beneath it. */
+    justify-content: center;
+    gap: 14px;
+}
+
+.pill {
+    font-family: 'Instrument Sans', 'Instrument Sans Placeholder', sans-serif;
+    font-size: 16px;
+    line-height: 22.4px;
+    color: var(--token-ba50d2e5-600e-4acb-b91c-6cca2f86f1d6, rgb(0, 43, 91));
+    background: var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898, rgb(230, 214, 240));
+    border-radius: 999px;
+    padding: 6px 18px;
+}
+
+.featuredName {
+    font-family: 'Bricolage Grotesque', 'Bricolage Grotesque Placeholder', sans-serif;
+    font-size: 48px;
+    line-height: 52px;
+    font-weight: 500;
+    letter-spacing: -1.92px;
+    color: #fff;
+    margin: 0;
+}
+
+/* --- the closing "join us" tile, carried over from the section replaced --- */
+
+.cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 14px;
+    padding: 40px 30px;
+    background: var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea, rgb(214, 236, 255));
+}
+
+.ctaTitle {
+    font-family: 'Bricolage Grotesque', 'Bricolage Grotesque Placeholder', sans-serif;
+    font-size: 24px;
+    line-height: 28.8px;
+    font-weight: 500;
+    letter-spacing: -0.96px;
+    color: var(--token-ba50d2e5-600e-4acb-b91c-6cca2f86f1d6, rgb(0, 43, 91));
+    margin: 0;
+}
+
+.ctaButton {
+    font-family: 'Instrument Sans', 'Instrument Sans Placeholder', sans-serif;
+    font-size: 16px;
+    line-height: 22.4px;
+    color: #fff;
+    background: var(--token-1d403a9e-a47a-49fa-b259-3726165583a7, rgb(28, 87, 150));
+    border-radius: 999px;
+    padding: 12px 26px;
+    text-decoration: none;
+    margin-top: 6px;
+}
+
+@media (max-width: 880px) {
+    .section {
+        padding: 40px 20px 70px;
+    }
+
+    .featuredName {
+        font-size: 36px;
+        line-height: 40px;
+        letter-spacing: -1.44px;
+    }
+
+    /* Stacked, the portrait no longer sits beside a column of text, so the tall
+     * 417x530 box just pushes the name off the first screen. */
+    .featured .portrait {
+        aspect-ratio: 427 / 410;
+    }
+}

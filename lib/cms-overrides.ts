@@ -21,7 +21,11 @@
  * human name so server components (`generateMetadata`) and the rendered page
  * cannot disagree.
  */
+import { ADDITIONAL_PROGRAM_OVERRIDES } from './additional-programs'
+
 export const PROGRAM_FIELD_IDS = {
+    Thumbnail: 'qJKErpwZ2',
+    Image: 'K6guXv55O',
     Title: 'hUvhbUSVS',
     Info: 'EnXNFcio9',
     'Level Tag': 'HNtd_VJxB',
@@ -66,23 +70,98 @@ export type ProgramOverride = {
      * would show a placeholder instead.
      */
     embeds?: Partial<Record<ProgramFieldName, Array<Record<string, unknown>>>>
-    /** Mentor slug to show in the programme's mentor section. */
-    mentor?: string
+    /** Existing CMS mentor slug, or a local profile for someone in our team grid. */
+    mentor?: string | {
+        slug: string
+        name: string
+        image: string
+        role: string
+        description: string
+        expertise: string[]
+    }
 }
 
 export const PROGRAM_OVERRIDES: Record<string, ProgramOverride> = {
+    ...ADDITIONAL_PROGRAM_OVERRIDES,
+    english: {
+        fields: {
+            Title: 'Digital Literacy Skills',
+            Thumbnail: '/brand/lit.jpg',
+            Image: '/brand/lit.jpg',
+            Info: 'Learn to use computers and the internet with confidence: manage files, create documents, research online, collaborate and stay safe.',
+            Description: 'Digital skills become useful when learners practise them. From organising files and creating presentations to checking sources and protecting an account, each lesson builds independence through a practical task.',
+            'Level Tag': 'All levels',
+            'Label 01': 'Skill tracks',
+            'Value 01': '04',
+        },
+        embeds: {
+            'Syllabus Part 01': [{
+                subject: 'Computer essentials',
+                listItem01: 'Devices and operating systems',
+                listItem02: 'Keyboard and mouse skills',
+                listItem03: 'Files and folders',
+                listItem04: 'Saving and sharing work',
+            }],
+            'Syllabus Part 02': [{
+                subject: 'Create and collaborate',
+                listItem01: 'Documents and formatting',
+                listItem02: 'Presentations and visual stories',
+                listItem03: 'Spreadsheets and simple data',
+                listItem04: 'Working together online',
+            }],
+            'Syllabus Part 03': [{
+                subject: 'Research and communication',
+                listItem01: 'Search with useful keywords',
+                listItem02: 'Check sources and claims',
+                listItem03: 'Email and online etiquette',
+                listItem04: 'Credit images and information',
+            }],
+            'Syllabus Part 04': [{
+                subject: 'Safety and independence',
+                listItem01: 'Passwords and account security',
+                listItem02: 'Privacy and digital footprints',
+                listItem03: 'Spot suspicious links',
+                listItem04: 'Build a digital portfolio',
+            }],
+            'Session Type 01': [{
+                description: 'A mentor guides the learner through the digital tools they need most, at a pace that gives them time to practise each step.',
+            }],
+            'Session Type 02': [{
+                description: 'Learners practise using digital tools together, share ideas and complete a guided project in a small group.',
+            }],
+            FAQs: [{
+                _01Question: 'Does my child need computer experience?',
+                _01Answer: 'No. We start with the keyboard, files and everyday computer tasks before moving into documents, research and collaboration.',
+                _02Question: 'What will learners make?',
+                _02Answer: 'Projects may include a presentation, a simple spreadsheet, a researched document or a small digital portfolio.',
+                _03Question: 'Is online safety included?',
+                _03Answer: 'Yes. Learners practise protecting accounts, recognising suspicious links, managing privacy and using information responsibly.',
+                _04Question: 'Can these skills support schoolwork?',
+                _04Answer: 'Yes. Organising files, researching credible sources, writing documents and presenting ideas are useful across school subjects.',
+                _05Question: 'Do we need a computer at home?',
+                _05Answer: 'A computer helps learners practise between sessions. Contact us to discuss the equipment available for your session format.',
+            }],
+        },
+        mentor: {
+            slug: 'clemence-kibet',
+            name: 'Clemence Kibet',
+            image: '/team/clemence-kibet.webp',
+            role: 'Robotics Trainer & Learning Facilitator',
+            description: 'Clemence helps learners build confidence with computers, digital tools and safe online habits through guided practical projects.',
+            expertise: ['Computer basics', 'Digital tools', 'Online research', 'Online safety'],
+        },
+    },
     /**
      * Repurposed from the template's Mathematics programme, so the slug (and
      * therefore the URL) is still `mathematics` while everything on the page is
-     * about Scratch. Renaming the slug is a Framer CMS change -- it would move
-     * the route to /program/scratch-programming and break any existing link.
+     * about animation and games. Keep the existing slug so old links work.
      */
     mathematics: {
         fields: {
-            Title: 'Scratch Programming',
-            Info: 'Build games, animations and stories in Scratch. Learners drag blocks instead of typing syntax, so the ideas behind programming land before the keyboard gets in the way.',
+            Title: 'Animation & Gamification',
+            Info: 'Create animated stories and playable games with Scratch, design 3D scenes in Blender, build browser games, and explore Unity and game engines.',
             Description:
-                'Every project runs the moment it is built, so a learner watches loops, conditionals and variables work rather than reading about them. Those habits transfer straight to Python later.',
+                'Start with characters, motion and game rules, then grow into 3D assets, interactive web games and engine-based development. Each track ends with a project learners can play, share or improve.',
             'Label 01': 'Project tracks',
             'Value 01': '04',
         },
@@ -90,75 +169,282 @@ export const PROGRAM_OVERRIDES: Record<string, ProgramOverride> = {
             'Syllabus Part 01': [
                 {
                     topic: 'Foundations',
-                    subject: 'Sprites & motion',
-                    listItem01: 'Stage, sprites, costumes',
-                    listItem02: 'Move, turn, glide',
-                    listItem03: 'x and y on the stage',
-                    listItem04: 'A first animation',
+                    subject: 'Scratch animation',
+                    listItem01: 'Sprites, costumes and scenes',
+                    listItem02: 'Motion, timing and sound',
+                    listItem03: 'Events and story choices',
+                    listItem04: 'A playable mini-game',
                 },
             ],
             'Syllabus Part 02': [
                 {
                     topic: 'Core',
-                    subject: 'Loops & events',
-                    listItem01: 'Repeat and forever',
-                    listItem02: 'When-clicked events',
-                    listItem03: 'Broadcast messages',
-                    listItem04: 'Sound and music blocks',
+                    subject: 'Blender & 3D worlds',
+                    listItem01: 'Model simple characters and props',
+                    listItem02: 'Materials, lights and cameras',
+                    listItem03: 'Keyframes and animation',
+                    listItem04: 'Export assets for a game',
                 },
             ],
             'Syllabus Part 03': [
                 {
                     topic: 'Advanced',
-                    subject: 'Logic & variables',
-                    listItem01: 'If / else branching',
-                    listItem02: 'Variables and scores',
-                    listItem03: 'Lists and data',
-                    listItem04: 'Sensing and collisions',
+                    subject: 'Games for the web',
+                    listItem01: 'JavaScript game logic',
+                    listItem02: 'Canvas and browser input',
+                    listItem03: 'Scores, levels and collisions',
+                    listItem04: 'Publish a browser game',
                 },
             ],
             'Syllabus Part 04': [
                 {
                     topic: 'Mastery',
-                    subject: 'Games & sharing',
-                    listItem01: 'Clones and levels',
-                    listItem02: 'Custom blocks',
-                    listItem03: 'Debugging a project',
-                    listItem04: 'Publishing to a studio',
+                    subject: 'Unity & game engines',
+                    listItem01: 'Scenes, objects and components',
+                    listItem02: 'Player movement and physics',
+                    listItem03: 'Prototype a game loop',
+                    listItem04: 'Playtest and refine a build',
                 },
             ],
             'Session Type 01': [
                 {
                     description:
-                        'A dedicated mentor at your own pace. Best for a learner with a game idea they want to finish properly.',
+                        'A mentor helps turn your game or animation idea into a finished project, choosing tools that fit your level and goal.',
                 },
             ],
             'Session Type 02': [
                 {
                     description:
-                        "Max four learners at the same level. They remix and build on each other's projects, which is how Scratch is meant to be used.",
+                        'Learners make and test projects together, share feedback and improve their games through playtesting.',
                 },
             ],
             FAQs: [
                 {
-                    _01Question: 'Does my child need to be able to type?',
+                    _01Question: 'Do beginners start in Scratch?',
                     _01Answer:
-                        'No. Scratch is drag-and-drop, so nothing has to be typed or spelled correctly for a project to run. Comfortable reading helps, and most learners start from around age eight.',
-                    _02Question: 'Is Scratch real programming?',
+                        'Yes. Scratch lets beginners animate characters and build game rules with blocks. They can move into other tools as their skills grow.',
+                    _02Question: 'Do learners use Blender and Unity?',
                     _02Answer:
-                        'Yes. Loops, conditionals, variables, events and debugging are all there — the blocks only remove the typing. Those ideas carry over directly when your child moves on to Python.',
+                        'Yes. Blender introduces 3D modelling and animation; Unity introduces scenes, components and interactive game development. Activities match each learner’s experience.',
                     _03Question: 'What do we need at home?',
                     _03Answer:
-                        'A laptop or desktop with a browser. Scratch is free at scratch.mit.edu, and we can set up the offline editor where the connection is unreliable.',
-                    _04Question: 'What comes after Scratch?',
+                        'A laptop or desktop and a browser are enough to start in Scratch and make simple web games. Blender and Unity need a computer that can run those applications; we can discuss equipment before that track.',
+                    _04Question: 'Can learners share their games online?',
                     _04Answer:
-                        'Text-based coding, once projects outgrow the blocks. We use something your child already built as the bridge and rebuild it in Python, so it never feels like starting over.',
+                        'Yes. Scratch projects and browser games can be shared using suitable publishing options. Learners also practise collecting feedback and improving a project after others play it.',
                 },
             ],
         },
-        // The template paired this programme with the maths mentor, whose bio is
-        // explicitly about maths teaching. Alex Rivera is the existing coding
-        // mentor, so the section reads correctly with no invented content.
-        mentor: 'alex-rivera',
+        mentor: {
+            slug: 'clemence-kibet',
+            name: 'Clemence Kibet',
+            image: '/team/clemence-kibet.webp',
+            role: 'Robotics Trainer & Learning Facilitator',
+            description: 'Clemence Kibet is a Robotics Trainer and Learning Facilitator at Tech Kidz Africa. She helps learners begin with animated stories and games, then explore creative tools and more advanced interactive projects.',
+            expertise: ['Scratch animation', 'Blender & 3D', 'Browser games', 'Unity & game engines'],
+        },
+    },
+
+    /**
+     * Also repurposed: the template's general "Coding" programme is now
+     * specifically software engineering, so the slug stays `coding` while the
+     * syllabus runs web -> frameworks -> APIs and mobile -> DevOps.
+     *
+     * This one has a `Session Type 03` and a filled `_05` FAQ where Scratch has
+     * neither, so both are patched here and neither is invented there.
+     */
+    coding: {
+        fields: {
+            Title: 'Software Engineering',
+            Info: 'Full-stack software engineering: JavaScript and TypeScript, React and Next.js, Node APIs, React Native apps, and the Linux, Docker and Proxmox side that gets them deployed.',
+            Description:
+                'Learners build and ship real software — a web front end, an API behind it, a mobile build, and the server it all runs on. Every track ends with something deployed rather than a folder of tutorials.',
+            'Value 01': '04',
+            'Value 02': '5×',
+            'Value 03': '2 hr',
+        },
+        embeds: {
+            'Syllabus Part 01': [
+                {
+                    topic: 'Foundations',
+                    subject: 'Web fundamentals',
+                    listItem01: 'HTML, CSS, the DOM',
+                    listItem02: 'JavaScript & TypeScript',
+                    listItem03: 'Git and branching',
+                    listItem04: 'How the web works',
+                },
+            ],
+            'Syllabus Part 02': [
+                {
+                    topic: 'Core',
+                    subject: 'Frameworks',
+                    listItem01: 'React components & state',
+                    listItem02: 'Next.js App Router',
+                    listItem03: 'Forms and data fetching',
+                    listItem04: 'Testing a UI',
+                },
+            ],
+            'Syllabus Part 03': [
+                {
+                    topic: 'Advanced',
+                    subject: 'APIs & mobile',
+                    listItem01: 'Node REST APIs',
+                    listItem02: 'Databases and auth',
+                    listItem03: 'React Native with Expo',
+                    listItem04: 'Shipping a mobile build',
+                },
+            ],
+            'Syllabus Part 04': [
+                {
+                    topic: 'Mastery',
+                    subject: 'DevOps & deployment',
+                    listItem01: 'Linux and the shell',
+                    listItem02: 'Docker containers',
+                    listItem03: 'Proxmox home servers',
+                    listItem04: 'CI/CD and monitoring',
+                },
+            ],
+            'Session Type 01': [
+                {
+                    description:
+                        'A dedicated mentor at your own pace. Best for working through a build you already have in mind.',
+                },
+            ],
+            'Session Type 02': [
+                {
+                    description:
+                        'Max five learners at the same level. Code review and pair programming, the way a real team works.',
+                },
+            ],
+            'Session Type 03': [
+                {
+                    description:
+                        'Six to ten learners on one codebase — branches, pull requests and a deploy at the end of it.',
+                },
+            ],
+            FAQs: [
+                {
+                    _01Question: 'What should my child know before starting?',
+                    _01Answer:
+                        'Some prior coding — Scratch or a little Python is plenty. The first track covers HTML, CSS and JavaScript from the ground up, so nobody needs framework experience to keep up.',
+                    _02Question: 'Which stack do you teach?',
+                    _02Answer:
+                        'JavaScript and TypeScript throughout: React and Next.js on the front end, Node for APIs, React Native for mobile. The concepts matter more than the tools, so moving to another stack later is straightforward.',
+                    _03Question: 'Why Proxmox and DevOps?',
+                    _03Answer:
+                        'Because shipping is half of software engineering. Learners run their own Proxmox server, put an app in a container and deploy it, which turns Linux, networking and CI into something concrete.',
+                    _04Question: 'Do they finish with a portfolio?',
+                    _04Answer:
+                        'Yes. Every track ends in a deployed project with its own repository, so there is real work to show and a git history behind it.',
+                    // _05 is "Can we switch between private and group?" -- about
+                    // format, not subject, so the snapshot's answer still holds.
+                },
+            ],
+        },
+        mentor: {
+            slug: 'pius-khainja',
+            name: 'Pius Khainja',
+            image: '/team/pius-khainja.webp',
+            role: 'ACTO & Lead Software Engineer',
+            description: 'Pius Khainja is Tech Kidz Africa’s ACTO and Lead Software Engineer. In Software Engineering, learners build web, mobile and server-side projects and learn how to deploy them.',
+            expertise: ['React & Next.js', 'Node APIs', 'React Native', 'Linux & Docker', 'Proxmox & DevOps'],
+        },
+    },
+
+    /**
+     * Also repurposed: the template's general "Science" programme is now
+     * robotics, so the slug stays `science`. The syllabus is the progression
+     * itself -- kits, then bare microcontrollers, then the robot on a network --
+     * which is the whole argument for the programme.
+     *
+     * Peter's local mentor profile is assigned below, independently of the
+     * generated Framer CMS snapshot.
+     */
+    science: {
+        fields: {
+            Title: 'Robotics & Tinkering',
+            Info: 'Build, take apart and improve hands-on inventions. Start with ZMRobo kits, then explore Arduino, ESP32 and Raspberry Pi Pico, sensors and connected robots.',
+            Description:
+                'Learners tinker with parts, test ideas and learn from each revision. They progress from ZMRobo kits to microcontrollers they wire and program themselves, then connect a robot to a web dashboard or mobile app.',
+        },
+        embeds: {
+            'Syllabus Part 01': [
+                {
+                    topic: 'Foundations',
+                    subject: 'ZMRobo kits',
+                    listItem01: 'Building from a kit',
+                    listItem02: 'Motors and sensors',
+                    listItem03: 'Block-based control',
+                    listItem04: 'A first driving robot',
+                },
+            ],
+            'Syllabus Part 02': [
+                {
+                    topic: 'Core',
+                    subject: 'Microcontrollers',
+                    listItem01: 'Arduino and its IDE',
+                    listItem02: 'Breadboards & circuits',
+                    listItem03: 'Reading sensor data',
+                    listItem04: 'Embedded C++',
+                },
+            ],
+            'Syllabus Part 03': [
+                {
+                    topic: 'Advanced',
+                    subject: 'Wireless & IoT',
+                    listItem01: 'ESP32 over Wi-Fi',
+                    listItem02: 'Raspberry Pi Pico',
+                    listItem03: 'Sending data to an API',
+                    listItem04: 'Power and batteries',
+                },
+            ],
+            'Syllabus Part 04': [
+                {
+                    topic: 'Mastery',
+                    subject: 'Robots on the web',
+                    listItem01: 'A Node control API',
+                    listItem02: 'React sensor dashboards',
+                    listItem03: 'A React Native remote',
+                    listItem04: 'Deploying the stack',
+                },
+            ],
+            'Session Type 01': [
+                {
+                    description:
+                        'A dedicated mentor and a kit to yourself. Best for a learner with a robot they want to finish and actually control.',
+                },
+            ],
+            'Session Type 02': [
+                {
+                    description:
+                        'Max five learners at the same level, one build between them — which is how a robotics competition actually runs.',
+                },
+            ],
+            FAQs: [
+                {
+                    _01Question: 'Does my child need to own a kit?',
+                    _01Answer:
+                        'No. ZMRobo kits, microcontrollers and components are provided in session. Families who want to keep building at home can buy the same kit, and we will say exactly which parts to get.',
+                    _02Question: 'Do they need to code already?',
+                    _02Answer:
+                        'No. The first track drives the kits with blocks, and the code grows with them — Arduino C++ arrives later, once a learner already knows what they want the robot to do.',
+                    _03Question: 'Why move off the kits to Arduino and ESP32?',
+                    _03Answer:
+                        'Because a kit hides the wiring. On an Arduino, ESP32 or Raspberry Pi Pico the learner builds the circuit themselves, which is where real electronics and embedded code start.',
+                    _04Question: 'How does robotics connect to web and mobile?',
+                    _04Answer:
+                        'The last track puts a robot online: a Node API to drive it, a React dashboard to watch its sensors, and a React Native app to control it from a phone. One project, hardware and software together.',
+                    // _05 is the private/group switching question again.
+                },
+            ],
+        },
+        mentor: {
+            slug: 'peter-lagat',
+            name: 'Peter Lagat',
+            image: '/team/peter-lagat.webp',
+            role: 'CTO and Robotics Lead',
+            description: 'Peter Lagat is Tech Kidz Africa’s CTO and Robotics Lead. He guides learners through building, tinkering and testing with ZMRobo kits, Arduino, ESP32 and Raspberry Pi Pico, then connects robots to web and mobile apps.',
+            expertise: ['ZMRobo kits', 'Arduino & ESP32', 'Raspberry Pi Pico', 'Robotics & IoT', 'Web & mobile control'],
+        },
     },
 }

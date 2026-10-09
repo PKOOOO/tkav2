@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
   // Must live inside this object. A bare `module.exports = { ... }` here would
   // replace the whole exports object and silently discard everything above --
   // including `reactStrictMode: false`, which is how the appear effects broke.
-  allowedDevOrigins: ['192.168.0.165', '172.20.10.3', '192.168.1.97'],
+  allowedDevOrigins: ['192.168.0.150', '192.168.1.196' ,'172.20.10.3', '192.168.1.97'],
 };
 
 export default nextConfig;

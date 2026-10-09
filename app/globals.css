@@ -1,4 +1,10 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+/*
+ ---break---
+ */
+@custom-variant dark (&:is(.dark *));
 
 /*
  * Framer authors each component at a fixed breakpoint width (1200 / 810 / 390),
@@ -23,10 +29,477 @@
     overflow-x: clip;
 }
 
+/* Keep the four Home program photographs aligned with their detail pages. The
+ * first card has its existing animated Scratch sprite overlay. */
+.unframer-page[data-route="/"] a[href="/program/robotics-and-tinkering"] img[alt="Program Image"] {
+    content: url("/hero/program-science.jpg");
+}
+.unframer-page[data-route="/"] a[href="/program/digital-literacy-skills"] img[alt="Program Image"] {
+    content: url("/brand/lit.jpg");
+}
+.unframer-page[data-route="/"] a[href="/program/software-engineering"] img[alt="Program Image"] {
+    content: url("/hero/program-coding.jpg");
+}
+.unframer-page[data-route="/"] a[href="/program/animation-and-gamification"] img[alt="Program Icon"] {
+    content: url("/brand/program-animation-icon.svg");
+}
+.unframer-page[data-route="/"] a[href="/program/digital-literacy-skills"] img[alt="Program Icon"] {
+    content: url("/brand/program-digital-literacy-icon.svg");
+}
+
+/* Let the About navigation flow into its pale-blue hero, as on the other
+ * pages, instead of leaving an ice-blue strip above it. */
+.unframer-page[data-route="/about"] > nav {
+    background-color: var(--unframer-warm-beige) !important;
+}
+/* Readable copy on About without touching generated Framer styles. The
+ * data attributes are attached by the About copy/stats hooks. */
+.unframer-page[data-route="/about"] [data-about-mission] {
+    font-size: clamp(18px, 1.4vw, 20px) !important;
+    line-height: 1.55 !important;
+    color: #25496d !important;
+}
+.unframer-page[data-route="/about"] [data-about-impact-label] {
+    font-size: clamp(18px, 1.35vw, 20px) !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+    color: #123661 !important;
+}
+/* Keep the Framer footer figure slot and show the original de.svg composition. */
+.unframer-page[data-route="/about"] section img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"] {
+    content: url("/brand/de.svg");
+    object-position: center bottom !important;
+}
+
+/* Simplify only the About footer CTA; the remaining program button keeps its styling. */
+.unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Bottom"] > :first-child,
+.unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Button"] > div:has(a[data-framer-name^="Primary"]),
+.unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Bottom Image"] {
+    display: none !important;
+}
+
+/* Hide Framer's outdated choices only after the current list has mounted. */
+.unframer-page[data-route="/contact"] [data-framer-name="Program Type"] [data-framer-name="List"]:has(> [data-contact-program-choices]) > label {
+    display: none !important;
+}
+
+/* The original Framer form remains mounted to handle submission, while the
+ * shadcn dialog supplies the visible, form-associated fields. */
+.unframer-page[data-route="/contact"] [data-framer-name="Content"]:has(> [data-contact-dialog-trigger]) > form {
+    display: none !important;
+}
+
+/* 3D Design and Printing swaps the ladybug in its CTA band for a photograph of
+ * a learner holding her prints.
+ *
+ * Built from public/brand/perez.svg, which is the same two-embedded-PNGs shape
+ * as the team portraits but carries a *negative* x scale in its placement
+ * matrix. That is a mirror, and public/decor/perez.webp reproduces it, so the
+ * figure faces the way the SVG does -- which does leave the lettering on her
+ * shirt reversed. That is the asset as drawn, not a conversion fault.
+ *
+ * The viewBox alone stops at her chest, so the crop carries on past it to take
+ * in the yellow print she is holding; the full alpha bounds go too far and
+ * bring in the students either side of her.
+ *
+ * The slot is `fitImageDimension`, so unframer writes the ladybug's 1.2426
+ * aspect ratio inline and clips anything shaped differently -- restated here to
+ * the photograph's own 0.739, which beats the inline style because an important
+ * author rule outranks it. The matching video is suppressed for this route in
+ * lib/useVideoDecor.ts; without that the ladybug clip would mount over her. */
+.unframer-page[data-route="/program/3d-design-and-printing"] img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"] {
+    content: url("/decor/perez.webp");
+    /* Sit her on the slot's bottom edge, which is the band's. `contain` centres
+     * by default, so any difference between the slot's ratio and hers was being
+     * split half above and half below -- leaving a gap under her feet even with
+     * the slot itself flush to the base. */
+    object-position: center bottom !important;
+}
+.unframer-page[data-route="/program/3d-design-and-printing"] [data-framer-name="BG Decor"] div:has(> div > img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]),
+.unframer-page[data-route="/program/3d-design-and-printing"] div:has(> div > img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) {
+    aspect-ratio: 1800 / 2438 !important;
+    /* Standing in the band's bottom-left corner rather than floating where the
+     * ladybug sat (left 100px, top 180px). The slot's containing block is
+     * Framer's "Left" column, whose bottom edge is the band's own, so zero
+     * offsets reach the corner. */
+    left: 0 !important;
+    top: auto !important;
+    /* Sunk below the band's floor. The source is a half-body shot, so its
+     * bottom edge is mid-torso; letting the band's `overflow: hidden` take that
+     * edge hides the cut behind the footer instead of landing it on the navy
+     * line, which is what read as clipped when she sat flush on the base. */
+    bottom: clamp(-104px, -7vw, -44px) !important;
+    /* The slot was sized for a small mascot -- 166px, which is right for the
+     * ladybug and far too small for a photograph of a person. Width drives it
+     * and the restated aspect ratio supplies the height. */
+    width: clamp(300px, 39vw, 570px) !important;
+    height: auto !important;
+}
+
+/* On phones the CTA band's review card is mostly chrome: a navy 20px-radius
+ * panel wrapping "4.9 / 5 Based on 200+ reviews" beside the button. At 390px it
+ * stacks into a 350x255 slab for one line of copy. Drop the panel and the
+ * rating, keep the button -- the rating still appears on wider layouts. */
+@media (max-width: 767px) {
+    .unframer-page[data-route="/program/3d-design-and-printing"] section:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) [data-framer-name="Bottom"] {
+        display: none !important;
+    }
+}
+
+/* Phone layout for the CTA band. The figure, the headline and the sticky note
+ * all want the same corner at 390px, so: shrink her, shorten the headline, drop
+ * the note. Desktop keeps all three. */
+@media (max-width: 767px) {
+    /* 570px was tuned at 1440 and filled the whole band on a phone. */
+    .unframer-page[data-route="/program/3d-design-and-printing"] section:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) [data-framer-name="BG Shap Image"]:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) {
+        width: 300px !important;
+    }
+
+    /* The band sizes itself from its text, and with the headline shortened and
+     * the button dropped there is far less of that than the figure needs -- it
+     * collapsed to 206px against her 406px and the overflow cut her off at the
+     * top. 300px wide over her 0.7383 ratio is 406 tall, 101 of which sits
+     * below the base, so 305 of her shows; the rest is the headline's room. */
+    .unframer-page[data-route="/program/3d-design-and-printing"] section:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) {
+        min-height: 404px !important;
+    }
+
+    /* The sticky note is decoration with no text or link, and it lands on the
+     * headline once the band narrows. */
+    .unframer-page[data-route="/program/3d-design-and-printing"] section:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) div:has(> div > img[src*="SqMZa81JdD5ujRG60aNVeT9whro"]) {
+        display: none !important;
+    }
+
+    /* "Turn 3D design into deeper understanding" wraps to five lines here and
+     * covers her. Framer splits it into one h2 per word, so the whole set is
+     * hidden and the short form comes from a pseudo-element -- the markup is
+     * generated, so there is nothing to edit in place. The sparkle and squiggle
+     * that underline "understanding" go with it; they are positioned against
+     * words that are no longer there. */
+    .unframer-page[data-route="/program/3d-design-and-printing"] section:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) [data-framer-name="Heading"] [data-framer-name="Heading"] h2,
+    .unframer-page[data-route="/program/3d-design-and-printing"] section:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) img[src*="JrJVDghR4XSfM4fEkVG4YlBTu0E"],
+    .unframer-page[data-route="/program/3d-design-and-printing"] section:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) img[src*="AKsn6ZsWzZYFuQbOLWjDXQOBfU"] {
+        display: none !important;
+    }
+
+    /* The container is a flex row, so two block pseudo-elements became two
+     * columns side by side -- "Design it." over on her head and "Print it."
+     * away to the right. Stack them and keep them against the right edge,
+     * which is the part of the band she does not occupy. */
+    .unframer-page[data-route="/program/3d-design-and-printing"] section:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) [data-framer-name="Heading"] [data-framer-name="Heading"] {
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        align-items: flex-end !important;
+        justify-content: flex-start !important;
+        gap: 0 !important;
+    }
+
+    .unframer-page[data-route="/program/3d-design-and-printing"] section:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) [data-framer-name="Heading"] [data-framer-name="Heading"]::before,
+    .unframer-page[data-route="/program/3d-design-and-printing"] section:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) [data-framer-name="Heading"] [data-framer-name="Heading"]::after {
+        display: block;
+        width: max-content;
+        /* `align-items: flex-end` on the container did not move them. An auto
+         * left margin does, and it does not depend on the generated flex
+         * styles agreeing with us. */
+        margin-left: auto !important;
+        text-align: right;
+        font-family: 'Bricolage Grotesque', 'Bricolage Grotesque Placeholder', sans-serif;
+        font-size: clamp(30px, 10vw, 46px);
+        line-height: 1.08;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+    }
+
+    .unframer-page[data-route="/program/3d-design-and-printing"] section:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) [data-framer-name="Heading"] [data-framer-name="Heading"]::before {
+        content: "Design it.";
+        color: var(--token-ba50d2e5-600e-4acb-b91c-6cca2f86f1d6, rgb(0, 43, 91));
+    }
+
+    /* The second line takes the treatment "understanding" had: the brand blue,
+     * the squiggle ruled under it and the sparkle off its top right. Both are
+     * backgrounds rather than the original <img>s, which are positioned
+     * against words that are hidden here. The padding is what reserves room
+     * for them -- without it they sit under the glyphs. */
+    .unframer-page[data-route="/program/3d-design-and-printing"] section:has(img[src*="XDA48ZBlyMaqovRVgRqqtE0wsE"]) [data-framer-name="Heading"] [data-framer-name="Heading"]::after {
+        content: "Print it.";
+        color: var(--token-1d403a9e-a47a-49fa-b259-3726165583a7, rgb(28, 87, 150));
+        padding: 6px 30px 16px 0;
+        background:
+            url("/brand/heading-sparkle.svg") no-repeat right 2px top 0 / 20px auto,
+            url("/brand/heading-squiggle.svg") no-repeat left bottom / calc(100% - 26px) auto;
+    }
+}
+
+
+/* Give the contact hero's "Book the free session" card the Home cards' look:
+ * white rather than Soft Sky, and the same 2deg tilt. Everything else already
+ * matches -- both are 20px radius, and the Home cards carry no box-shadow; the
+ * softness there comes from the tilt, not a shadow.
+ *
+ * Selected through Framer's own `data-framer-name` chain rather than the
+ * generated class (`framer-1i262e7`), which `pnpm framer` rewrites. Shape alone
+ * was not enough here: `div:has(> div > div > div > h2)` matches five elements
+ * on this page, the card among them.
+ *
+ * The tilt goes on the card itself because its parent is the shared Content
+ * row; on Home the rotation sits on a wrapper of its own. */
+.unframer-page[data-route="/contact"] [data-framer-name="Hero"] [data-framer-name="Content"] > [data-framer-name="Right"] {
+    background-color: #fff !important;
+    border-radius: 20px !important;
+    transform: rotate(2deg) !important;
+}
+
+/* On phones: the figure fills the band's left edge, corner to corner, so the
+ * navy footer begins exactly where the photograph ends. Heading and button sit
+ * in the column beside it.
+ *
+ * The previous attempt scaled the figure to 135vw and pulled it left so the
+ * tool filled the banner, with the heading's four words parked in a 2x2 grid
+ * around it. At 390px that measured 555px wide at x = -159 -- a third of the
+ * figure, including her face, was off the left edge -- in a 527px-tall band,
+ * with "Make your" and "ideas real." 224px apart. Hence: size the figure to fit
+ * the viewport instead of the band, and let the heading read as two lines.
+ *
+ * The offsets below are a chain measured off the live band rather than guessed,
+ * so changing --about-cta-figure-size moves everything together. The heading
+ * renders 92px tall at these sizes, not the ~74px two lines of 37px suggest.
+ */
+@media (max-width: 767px) {
+    .unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) {
+        /* Narrow enough to leave the heading a column, and it sets the band's
+         * height outright -- the footer starts on the figure's bottom edge. */
+        --about-cta-figure-size: min(49vw, 190px);
+        /* de.svg is 0.8875 w/h, so this is the height at which the figure fills
+         * its box exactly -- the band is as tall as the photograph, and the
+         * footer meets its bottom edge with nothing left over. */
+        --about-cta-band-height: calc(var(--about-cta-figure-size) * 1.127);
+        /* Heading (2 lines) + 12px + button (42px), centred in the band. */
+        --about-cta-text-block: 136px;
+        height: max(var(--about-cta-band-height), calc(var(--about-cta-text-block) + 44px)) !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+    }
+
+    .unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Container"] {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 2 !important;
+    }
+
+    .unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Content"] {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Top"] {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* Under the heading, in the same right-hand column beside the figure.
+     * 104px is the heading's measured 92px plus a 12px gap. */
+    .unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Bottom"] {
+        position: absolute !important;
+        left: var(--about-cta-figure-size) !important;
+        right: 0 !important;
+        top: calc((100% - var(--about-cta-text-block)) / 2 + 94px) !important;
+        bottom: auto !important;
+        width: auto !important;
+        z-index: 3 !important;
+    }
+
+    .unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="BG Decor"] {
+        top: 0 !important;
+        bottom: 0 !important;
+        height: auto !important;
+    }
+
+    /* Pinned to the band's top-left corner and running down from it, at a size
+     * the viewport can hold whole.
+     *
+     * `left: 0` and `top: 0`, not percentages: this slot's containing block is
+     * Framer's "Left" column, which is only half the band wide (180px at a 390
+     * viewport), so any percentage offset resolves against the wrong box -- a
+     * `left: 50%` centring attempt landed it at x = -45. The column starts at
+     * the band's own origin, so zero offsets are the corner either way. */
+    .unframer-page[data-route="/about"] [data-framer-name="BG Shap Image"]:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) {
+        top: 0 !important;
+        bottom: auto !important;
+        left: 0 !important;
+        transform: none !important;
+        width: var(--about-cta-figure-size) !important;
+        /* Full band height, not a square: on narrow phones the text block wins
+         * the height max() above and a square figure left a gap between the
+         * photograph and the footer. `contain` keeps the figure undistorted
+         * inside whichever box results. */
+        height: 100% !important;
+        aspect-ratio: auto !important;
+        overflow: visible !important;
+    }
+
+    /* "Make your ideas" on one line with "real." under it. Framer renders each
+     * word as its own h2, so the line break is purely where the grid wraps:
+     * three columns puts the first three words together and drops the last to
+     * its own row, spanning the full width so it centres under them.
+     *
+     * One of the h2s is empty -- it would still occupy a grid cell and push
+     * "real." out of place, so it is removed from the flow. */
+    .unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Heading"] {
+        position: absolute !important;
+        top: calc((100% - var(--about-cta-text-block)) / 2) !important;
+        left: var(--about-cta-figure-size) !important;
+        right: 0 !important;
+        transform: none !important;
+        width: auto !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        display: grid !important;
+        grid-template-columns: repeat(3, max-content) !important;
+        column-gap: 8px !important;
+        row-gap: 0 !important;
+        justify-items: center !important;
+    }
+
+    .unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Heading"] h2 {
+        font-size: clamp(20px, 6.1vw, 26px) !important;
+        white-space: nowrap !important;
+    }
+
+    .unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Heading"] h2:empty {
+        display: none !important;
+    }
+
+    .unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Heading"] h2:last-of-type {
+        grid-column: 1 / -1 !important;
+        justify-self: center !important;
+    }
+
+    .unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Button"] {
+        justify-content: center !important;
+    }
+
+    /* The pill's own 30px side padding made it 191px wide -- 17px past the
+     * viewport, hidden rather than fixed by the page's overflow-x: clip -- now
+     * that it shares the band with the figure instead of spanning the width. */
+    .unframer-page[data-route="/about"] section:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) [data-framer-name="Button"] a {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    .unframer-page[data-route="/about"] section img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"] {
+        object-fit: contain !important;
+        object-position: center top !important;
+    }
+}
+
+/* On desktop, bring the footer figure up to the aqua section's top edge.
+ * Keep smaller layouts compact so the art does not cover the centered copy. */
+@media (min-width: 1200px) {
+    .unframer-page[data-route="/about"] [data-framer-name="BG Shap Image"]:has(img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"]) {
+        transform: translateX(-50px) scale(1.18) !important;
+        transform-origin: left bottom !important;
+    }
+}
+/* The blog listing starts with a white card section, so remove the blue strip
+ * left by the shared navigation and page ground on this route only. */
+.unframer-page[data-route="/blogs"],
+.unframer-page[data-route="/blogs"] > nav {
+    background-color: #fff !important;
+}
+/* This article has no stated age range. Hide the generated age label rather
+ * than carrying over the previous robotics article's 8–18 claim. */
+.unframer-page[data-route="/blogs"] .framer-WI6lG .framer-1s7x1id > :nth-child(2) .framer-digif,
+.unframer-page[data-route="/blogs/codeinnovators"] [data-framer-name="Wrapper"]:has([data-framer-name="For Ages"]) {
+    display: none !important;
+}
+/* Keep this new article's navigation on the same canvas as its Framer hero. */
+.unframer-page[data-route="/blogs/codeinnovators"],
+.unframer-page[data-route="/blogs/codeinnovators"] > nav {
+    background-color: var(--unframer-ivory-cream) !important;
+}
+
+/* Match the bootcamp article and navigation to the site's ice-blue canvas.
+ * Keep the Framer title but remove its decorative wave. */
+.unframer-page[data-route="/blogs/bootcamp"],
+.unframer-page[data-route="/blogs/bootcamp"] > nav {
+    background-color: var(--unframer-ivory-cream) !important;
+}
+.unframer-page[data-route="/blogs/bootcamp"] .framer-CaeWW .framer-cvki2j {
+    display: none !important;
+}
+/* Reuse the animated program-CTA ladybug in the bootcamp hero's bag slot.
+ * The still is visible immediately and remains if video cannot play. */
+.unframer-page[data-route="/blogs/bootcamp"] img[src*="DWEcQoU7ZlWatrV5Xz5SpuLe43Y"] {
+    content: url("/decor/ladybug.png");
+    object-fit: contain !important;
+}
+/* The original bag had its own bob-and-rotate Framer loop. Keep the ladybug
+ * in one place, as on /programs; only its video frames should animate. */
+.unframer-page[data-route="/blogs/bootcamp"] main [data-framer-name="Logo"]:has(img[src*="DWEcQoU7ZlWatrV5Xz5SpuLe43Y"]) {
+    transform: translate(-50%, -50%) translate(10px, -25px) !important;
+}
+/* On phones, let the ladybug sticker rise above the rounded cover photo.
+ * The photo still clips to its own radius; only its outer section is unclipped. */
+@media (max-width: 767px) {
+    .unframer-page[data-route="/blogs/bootcamp"] main[data-bootcamp-article] > [data-framer-name="Phone"]:has(img[src="/brand/main-photo.jpg"]) {
+        overflow: visible !important;
+    }
+}
+/* Match the 204 × 164 program-CTA ladybug on wide desktop. The compact
+ * exported hero at intermediate widths cannot fit that full-height mascot. */
+@media (min-width: 1200px) {
+    .unframer-page[data-route="/blogs/bootcamp"] main [data-framer-name="Logo"]:has(img[src*="DWEcQoU7ZlWatrV5Xz5SpuLe43Y"]) {
+        width: 204px !important;
+        height: auto !important;
+        aspect-ratio: 203.78125 / 164 !important;
+        left: 89% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+}
+/* Once the wave is gone, the exported hero's tall padding leaves the title
+ * stranded between the navigation and article. Keep a compact, responsive gap. */
+.unframer-page[data-route="/blogs/bootcamp"] .framer-CaeWW {
+    padding-top: clamp(20px, 3vw, 36px) !important;
+    padding-bottom: clamp(20px, 3vw, 36px) !important;
+}
+.unframer-page[data-route="/blogs/bootcamp"] .framer-reN2c {
+    padding-top: clamp(20px, 2vw, 24px) !important;
+}
+/* Give the Code Innovators Festival article the same compact, ribbon-free
+ * Framer hero as bootcamp.
+ *
+ * The crab used to live here, replacing the bag beside the title. It now sits
+ * at the foot of the article instead -- see `.footerCrab` in
+ * components/routes/Blogs.module.css -- so the whole slot is hidden rather than
+ * re-pointed: dropping the `content` override alone would put Framer's original
+ * bag back on screen, which is not the asset this site uses anywhere. */
+.unframer-page[data-route="/blogs/codeinnovators"] .framer-CaeWW .framer-cvki2j {
+    display: none !important;
+}
+.unframer-page[data-route="/blogs/codeinnovators"] main [data-framer-name="Logo"]:has(img[src*="DWEcQoU7ZlWatrV5Xz5SpuLe43Y"]) {
+    display: none !important;
+}
+/* Two rules stood here and both died with the hero crab: one unclipped the
+ * phone photo so a crab pinned to its corner could hang outside, and one sized
+ * and placed the hero Logo slot at >=1200px. The slot is `display: none` now,
+ * and the crab is positioned against `.page` at the foot of the article. The
+ * first also matched on `img[src="/brand/hand.jpg"]`, which is no longer the
+ * cover image. */
+.unframer-page[data-route="/blogs/codeinnovators"] .framer-CaeWW {
+    padding-top: clamp(20px, 3vw, 36px) !important;
+    padding-bottom: clamp(20px, 3vw, 36px) !important;
+}
+.unframer-page[data-route="/blogs/codeinnovators"] .framer-reN2c {
+    padding-top: clamp(20px, 2vw, 24px) !important;
+}
 body {
     margin: 0;
 }
-
 
 /* ---------------------------------------------------------------------------
  * Colour scheme override — blue / purple
@@ -206,31 +679,60 @@ img[src*="caAEwISYX2lifI52VyCRE1uWq8"] {
     object-position: 50% 20% !important;
 }
 
-/* Mathematics programme hero — the photograph beside the headline on
- * /program/[slug] for that one slug.
+/* Home "How it works" photo. Keep Framer's wide, rounded image slot, but
+ * anchor the taller local photograph at the top so the learner stays in frame. */
+.unframer-page[data-route="/"] img[src*="boG6oa6E52k8sizhPr7VrDxo3eU"] {
+    content: url("/brand/ann.jpg");
+    object-position: 50% 0% !important;
+}
+
+/* Home and About learning spaces photograph. */
+.unframer-page[data-route="/"] img[src*="zkeQsPolMXishLm6DHO92DjwGQ"],
+.unframer-page[data-route="/about"] img[src*="zkeQsPolMXishLm6DHO92DjwGQ"] {
+    content: url("/brand/kids.jpg");
+}
+
+/* Programme heroes — the photograph beside the headline on /program/[slug].
  *
- * This asset comes from the CMS (`Image` on the Program collection), not from a
- * generated component, so the id is one of four and matching on it targets
- * mathematics alone; the other three programmes keep their own photographs.
- * Overriding here rather than in `lib/cms.json` is deliberate -- that file is a
- * snapshot regenerated by `pnpm cms`, which would drop an edit made to it.
+ * These assets come from the CMS (`Image` on the Program collection), not from a
+ * generated component, so each id belongs to exactly one programme and matching
+ * on it leaves the others alone. Overriding here rather than in `lib/cms.json`
+ * is deliberate -- that file is a snapshot regenerated by `pnpm cms`, which
+ * would drop an edit made to it. The accompanying copy is overridden too, in
+ * `lib/cms-overrides.ts`, for the same reason.
  *
- * This *is* a `fitImageDimension` slot (`height`), but the clipping trap the
+ * These *are* `fitImageDimension` slots (`height`), but the clipping trap the
  * hero note above avoids does not apply: unframer writes the original's ratio as
  * an inline `aspect-ratio` on the slot, and the <img> inside is 100%/100% with
  * `object-fit: cover`, so the box stays 1.07273 whatever it contains and the
  * replacement is cover-cropped into it. There is one Image node for all three
  * variants, so that ratio is identical at every breakpoint -- no per-breakpoint
- * `object-position` tuning is needed here.
+ * `object-position` tuning is needed here. Every programme photo in this project
+ * is authored at 800x732, so the same ratio serves all of them.
  *
- * `public/brand/scratch.jpg` is 6960x4640 (1.8MB) and 3:2 landscape against that
- * 1.073 slot, so it is cropped to the slot ratio deliberately -- full height,
- * 150px in from the left, which holds the instructor and the block-code screen
- * and drops the sprite panel -- and served at 1150x1072, 133KB. Cropping at the
- * source rather than leaving it to `cover` is what keeps the pointing hand and
- * the code in frame. */
+ * Both sources are 3:2 landscape at full camera resolution (1.8MB and 3.1MB)
+ * against that 1.073 slot, so each is cropped to the slot ratio deliberately
+ * rather than left to `cover`, and served at 1150x1072:
+ *
+ *   scratch.jpg  full height, 150px in from the left -- holds the instructor and
+ *                the block-code screen, drops the sprite panel.        133KB
+ *   se.jpg       full height, flush to the right edge -- keeps the developer and
+ *                her laptop whole, drops the far-left monitor.         149KB
+ *   robot.jpg    full height, 180px in from the left -- keeps the chassis and
+ *                the wiring, drops the bottle and packing foam.        139KB
+ *
+ * robot.jpg is a much smaller source than the other two (3744x2496, 684KB), so
+ * it is encoded at quality 76 rather than 82 -- the detail in the kit parts
+ * costs more bytes than a face does, and 82 put it 30KB above its neighbours.
+ */
 img[src*="SvD1bnjktLvnBuYfC2hBIX6cXzM"] {
     content: url("/hero/program-mathematics.jpg");
+}
+img[src*="2cA7usphZJ3x8tZnp6UntkxZXg"] {
+    content: url("/hero/program-coding.jpg");
+}
+img[src*="g4m5txDwArVyptNCMlROYqCoTW0"] {
+    content: url("/hero/program-science.jpg");
 }
 
 /* Cloud divider at the page foot.
@@ -347,4 +849,155 @@ img[src*="KITCFqoLDqQXdqMCCYX4dCTzRNo"] {
  * is authored identically. */
 div:has(> div > img[src*="KITCFqoLDqQXdqMCCYX4dCTzRNo"]) {
     aspect-ratio: 1519 / 1217 !important;
+}
+/*
+ ---break---
+ */
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: var(--font-sans);
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+/*
+ ---break---
+ */
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+}
+/*
+ ---break---
+ */
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+}
+/*
+ ---break---
+ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+  html {
+    @apply font-sans;
+    }
+}
+
+/* Remove the shared Framer pre-title pills, including their layout wrappers.
+ * Match the named Dot + RichText structure rather than generated class hashes,
+ * so this survives regeneration without hiding headings or other card pills. */
+.unframer-page div[class*="-container"]:has(> [data-framer-name="Default"] > [data-framer-name="Dot"] + [data-framer-component-type="RichTextContainer"]),
+.unframer-page div:has(> div[class*="-container"]:only-child > [data-framer-name="Default"] > [data-framer-name="Dot"] + [data-framer-component-type="RichTextContainer"]) {
+    display: none !important;
+}
+
+/* Keep Framer's original About clip and poster out of the first paint. */
+.unframer-page[data-route="/about"] div:has(> video[src*="FnTwkwh1zMIK062vyZfEtx5gGlA"]),
+.unframer-page[data-route="/about"] div:has(> video[data-about-hero-video]) {
+    background: #c7d2ce url("/decor/about-video-poster.jpg") center / cover no-repeat;
+}
+
+.unframer-page[data-route="/about"] video[src*="FnTwkwh1zMIK062vyZfEtx5gGlA"],
+.unframer-page[data-route="/about"] video[poster*="KzZ7iaKnL4eAObspeL2MzQHr6w"] {
+    visibility: hidden;
 }

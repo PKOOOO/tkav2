@@ -1,0 +1,148 @@
+/* Academy's exported program sections, reskinned with TKA's existing palette. */
+.page {
+    width: 100%;
+    overflow-x: clip;
+    background: #fff;
+    color: #002b5b;
+    font-family: "Instrument Sans", "Instrument Sans Placeholder", sans-serif;
+    --token-5df68e9f-e24a-4ecb-befd-33d1c68e9cc5: #fff;
+    --token-2e05fd84-0398-4f77-b7f8-653963237f4c: #002b5b;
+    --token-04a41402-c0a0-4134-a7f9-91b3efa447a8: #41597a;
+    --token-46129beb-16b7-43e5-9e0a-f794fe49ada0: #eef4fa;
+    --token-cb609fc9-9bba-41cb-9e84-7ec59992f867: #eef4fa;
+    --token-0c9942aa-5698-400e-8590-c0350c38d992: #6a1383;
+    --token-cd80abbd-1239-451a-8ac5-f55b318281d0: #530e68;
+    --token-d49a409f-3ea9-448a-97f4-030eb9168086: #8b3ba8;
+    --token-cee565fc-bbab-45ea-be39-cbe41f9721f1: #38b6ff;
+    --token-84fa87f5-a27c-4b35-b0d9-24f532c6b2dd: #d6ecff;
+    --token-47e30837-d07f-4175-81b6-7299720a6411: #dfeaf6;
+    --token-455709ec-11c5-4153-a2d8-88c800b9dc18: #cfe9e6;
+    --token-a52a9b7c-b9ca-4eaf-a3fa-2347ec91bf88: #e6d6f0;
+    --token-ce4085cd-baba-49f5-9160-c3c75d795ccb: rgba(0,43,91,.2);
+    --token-6eb04566-dab7-4d55-9114-8c95ad515a48: #8b3ba8;
+    --token-cf471e39-fa95-4a61-921b-d595b7bd1e92: #8b3ba8;
+    --token-7e0b6c59-56f7-4466-8722-9e74bd3b1982: #eef4fa;
+}
+
+/* Match the program pages' ice-blue canvas on this article only. The blog
+   listing keeps its white ground behind the stacked cards. */
+.tintedArticle {
+    background: var(--unframer-ivory-cream);
+    --token-5df68e9f-e24a-4ecb-befd-33d1c68e9cc5: var(--unframer-ivory-cream);
+}
+
+/* The Academy export brings its own Solway/Nunito typography. Use the same
+   heading and body faces as the rest of Tech Kidz Africa on every blog page. */
+.page :global(:is(p, li, a, button, span)) {
+    font-family: "Instrument Sans", "Instrument Sans Placeholder", sans-serif !important;
+}
+
+.page :global(:is(h1, h2, h3, h4, h5, h6)),
+.page :global(:is(h1, h2, h3, h4, h5, h6) *) {
+    font-family: "Bricolage Grotesque", "Bricolage Grotesque Placeholder", sans-serif !important;
+}
+
+/* Keep the exported Framer CTA's layout slot, but replace its link with the
+   registration dialog trigger on the bootcamp article only. */
+.bootcampArticle :global(a[aria-label="Try a free session"]) {
+    display: none !important;
+}
+
+.page > * {
+    width: 100% !important;
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+}
+
+/* The Academy export renders at a fixed authored width; let its root stretch
+   as Academy's own section-frame does, while keeping its internal max-width. */
+.page :global(.unframer) {
+    max-width: none;
+}
+
+/* Keep Academy's sticky card stacking. Its first row begins 48px below its
+   natural position, so a wider row gap prevents the first two from touching. */
+.page :global(.framer-WI6lG .framer-1s7x1id) {
+    gap: 80px;
+}
+
+/* Academy's Phone variant disables the five sticky cards used on Desktop.
+   Reinstate that stack with tighter offsets so each card fits a phone viewport. */
+@media (max-width: 767px) {
+    .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(-n + 5)) {
+        position: sticky !important;
+    }
+    .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(1)) { top: clamp(32px, 6vh, 56px) !important; }
+    .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(2)) { top: calc(clamp(32px, 6vh, 56px) + 20px) !important; }
+    .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(3)) { top: calc(clamp(32px, 6vh, 56px) + 40px) !important; }
+    .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(4)) { top: calc(clamp(32px, 6vh, 56px) + 60px) !important; }
+    .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(5)) { top: calc(clamp(32px, 6vh, 56px) + 80px) !important; }
+}
+
+.page :global(img[src*="W8hVfmKKhduFSeAGFhdKsEMhBo"]) {
+    content: var(--blog-cover);
+    object-fit: cover !important;
+}
+
+.articleContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    color: #41597a;
+}
+
+.articleContent section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.articleContent h2 {
+    margin: 0;
+    color: #002b5b;
+    font-size: clamp(1.4rem, 2vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.articleContent p,
+.articleContent li {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.articleContent ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+}
+
+@media (max-width: 809px) {
+    .page > :first-child { padding-top: 48px !important; }
+}
+
+/* Academy's title was authored for a one-word program name. Article titles need
+   room to wrap clear of its right-hand illustration. */
+.page :global(.framer-CaeWW .framer-1d2vaqd) {
+    max-width: min(100%, 900px);
+    margin-inline: auto;
+    padding-inline: 5rem;
+}
+.page :global(.framer-CaeWW h1) {
+    font-size: clamp(2.1rem, 4vw, 3.35rem) !important;
+    line-height: 1.15 !important;
+}
+@media (max-width: 809px) {
+    .page :global(.framer-CaeWW .framer-1d2vaqd) { padding-inline: 1.5rem; }
+    .page :global(.framer-CaeWW h1) { font-size: clamp(2rem, 8vw, 2.8rem) !important; }
+    /* The export's -4px tracking crushes the animated letters and word gaps
+       in this longer title. Relax it without changing the Framer animation. */
+    .tintedArticle :global(.framer-CaeWW h1) {
+        letter-spacing: -0.02em !important;
+        word-spacing: 0.08em !important;
+        line-height: 1.22 !important;
+    }
+}
+

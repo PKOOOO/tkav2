@@ -32,6 +32,14 @@ import { useEffect } from 'react'
 type Decor = {
     /** Substring of the Framer asset id the <img> still carries in its `src`. */
     match: string
+    /** Restrict a shared Framer image slot to one page when needed. */
+    route?: string
+    /**
+     * Skip this decoration on these routes. The CTA band is shared across every
+     * programme page, so a still swapped out on a single route would otherwise
+     * still get the shared slot's video mounted over it.
+     */
+    exceptRoutes?: string[]
     /** VP9 with alpha. Blink and Gecko. */
     src: string
     /**
@@ -60,8 +68,37 @@ const DECOR: Decor[] = [
     // starts with its eyes open, so a plain loop snapped the eyes back open.
     {
         match: 'XDA48ZBlyMaqovRVgRqqtE0wsE',
+        // 3D Design and Printing shows a photograph in this slot instead -- see
+        // the perez.webp override in globals.css -- and animating it with the
+        // ladybug would simply replace the photograph.
+        exceptRoutes: ['/program/3d-design-and-printing'],
         src: '/decor/ladybug.webm',
         webkitSrc: '/decor/ladybug.hevc.mp4',
+    },
+    // Replace the bag in the bootcamp article hero with the same ladybug.
+    {
+        match: 'DWEcQoU7ZlWatrV5Xz5SpuLe43Y',
+        route: '/blogs/bootcamp',
+        src: '/decor/ladybug.webm',
+        webkitSrc: '/decor/ladybug.hevc.mp4',
+    },
+    // The same decoration mounted on the cover photo for the Phone variant.
+    {
+        match: '/decor/ladybug.png',
+        route: '/blogs/bootcamp',
+        src: '/decor/ladybug.webm',
+        webkitSrc: '/decor/ladybug.hevc.mp4',
+    },
+    // The festival crab, now at the foot of the article rather than in its hero
+    // -- the same placement the crab has in the CTA band on /program. It is
+    // mounted by components/FestivalCrab.tsx as a plain `/decor/crab.png`, so
+    // this one rule covers every breakpoint; the hero's bag slot is hidden
+    // outright in globals.css and no longer needs a rule of its own.
+    {
+        match: '/decor/crab.png',
+        route: '/blogs/codeinnovators',
+        src: '/decor/crab.webm',
+        webkitSrc: '/decor/crab.hevc.mp4',
     },
 ]
 
@@ -260,6 +297,8 @@ export function useVideoDecor(resetKey?: string) {
         const scan = () => {
             if (!pick) return
             for (const decor of DECOR) {
+                if (decor.route && decor.route !== resetKey) continue
+                if (resetKey && decor.exceptRoutes?.includes(resetKey)) continue
                 const chosen = pick(decor)
                 if (!chosen) continue
                 const images = document.querySelectorAll<HTMLImageElement>(

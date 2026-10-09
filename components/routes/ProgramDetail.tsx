@@ -3,12 +3,13 @@
 import { RESPONSIVE } from '@/components/breakpoints'
 import { findProgram, hydrateEmbeds } from '@/lib/cms'
 import { NotFoundNotice } from '@/components/shared'
+import ProgramMentors, { hasProgramMentors } from '@/components/ProgramMentors'
 
 import Hero, { __bindCmsFields as bindHero } from '@/framer/program-detail-section-1-hero.jsx'
 import Course, { __bindCmsFields as bindCourse } from '@/framer/program-detail-section-2-course.jsx'
 import Mentor, { __bindCmsFields as bindMentor } from '@/framer/program-detail-section-3-mentor.jsx'
 import Faqs, { __bindCmsFields as bindFaqs } from '@/framer/program-detail-section-4-fa-qs.jsx'
-import Cta from '@/framer/cta-program.jsx'
+import ProgramCta from '@/components/ProgramCta'
 
 /**
  * `__bindCmsFields` assigns module-level vars inside the generated component, so
@@ -26,16 +27,19 @@ export default function ProgramDetail({ slug }: { slug: string }) {
 
     bindHero(fields)
     bindCourse(fields)
-    bindMentor(fields)
+    const useLocalMentors = hasProgramMentors(program.slug)
+    if (!useLocalMentors) bindMentor(fields)
     bindFaqs(fields)
 
     return (
         <>
             <Hero.Responsive variants={RESPONSIVE} />
             <Course.Responsive variants={RESPONSIVE} />
-            <Mentor.Responsive variants={RESPONSIVE} />
+            {useLocalMentors
+                ? <ProgramMentors slug={program.slug} />
+                : <Mentor.Responsive variants={RESPONSIVE} />}
             <Faqs.Responsive variants={RESPONSIVE} />
-            <Cta.Responsive variants={RESPONSIVE} />
+            <ProgramCta slug={program.slug} />
         </>
     )
 }

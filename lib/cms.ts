@@ -2,6 +2,7 @@ import { createElement, Fragment } from 'react'
 import type { ReactElement } from 'react'
 
 import data from './cms.json'
+import { ADDITIONAL_PROGRAM_SLUGS } from './additional-programs'
 import {
     PROGRAM_FIELD_IDS,
     PROGRAM_MENTOR_FIELD_ID,
@@ -143,7 +144,7 @@ const overrideProgram = (item: Program): Program => {
         )
     }
 
-    if (override.mentor) {
+    if (typeof override.mentor === 'string') {
         const mentor = mentors.find((m) => m.slug === override.mentor)
         if (!mentor) {
             console.warn(`cms: no mentor "${override.mentor}" for ${item.slug}; link left as-is`)
@@ -156,15 +157,78 @@ const overrideProgram = (item: Program): Program => {
                 next.byId[`${PROGRAM_MENTOR_FIELD_ID}_${id}`] = value
             }
         }
+    } else if (override.mentor) {
+        const mentor = override.mentor
+        const prefix = PROGRAM_MENTOR_FIELD_ID
+        next.byId[prefix] = mentor.slug
+        ;(next as Record<string, unknown>).Team = mentor.slug
+        next.byId[`${prefix}_QLObxbGfm`] = mentor.name
+        next.byId[`${prefix}_koQ7t_K7p`] = mentor.image
+        next.byId[`${prefix}_s9bPlqbuP`] = mentor.role
+        next.byId[`${prefix}_YfmS2tChU`] = mentor.description
+        const expertiseId = `${prefix}_zGSu5TpRv`
+        const expertise = next.byId[expertiseId]
+        if (isEmbedList(expertise)) {
+            next.byId[expertiseId] = expertise.map((embed, index) =>
+                index === 0
+                    ? {
+                        ...embed,
+                        props: {
+                            ...embed.props,
+                            title01: mentor.expertise[0],
+                            title02: mentor.expertise[1],
+                            title03: mentor.expertise[2],
+                            title04: mentor.expertise[3],
+                            title05: mentor.expertise[4],
+                        },
+                    }
+                    : embed,
+            )
+        }
     }
 
     return next
 }
 
-export const programs = cms.Program.map(overrideProgram)
+// New local courses inherit the Framer embed structure; authored content replaces its copy.
+const programTemplate = cms.Program.find((item) => item.slug === 'coding')!
+const withStandardSchedule = (program: Program): Program => {
+    const byId = { ...program.byId }
+    const values = {
+        'Label 01': 'Project tracks',
+        'Value 01': '10+',
+        'Label 02': 'Sessions weekly',
+        'Value 02': '6×',
+        'Label 03': 'Per session',
+        'Value 03': '2 hr',
+    } as const
+
+    for (const [name, value] of Object.entries(values)) {
+        byId[PROGRAM_FIELD_IDS[name as ProgramFieldName]] = value
+    }
+
+    return { ...program, ...values, byId }
+}
+
+export const programs = [
+    ...cms.Program,
+    ...ADDITIONAL_PROGRAM_SLUGS.map((slug) => ({ ...programTemplate, id: `local-${slug}`, slug })),
+].map(overrideProgram).map(withStandardSchedule)
+
+/** Public course URLs; Framer's original CMS slugs remain valid as aliases. */
+export const programRouteSlugs: Record<string, string> = {
+    mathematics: 'animation-and-gamification',
+    science: 'robotics-and-tinkering',
+    english: 'digital-literacy-skills',
+    coding: 'software-engineering',
+}
+
+export const programHref = (slug: string) => `/program/${programRouteSlugs[slug] ?? slug}`
 
 export const findMentor = (slug?: string) => mentors.find((m) => m.slug === slug)
-export const findProgram = (slug?: string) => programs.find((p) => p.slug === slug)
+export const findProgram = (slug?: string) => programs.find(
+    (p) => p.slug === slug || programRouteSlugs[p.slug] === slug,
+)
 export const findLegalPage = (slug?: string) => legalPages.find((l) => l.slug === slug)
 
 /**

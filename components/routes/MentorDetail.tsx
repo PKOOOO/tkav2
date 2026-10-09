@@ -1,8 +1,10 @@
 'use client'
 
 import { RESPONSIVE } from '@/components/breakpoints'
-import { findMentor, hydrateEmbeds } from '@/lib/cms'
+import { hydrateEmbeds } from '@/lib/cms'
+import { findMentorProfile } from '@/lib/mentor-profiles'
 import { NotFoundNotice } from '@/components/shared'
+import styles from './MentorDetail.module.css'
 
 import Hero, { __bindCmsFields as bindHero } from '@/framer/mentor-detail-section-1-hero.jsx'
 import Session, { __bindCmsFields as bindSession } from '@/framer/mentor-detail-section-2-session.jsx'
@@ -16,7 +18,7 @@ import Cta from '@/framer/cta-mentor.jsx'
  * whole subtree is client-only: see the note in app/program/[slug]/page.tsx.
  */
 export default function MentorDetail({ slug }: { slug: string }) {
-    const mentor = findMentor(slug)
+    const mentor = findMentorProfile(slug)
     if (!mentor) return <NotFoundNotice what='Mentor' backHref='/mentor' />
 
     const fields = hydrateEmbeds(mentor.byId)
@@ -26,7 +28,7 @@ export default function MentorDetail({ slug }: { slug: string }) {
 
     return (
         <>
-            <Hero.Responsive variants={RESPONSIVE} />
+            <Hero.Responsive variants={RESPONSIVE} className={styles.hero} />
             <Session.Responsive variants={RESPONSIVE} />
             <Testimonial.Responsive variants={RESPONSIVE} />
             <Cta.Responsive variants={RESPONSIVE} />

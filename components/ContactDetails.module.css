@@ -1,0 +1,63 @@
+.choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.option {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    max-width: 100%;
+    padding: 8px 12px;
+    border: 1px solid rgba(0, 43, 91, 0.12);
+    border-radius: 999px;
+    background: #eef4fa;
+    color: #002b5b;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.25;
+    cursor: pointer;
+}
+
+.option:hover,
+.option:has(input:checked) {
+    border-color: #002b5b;
+}
+
+.option:focus-within {
+    outline: 2px solid #6a1383;
+    outline-offset: 2px;
+}
+
+.option input {
+    appearance: none;
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    border: 1.5px solid #496184;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+}
+
+.option input:checked {
+    border: 5px solid #002b5b;
+}

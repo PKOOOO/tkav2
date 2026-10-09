@@ -572,7 +572,6 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 													layoutId: "LvxJcQpqn",
 													qzeUwXZ6t:
 														"var(--token-9be2179a-d4c3-4b1c-a57e-66ad0ebb844d, rgb(232, 114, 44))",
-													wCKXxEnrH: "Better tomorrow. No commitment.",
 													width: "100%",
 													ZFJwwHvsK:
 														"var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898, rgb(246, 215, 232))",
@@ -792,7 +791,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 										layoutDependency={layoutDependency}
 										layoutId={"vE9GkjhuM"}
 									>
-										<RichText
+										{/* <RichText
 											suppressHydrationWarning={true}
 											__fromCanvasComponent={true}
 											className={"framer-10is3re"}
@@ -817,11 +816,11 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 													}}
 												>
 													{
-														"Start with a free session, meet your tutor, find the right level, and get a plan."
+														"Start a session, meet your tutor, find the right level, and get a plan."
 													}
 												</motion2.p>
 											</React2.Fragment>
-										</RichText>
+										</RichText> */}
 									</MotionDivWithFX>
 								</motion2.div>
 								<MotionDivWithFX
@@ -1117,7 +1116,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 															suppressHydrationWarning: true,
 															height: "100%",
 															id: "BmGs0QA0D",
-															Kiib3s3Y3: "Book your spot",
+															Kiib3s3Y3: "Book your session",
 															layoutId: "BmGs0QA0D",
 															toG7h_P8o: resolvedLinks[0],
 															variant: matchVariant("EUoTryFDz"),

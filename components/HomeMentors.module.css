@@ -1,0 +1,7 @@
+.host {
+    display: contents;
+}
+
+.enhanced > :not(.host) {
+    display: none !important;
+}

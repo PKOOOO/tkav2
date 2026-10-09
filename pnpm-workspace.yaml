@@ -1,4 +1,6 @@
 allowBuilds:
+  '@tsparticles/engine': false
+  agent-browser: true
   esbuild: true
   sharp: false
   unrs-resolver: false

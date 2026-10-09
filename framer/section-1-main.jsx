@@ -6729,7 +6729,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															height: "100%",
 															id: "XoXL2qmxC",
 															layoutId: "XoXL2qmxC",
-															qYj3wDevk: "Meet the team",
+															// qYj3wDevk: "Meet the team",
 															variant: matchVariant2("OgZ_3yfFR"),
 															width: "100%",
 															...addPropertyOverrides5(
@@ -7001,7 +7001,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 																		}}
 																	>
 																		{
-																			"Every learner is different. In the free first session we find the right starting point then move at a pace that fits."
+																			"Every young innovator starts somewhere. At Tech Kidz Africa, kids explore coding, robotics and digital creativity at a pace that builds confidence."
 																		}
 																	</motion5.p>
 																</React5.Fragment>
@@ -7023,7 +7023,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 														}}
 													>
 														{
-															"Every learner is different. In the free first session we find the right starting point then move at a pace that fits."
+															"Every young innovator starts somewhere. At Tech Kidz Africa, kids explore coding, robotics and digital creativity at a pace that builds confidence."
 														}
 													</motion5.p>
 												</React5.Fragment>
@@ -7108,7 +7108,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															height: "100%",
 															id: "oqhj5atTh",
 															JglaNRaBT:
-																"New to the subject, we build the basics first.",
+																"Discover technology through playful, hands-on activities.",
 															layoutId: "oqhj5atTh",
 															LLz0A8jqA: resolvedLinks7[0],
 															Px5m24yPu:
@@ -7116,7 +7116,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															style: {
 																width: "100%",
 															},
-															unKsgIM0_: "Just starting",
+															unKsgIM0_: "Getting curious",
 															variant: matchVariant2("TaYvYmolX"),
 															width: "100%",
 															...addPropertyOverrides5(
@@ -7208,7 +7208,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															},
 															height: "100%",
 															id: "IO7mldFFQ",
-															JglaNRaBT: "Fill the gaps and get back on track.",
+															JglaNRaBT: "Build coding and digital skills with guided projects.",
 															layoutId: "IO7mldFFQ",
 															LLz0A8jqA: resolvedLinks8[0],
 															Px5m24yPu:
@@ -7216,7 +7216,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															style: {
 																width: "100%",
 															},
-															unKsgIM0_: "Catching up",
+															unKsgIM0_: "Learning to create",
 															variant: matchVariant2("TaYvYmolX"),
 															weYz8TZ7t: addImageAlt(
 																{
@@ -7317,7 +7317,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															height: "100%",
 															id: "eU9ySFsXP",
 															JglaNRaBT:
-																"Weekly practice and homework support.",
+																"Create games, animations and robots with mentors.",
 															layoutId: "eU9ySFsXP",
 															LLz0A8jqA: resolvedLinks9[0],
 															Px5m24yPu:
@@ -7325,7 +7325,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															style: {
 																width: "100%",
 															},
-															unKsgIM0_: "Keeping pace",
+															unKsgIM0_: "Building ideas",
 															variant: matchVariant2("TaYvYmolX"),
 															weYz8TZ7t: addImageAlt(
 																{
@@ -7425,7 +7425,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															},
 															height: "100%",
 															id: "DiD8VKNTJ",
-															JglaNRaBT: "Advanced learning & exam prep.",
+															JglaNRaBT: "Take on bigger tech challenges and bring original ideas to life.",
 															layoutId: "DiD8VKNTJ",
 															LLz0A8jqA: resolvedLinks10[0],
 															Px5m24yPu:
@@ -7433,7 +7433,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															style: {
 																width: "100%",
 															},
-															unKsgIM0_: "Racing ahead",
+															unKsgIM0_: "Ready to innovate",
 															variant: matchVariant2("TaYvYmolX"),
 															weYz8TZ7t: addImageAlt(
 																{
@@ -7828,7 +7828,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 														}}
 													>
 														{
-															"Drop in at our center, or join live from home same mentors, same materials, same progress reports every month."
+															"Explore coding, robotics and digital creativity at our centre or live online. Tech Kidz Africa brings hands-on projects and supportive mentors to every learning space."
 														}
 													</motion5.p>
 												</React5.Fragment>
@@ -7868,7 +7868,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															height: "100%",
 															id: "kB3V5Dsqf",
 															layoutId: "kB3V5Dsqf",
-															NTl8xZNe6: "After-school slots",
+															NTl8xZNe6: "After-school tech clubs",
 															variant: matchVariant2("o8DEZsbBu"),
 															width: "100%",
 														})}
@@ -7894,7 +7894,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															height: "100%",
 															id: "VXX0yI5ta",
 															layoutId: "VXX0yI5ta",
-															NTl8xZNe6: "Weekend groups",
+															NTl8xZNe6: "Weekend workshops",
 															variant: matchVariant2("o8DEZsbBu"),
 															width: "100%",
 														})}
@@ -7920,7 +7920,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															height: "100%",
 															id: "o1ERGwyJD",
 															layoutId: "o1ERGwyJD",
-															NTl8xZNe6: "Live online",
+															NTl8xZNe6: "Live online classes",
 															variant: matchVariant2("o8DEZsbBu"),
 															width: "100%",
 														})}
@@ -7946,7 +7946,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 															height: "100%",
 															id: "rccjndaiW",
 															layoutId: "rccjndaiW",
-															NTl8xZNe6: "Homework help",
+															NTl8xZNe6: "Hands-on projects",
 															variant: matchVariant2("o8DEZsbBu"),
 															width: "100%",
 														})}

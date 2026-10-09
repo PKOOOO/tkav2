@@ -9,6 +9,7 @@ import { useSmoothScroll } from '@/lib/useSmoothScroll'
 import { useCompactSections } from '@/lib/useCompactSections'
 import { useVideoDecor } from '@/lib/useVideoDecor'
 import CustomCursor from '@/components/CustomCursor'
+import BlogsNavLink from '@/components/BlogsNavLink'
 import { NAV_RESPONSIVE, RESPONSIVE } from '@/components/breakpoints'
 
 import Navigation from '@/framer/navigation.jsx'
@@ -105,6 +106,7 @@ export default function Shell({ children }: { children: ReactNode }) {
                 {mounted && (
                     <>
                         <Navigation.Responsive variants={NAV_RESPONSIVE} />
+                        <BlogsNavLink />
                         {children}
                         <Footer.Responsive variants={RESPONSIVE} />
                     </>

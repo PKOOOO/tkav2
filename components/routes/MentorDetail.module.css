@@ -1,0 +1,38 @@
+/* Grey photo treatment for local cut-outs, scoped away from the mentor grid. */
+.hero img[src^='/team/'] {
+    background-color: #929493;
+    border-radius: 20px;
+    object-fit: contain !important;
+    object-position: bottom center !important;
+}
+
+/* Move the role to the tilted photo badge, removing the duplicate pill. */
+.hero:has(img[src^='/team/']) [data-framer-name='Pre Title']:has([data-framer-name='Role']) {
+    display: none !important;
+}
+
+/* Longer roles wrap inside the existing Framer badge, including on phones. */
+.hero:has(img[src^='/team/']) [data-framer-name='Badge']:has(> [data-framer-name='Level Badge']) {
+    width: max-content !important;
+    max-width: calc(100% - 24px);
+    height: auto !important;
+}
+
+.hero:has(img[src^='/team/']) [data-framer-name='Level Badge'] {
+    width: 100% !important;
+    max-width: 100%;
+    height: auto !important;
+}
+
+.hero:has(img[src^='/team/']) [data-framer-name='Level Badge'] > div {
+    max-width: 100%;
+    min-width: 0;
+    width: auto !important;
+    height: auto !important;
+    flex-shrink: 1 !important;
+}
+
+.hero:has(img[src^='/team/']) [data-framer-name='Level Badge'] p {
+    white-space: normal !important;
+    text-align: center;
+}

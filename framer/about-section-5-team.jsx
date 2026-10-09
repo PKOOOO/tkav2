@@ -827,7 +827,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 															height: "100%",
 															id: "wFUuUe0hE",
 															layoutId: "wFUuUe0hE",
-															qYj3wDevk: "Meet the team",
+															// qYj3wDevk: "Meet the team",
 															variant: matchVariant("OgZ_3yfFR"),
 															width: "100%",
 															...addPropertyOverrides(

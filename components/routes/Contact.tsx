@@ -1,6 +1,8 @@
 'use client'
 
 import { RESPONSIVE } from '@/components/breakpoints'
+import ContactDetails from '@/components/ContactDetails'
+import ContactRequestDialog from '@/components/ContactRequestDialog'
 
 import ContactHero from '@/framer/contact-section-1-hero.jsx'
 import ContactProcess from '@/framer/contact-section-2-process.jsx'
@@ -11,6 +13,8 @@ export default function Contact() {
     return (
         <>
             <ContactHero.Responsive variants={RESPONSIVE} />
+            <ContactDetails />
+            <ContactRequestDialog />
             <ContactProcess.Responsive variants={RESPONSIVE} />
             <ContactFaqs.Responsive variants={RESPONSIVE} />
         </>

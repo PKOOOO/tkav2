@@ -1,0 +1,45 @@
+import { useLayoutEffect } from 'react'
+
+const HEADING_WORDS = ['Nurture', '', '', '', '', 'curiosity.']
+const DESCRIPTION =
+    'A childhood fascination with technology grew into a mission: give young people the guidance and tools to explore their ideas. At Tech Kidz Africa, learners turn curiosity into working robots, apps and websites—and solutions for their communities.'
+
+/** Replace exported Framer copy without changing its word-by-word layout. */
+export function useAboutHeroCopy() {
+    useLayoutEffect(() => {
+        const root = document.querySelector('.unframer-page[data-route="/about"]')
+        if (!root) return
+
+        const update = () => {
+            root.querySelectorAll<HTMLElement>('[data-framer-name="Heading"]').forEach((heading) => {
+                const words = [...heading.querySelectorAll<HTMLHeadingElement>('h1')]
+                if (words.length !== HEADING_WORDS.length) return
+                if (!['We', 'Curiosity', 'Nurture'].includes(words[0].textContent?.trim() ?? '')) return
+
+                words.forEach((word, index) => {
+                    if (word.textContent !== HEADING_WORDS[index]) word.textContent = HEADING_WORDS[index]
+                    const wrapper = word.parentElement
+                    if (!HEADING_WORDS[index] && wrapper && wrapper.style.display !== 'none') {
+                        wrapper.style.display = 'none'
+                    }
+                })
+
+                const top = heading.parentElement?.parentElement
+                const description = [...(top?.querySelectorAll<HTMLParagraphElement>('p') ?? [])].find(
+                    (paragraph) =>
+                        paragraph.textContent?.includes('BrightPath exists') ||
+                        paragraph.textContent?.startsWith('A childhood fascination with technology'),
+                )
+                if (description) {
+                    description.dataset.aboutMission = ''
+                    if (description.textContent !== DESCRIPTION) description.textContent = DESCRIPTION
+                }
+            })
+        }
+
+        update()
+        const observer = new MutationObserver(update)
+        observer.observe(root, { childList: true, characterData: true, subtree: true })
+        return () => observer.disconnect()
+    }, [])
+}

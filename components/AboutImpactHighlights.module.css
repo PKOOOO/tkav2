@@ -1,0 +1,25 @@
+.host {
+    position: absolute;
+    top: -2px;
+    left: -4px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Keep Framer's heading as a layout fallback until its React portal mounts. */
+.host + h2 {
+    margin-top: 0 !important;
+}
+
+.host:not(:empty) + h2 {
+    visibility: hidden;
+}
+
+.number {
+    position: relative;
+    z-index: 1;
+    width: max-content;
+    margin: 0 !important;
+    padding: 2px 4px !important;
+    white-space: nowrap;
+}

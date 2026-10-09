@@ -592,7 +592,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 														}}
 													>
 														{
-															"Drop in at our center, or join live from home, same mentors, same materials, same progress reports every month."
+															"Explore coding, robotics and digital creativity at our centre or live online. Tech Kidz Africa brings hands-on projects and supportive mentors to every learning space."
 														}
 													</motion.p>
 												</React.Fragment>
@@ -625,7 +625,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 														height: "100%",
 														id: "X3iLgWaKm",
 														layoutId: "X3iLgWaKm",
-														NTl8xZNe6: "After-school slots",
+														NTl8xZNe6: "After-school tech clubs",
 														variant: matchVariant("Y0s5tgNrT"),
 														width: "100%",
 													})}
@@ -651,7 +651,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 														height: "100%",
 														id: "pTJt4cyuV",
 														layoutId: "pTJt4cyuV",
-														NTl8xZNe6: "Weekend groups",
+														NTl8xZNe6: "Weekend workshops",
 														variant: matchVariant("Y0s5tgNrT"),
 														width: "100%",
 													})}
@@ -677,7 +677,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 														height: "100%",
 														id: "IYI9EPBfJ",
 														layoutId: "IYI9EPBfJ",
-														NTl8xZNe6: "Live online",
+														NTl8xZNe6: "Live online classes",
 														variant: matchVariant("Y0s5tgNrT"),
 														width: "100%",
 													})}
@@ -703,7 +703,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 														height: "100%",
 														id: "MAbi2GUvz",
 														layoutId: "MAbi2GUvz",
-														NTl8xZNe6: "Homework help",
+														NTl8xZNe6: "Hands-on projects",
 														variant: matchVariant("Y0s5tgNrT"),
 														width: "100%",
 													})}

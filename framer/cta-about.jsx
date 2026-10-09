@@ -312,7 +312,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 												layoutId: "fWGV0EWg9",
 												qzeUwXZ6t:
 													"var(--token-9be2179a-d4c3-4b1c-a57e-66ad0ebb844d, rgb(232, 114, 44))",
-												wCKXxEnrH: "Better tomorrow. No commitment.",
+												
 												width: "100%",
 												ZFJwwHvsK:
 													"var(--token-7bbaafe9-06f3-4286-8b9e-1f6b96128a55, rgb(255, 255, 255))",

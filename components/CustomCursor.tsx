@@ -23,8 +23,8 @@ import { useEffect, useRef, useState } from 'react'
 /** Per-frame catch-up factor. Lower = longer, softer trail behind the pointer. */
 const SMOOTHING = 0.18
 
-/** Matches `theme.orange` in src/cms.ts -- the project's accent colour. */
-const DOT_COLOR = 'rgb(232, 114, 44)'
+/** Follow the site's purple accent token, with a fallback for initial paint. */
+const DOT_COLOR = 'var(--unframer-burnt-orange, rgb(106, 19, 131))'
 const DOT_SIZE = 16
 
 export default function CustomCursor() {

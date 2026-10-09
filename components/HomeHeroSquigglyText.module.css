@@ -1,0 +1,22 @@
+.heading {
+    position: relative;
+    color: transparent !important;
+}
+
+.host {
+    position: absolute;
+    inset: 0;
+    display: block;
+    pointer-events: none;
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: inherit;
+}
+
+.effect {
+    display: block !important;
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    text-align: inherit;
+}

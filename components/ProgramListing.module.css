@@ -1,0 +1,16 @@
+.slot > :not(.host) { display: none !important; }
+.host { width: 100%; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; width: 100%; }
+.card { display: flex; flex-direction: column; gap: 20px; padding: 20px; border-radius: 20px; color: #002b5b; text-decoration: none; transition: transform .2s ease; min-width: 0; }
+.card:hover { transform: translateY(-4px); }
+.card:focus-visible { outline: 3px solid #00569e; outline-offset: 5px; }
+.icon { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 10px; box-shadow: 2px 2px 0 currentColor; }
+.title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 30px; font-weight: 600; line-height: 1.1; letter-spacing: -1.2px; margin: 0; }
+.info { font-family: Inter, sans-serif; font-size: 15px; line-height: 1.5; color: #4a6487; margin: 10px 0 0; }
+.image { position: relative; aspect-ratio: 800 / 520; margin-top: auto; border-radius: 12px; overflow: hidden; }
+.image img { object-fit: cover; }
+@media (max-width: 767px) {
+    .grid { grid-template-columns: 1fr; gap: 20px; }
+    .title { font-size: 26px; }
+}
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }

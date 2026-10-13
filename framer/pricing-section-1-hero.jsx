@@ -645,16 +645,16 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 												>
 													{_jsx(stdin_default2, {
 														suppressHydrationWarning: true,
-														AwzJEdurJ: "Groups of max 4",
-														Fj80Jlaio: "$149",
-														G3zABwSLu: "/ month",
-														gU9f4qP3I: "Small-group sessions, twice a week.",
+														AwzJEdurJ: "Groups of up to 30 learners",
+														Fj80Jlaio: "Talk to support",
+														G3zABwSLu: "",
+														gU9f4qP3I: "Whole-class sessions, twice a week.",
 														height: "100%",
 														id: "ZophSeEVu",
 														JBchdjipD: "",
 														layoutId: "ZophSeEVu",
 														LJgQOnm9S: "Monthly progress report",
-														rPYXfJmS9: "Group",
+														rPYXfJmS9: "School programs",
 														rsXoR_HY8: resolvedLinks[0],
 														style: {
 															height: "100%",
@@ -665,7 +665,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 														variant: matchVariant("XHhhdPhdV"),
 														width: "100%",
 														ziFpHbzZ7: "ovNC8Ebph",
-														zZCpEH6gD: "Choose Group",
+														zZCpEH6gD: "Choose School programs",
 														...addPropertyOverrides(
 															{
 																Qmn6k5cUC: {
@@ -745,9 +745,9 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 												>
 													{_jsx(stdin_default2, {
 														suppressHydrationWarning: true,
-														AwzJEdurJ: "One-on-one sessions",
-														Fj80Jlaio: "$289",
-														G3zABwSLu: "/ month",
+														AwzJEdurJ: "1 learner per session",
+														Fj80Jlaio: "Talk to support",
+														G3zABwSLu: "",
 														gU9f4qP3I:
 															"A dedicated mentor, fully personal pace.",
 														height: "100%",
@@ -762,7 +762,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 															width: "100%",
 														},
 														U5Z617BJa: "Custom learning plan",
-														UJoKm97Jo: "2 sessions / week",
+														UJoKm97Jo: "5 sessions / week",
 														variant: matchVariant("g2PfwTGSa"),
 														width: "100%",
 														ziFpHbzZ7: "QJ8kw8szL",
@@ -857,8 +857,8 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 													{_jsx(stdin_default2, {
 														suppressHydrationWarning: true,
 														AwzJEdurJ: "Private sessions",
-														Fj80Jlaio: "$449",
-														G3zABwSLu: "/ month",
+														Fj80Jlaio: "Talk to support",
+														G3zABwSLu: "",
 														gU9f4qP3I: "Exam sprints and fast catch-up blocks.",
 														height: "100%",
 														id: "Q3z99ddd2",

@@ -504,17 +504,17 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 												{_jsx(stdin_default, {
 													suppressHydrationWarning: true,
 													cSEHqsEip:
-														"Yes, no lock-in, no fees. You can pause for up to 30 days or cancel anytime. Just give us 24 hours' notice before your next scheduled session and we'll handle everything for you.",
+														"If you need to reschedule, pause, or stop sessions, contact us at info@techkidzafrica.co.ke. We’ll explain the options for your child’s program and help with the next step.",
 													Fymv0_Zvc: "Can we pause or cancel anytime?",
 													H6bBZRZOD:
-														"A 45-minute session where a mentor gets to know you, finds the right starting level, and builds a personal plan. You keep the plan whether you sign up or not.",
+														"Your child meets a Tech Kidz Africa mentor and tries an age-appropriate coding, robotics, or digital skills activity. We learn what interests them, then recommend a program and the best next step.",
 													height: "100%",
 													id: "qocF5gvde",
 													IXxCcNeJ6: "How do you track progress?",
 													iz8dLER8f: "How does the free first session work?",
 													layoutId: "qocF5gvde",
 													Q4ZZO31fL:
-														"After each session your mentor logs notes and milestones reached. You'll see a clear summary in your dashboard, and your mentor will review it with you at the start of every next session.",
+														"We look at what learners can make and explain—not just what they have covered. Mentors review their games, apps, websites, or robots, help them improve each project, and share their progress with families.",
 													style: {
 														width: "100%",
 													},
@@ -522,10 +522,10 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 													UKJn2h870: "Who are the mentors?",
 													variant: matchVariant("qTuhmXSEb"),
 													wdAkIO5Do:
-														"One-on-one gives you a pace and plan built entirely around you, while group sessions add peer energy at a lower cost. Your mentor will recommend the best fit after the free first session.",
+														"Group sessions let learners build and solve problems together. If your child would benefit from individual support, ask us about one-on-one availability and we’ll help you choose a suitable option.",
 													width: "100%",
 													x_pLEqbCc:
-														"All mentors are vetted educators with subject expertise and at least two years of teaching experience. They go through structured onboarding and receive regular feedback to keep quality high.",
+														"Our team includes software engineers, robotics trainers, and learning facilitators. Mentors such as Pius Khainja, Peter Lagat, and Clemence Kibet help learners turn ideas into games, websites, apps, and working robots.",
 													...addPropertyOverrides(
 														{
 															K11jNB7FG: {

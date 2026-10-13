@@ -63,7 +63,7 @@
 .header { padding-right: 32px; }
 .title { color: #002b5b; font: 700 clamp(22px, 4vw, 30px)/1.2 "Bricolage Grotesque", sans-serif; }
 .description { color: #41597a; font: 400 14px/1.45 "Instrument Sans", sans-serif; }
-.form { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.form { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 .progressHeader { color: #41597a; font-size: 13px; }
 .srOnly {
     position: absolute;
@@ -82,7 +82,10 @@
     flex-direction: column;
     gap: 11px;
     min-width: 0;
-    min-height: 105px;
+    /* Reserved so the dialog does not jump between steps, but 105px left
+     * ~19px of dead space under the shortest step's input. Trimmed to the
+     * tallest single-input step's actual content height. */
+    min-height: 86px;
     margin: 0;
     padding: 0;
     border: 0;
@@ -104,6 +107,14 @@
 }
 .input { border-radius: 999px !important; }
 .textarea { min-height: 140px; resize: vertical; }
+
+/* Keyed to width, not height. A `max-height` query looks right in a desktop
+ * browser but never fires on iOS, where the keyboard does not shrink the
+ * layout viewport -- which is exactly the case this is for. 140px of empty
+ * textarea pushes Back and Review toward the keyboard on a phone. */
+@media (max-width: 767px) {
+    .textarea { min-height: 84px; }
+}
 .input:focus-visible, .textarea:focus-visible {
     border-color: #6a1383 !important;
     box-shadow: 0 0 0 3px rgba(106, 19, 131, .16) !important;

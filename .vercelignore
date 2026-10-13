@@ -1,0 +1,92 @@
+# Keep the asset SOURCES out of the Vercel deployment.
+#
+# public/brand/ is a staging area, not a served directory: Canva exports at full
+# camera resolution, each `.svg` really an 8-bit alpha mask plus a 3872x2581
+# photograph in base64. scripts/extract-team.py turns them into public/team/*.webp,
+# scripts/extract-decor-cutouts.py into public/decor/*.webp, and those processed
+# files -- not these -- are what the site serves. Shipping the sources put 200MB
+# on the CDN that no request ever asked for.
+#
+# They stay in the repo so the scripts still run from a fresh clone. Full-resolution
+# copies are also archived outside it, at ~/Desktop/tka-v2-asset-sources.
+#
+# This is an explicit deny-list rather than an allow-list on purpose. A new file
+# dropped into public/brand/ and referenced from globals.css will deploy; with an
+# allow-list it would 404 in production and render as a blank slot, which is the
+# far more expensive mistake. Regenerate the list below with:
+#
+#   comm -13 <(sort served.txt) <(ls public/brand | sort)
+#
+# The 26 files NOT listed here are served directly by a `content: url(/brand/...)`
+# rule in app/globals.css and must keep deploying.
+
+public/brand/1.jpg
+public/brand/11.svg
+public/brand/12.svg
+public/brand/13.svg
+public/brand/14.svg
+public/brand/15.svg
+public/brand/16.svg
+public/brand/17.svg
+public/brand/18.svg
+public/brand/19.svg
+public/brand/2.jpg
+public/brand/22.svg
+public/brand/23.svg
+public/brand/24.svg
+public/brand/25.svg
+public/brand/3.jpg
+public/brand/4.svg
+public/brand/5.svg
+public/brand/Crab.png
+public/brand/LadyBug.png
+public/brand/a.jpg
+public/brand/avril.svg
+public/brand/b.jpg
+public/brand/bii.svg
+public/brand/bost.svg
+public/brand/bulk.svg
+public/brand/c.jpg
+public/brand/clem.svg
+public/brand/close.svg
+public/brand/cloud.svg
+public/brand/code.svg
+public/brand/com.svg
+public/brand/crab.hevc.mp4
+public/brand/d.jpg
+public/brand/de.svg
+public/brand/diana.svg
+public/brand/e.jpg
+public/brand/ed.svg
+public/brand/f.jpg
+public/brand/g.jpg
+public/brand/girl-laptop-left.png
+public/brand/girl.svg
+public/brand/h.jpg
+public/brand/hebron.svg
+public/brand/hussesin.svg
+public/brand/justin.svg
+public/brand/lady.webm
+public/brand/ladybug.hevc.mp4
+public/brand/ladybug.webm
+public/brand/mima.png
+public/brand/mima.svg
+public/brand/mody.svg
+public/brand/mombasa.svg
+public/brand/monica.svg
+public/brand/naj.svg
+public/brand/output.webm
+public/brand/paul.svg
+public/brand/perez.svg
+public/brand/pete.svg
+public/brand/peter.svg
+public/brand/pius.svg
+public/brand/rasp.svg
+public/brand/robit.svg
+public/brand/robo.jpg
+public/brand/robot.jpg
+public/brand/scratch.jpg
+public/brand/story.jpg
+public/brand/sw.svg
+public/brand/tumm.svg
+public/brand/work.jpg

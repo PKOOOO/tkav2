@@ -585,7 +585,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 												__fromCanvasComponent={true}
 												className={"framer-1uv2my6"}
 												data-framer-name={
-													"Looking to give your child a joyful and nurturing start?Bloomy is now enrolling for the upcoming academic session!"
+													"Looking to give your child a joyful and nurturing start? Tech Kidz Africa is welcoming learners to our upcoming programs!"
 												}
 												fonts={["Inter"]}
 												layoutDependency={layoutDependency}
@@ -614,7 +614,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 																		}}
 																	>
 																		{
-																			"Looking to give your child a joyful and nurturing start?Bloomy is now enrolling for the upcoming academic session!"
+																			"Looking to give your child a joyful and nurturing start? Tech Kidz Africa is welcoming learners to our upcoming programs!"
 																		}
 																	</motion.p>
 																</React.Fragment>
@@ -638,7 +638,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 														}}
 													>
 														{
-															"Looking to give your child a joyful and nurturing start?Bloomy is now enrolling for the upcoming academic session!"
+															"Looking to give your child a joyful and nurturing start? Tech Kidz Africa is welcoming learners to our upcoming programs!"
 														}
 													</motion.p>
 												</React.Fragment>
@@ -782,9 +782,9 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 												positionX: "center",
 												positionY: "center",
 												sizes: `calc(min(max(${componentViewport?.width || "100vw"} - 60px, 1px), 1236px) / 3.614)`,
-												src: "https://framerusercontent.com/images/PzxjtzFXPwAoVTJi8QORcFDRw.png?width=1368&height=2056",
+												src: "/gallery/connect-learner.webp",
 												srcSet:
-													"https://framerusercontent.com/images/PzxjtzFXPwAoVTJi8QORcFDRw.png?scale-down-to=1024&width=1368&height=2056 681w,https://framerusercontent.com/images/PzxjtzFXPwAoVTJi8QORcFDRw.png?scale-down-to=2048&width=1368&height=2056 1362w,https://framerusercontent.com/images/PzxjtzFXPwAoVTJi8QORcFDRw.png?width=1368&height=2056 1368w",
+													"/gallery/connect-learner.webp 681w,/gallery/connect-learner.webp 1362w,/gallery/connect-learner.webp 1368w",
 											}}
 											className={"framer-wwg9z3"}
 											data-framer-name={"Group 7"}
@@ -815,9 +815,9 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 															positionX: "center",
 															positionY: "center",
 															sizes: `calc(min(max(${componentViewport?.width || "100vw"} - 60px, 1px), 1236px) * 0.2762)`,
-															src: "https://framerusercontent.com/images/PzxjtzFXPwAoVTJi8QORcFDRw.png?width=1368&height=2056",
+															src: "/gallery/connect-learner.webp",
 															srcSet:
-																"https://framerusercontent.com/images/PzxjtzFXPwAoVTJi8QORcFDRw.png?scale-down-to=1024&width=1368&height=2056 681w,https://framerusercontent.com/images/PzxjtzFXPwAoVTJi8QORcFDRw.png?scale-down-to=2048&width=1368&height=2056 1362w,https://framerusercontent.com/images/PzxjtzFXPwAoVTJi8QORcFDRw.png?width=1368&height=2056 1368w",
+																"/gallery/connect-learner.webp 681w,/gallery/connect-learner.webp 1362w,/gallery/connect-learner.webp 1368w",
 														},
 													},
 												},

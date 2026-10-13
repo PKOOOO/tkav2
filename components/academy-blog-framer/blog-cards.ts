@@ -5,13 +5,9 @@ import { blogPosts } from '@/lib/blog-posts'
 const cardColours = [
     ['#d6ecff', '#38b6ff'],
     ['#c6dcf0', '#00569e'],
-    ['#cfe9e6', '#2e8f8c'],
-    ['#e6d6f0', '#8b3ba8'],
-    ['#dfeaf6', '#1c5796'],
-    ['#e9ddf0', '#6a1383'],
 ] as const
 
-export const programCards = blogPosts.map((post, index) => ({
+export const programCards = blogPosts.slice(0, 2).map((post, index) => ({
     id: post.slug,
     RTPu7GAr9: post.slug,
     mRE9CRODz: post.title,

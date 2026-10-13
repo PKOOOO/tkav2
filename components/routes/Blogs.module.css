@@ -69,17 +69,14 @@
     gap: 80px;
 }
 
-/* Academy's Phone variant disables the five sticky cards used on Desktop.
-   Reinstate that stack with tighter offsets so each card fits a phone viewport. */
+/* Academy's Phone variant disables the sticky cards used on Desktop.
+   Reinstate the two remaining cards with tighter offsets on phones. */
 @media (max-width: 767px) {
-    .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(-n + 5)) {
+    .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(-n + 2)) {
         position: sticky !important;
     }
     .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(1)) { top: clamp(32px, 6vh, 56px) !important; }
     .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(2)) { top: calc(clamp(32px, 6vh, 56px) + 20px) !important; }
-    .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(3)) { top: calc(clamp(32px, 6vh, 56px) + 40px) !important; }
-    .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(4)) { top: calc(clamp(32px, 6vh, 56px) + 60px) !important; }
-    .page :global(.framer-WI6lG .framer-1s7x1id > :nth-child(5)) { top: calc(clamp(32px, 6vh, 56px) + 80px) !important; }
 }
 
 .page :global(img[src*="W8hVfmKKhduFSeAGFhdKsEMhBo"]) {

@@ -1,0 +1,34 @@
+.crabSlot {
+    position: absolute;
+    bottom: -6px;
+    right: 100px;
+    width: 220px;
+    aspect-ratio: 215 / 162;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.crabSlot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 1199px) {
+    .crabSlot {
+        right: 50px;
+        width: 160px;
+    }
+}
+
+@media (max-width: 809px) {
+    .crabSlot {
+        /* Sits a little lower and larger than the tablet step -- at 90px it
+         * read as a speck beside the FAQ card on a phone. Negative bottom
+         * tucks its legs past the section edge the way the desktop -6px does. */
+        bottom: -14px;
+        right: 20px;
+        width: 120px;
+    }
+}

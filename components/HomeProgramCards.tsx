@@ -18,10 +18,6 @@ export default function HomeProgramCards() {
             const home = document.querySelector('.unframer-page[data-route="/"]')
             if (!home) return
 
-            for (const link of home.querySelectorAll<HTMLAnchorElement>('a[href="/program"]')) {
-                link.setAttribute('href', '/programs')
-            }
-
             for (const card of home.querySelectorAll<HTMLAnchorElement>('a[href^="/program/"]')) {
                 const program = findProgram(card.getAttribute('href')?.split('/').pop())
                 if (!program || !(program.slug in homeDescriptions)) continue

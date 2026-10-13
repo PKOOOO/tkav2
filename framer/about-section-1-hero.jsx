@@ -1341,11 +1341,11 @@ var Component = /* @__PURE__ */ React3.forwardRef(function (props, ref) {
 														objectFit={"cover"}
 														playing={true}
 														poster={
-															"https://framerusercontent.com/images/KzZ7iaKnL4eAObspeL2MzQHr6w.jpg?width=1500&height=540"
+															"/decor/about-video-poster.jpg"
 														}
 														posterEnabled={true}
 														srcFile={
-															"https://framerusercontent.com/assets/FnTwkwh1zMIK062vyZfEtx5gGlA.mp4"
+															"/decor/video.mp4"
 														}
 														srcType={"Upload"}
 														srcUrl={

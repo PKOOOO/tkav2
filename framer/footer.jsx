@@ -786,7 +786,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 													>
 														<Link2
 															suppressHydrationWarning={true}
-															href={"mailto:hello@yourbrand.com"}
+															href={"mailto:info@techkidzafrica.co.ke"}
 															motionChild={true}
 															nodeId={"fsI6dH8yF"}
 															openInNewTab={true}
@@ -799,7 +799,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 																className={"framer-styles-preset-xtze3j"}
 																data-styles-preset={"n_Xqd0ECz"}
 															>
-																{"hello@yourbrand.com"}
+																{"info@techkidzafrica.co.ke"}
 															</motion2.a>
 														</Link2>
 													</motion2.p>
@@ -830,7 +830,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 																"var(--extracted-r6o4lv, var(--token-6305a857-db22-42a8-bc08-cd171ff4e647, rgba(245, 241, 230, 0.6)))",
 														}}
 													>
-														{"Open Mon\u2013Sat, 9:00\u201319:00"}
+														{"Open Mon\u2013Sat, 8:00 AM\u20135:00 PM"}
 													</motion2.p>
 												</React2.Fragment>
 											</RichText>
@@ -859,7 +859,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 																"var(--extracted-r6o4lv, var(--token-6305a857-db22-42a8-bc08-cd171ff4e647, rgba(245, 241, 230, 0.75)))",
 														}}
 													>
-														{"In-center and online, worldwide"}
+														{"Bustani Close, Off Links Road, Nyali"}
 													</motion2.p>
 												</React2.Fragment>
 											</RichText>
@@ -1531,45 +1531,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 																			"var(--extracted-r6o4lv, var(--token-3c675309-91c5-4b64-a956-9189118d694b, rgb(244, 240, 229)))",
 																	}}
 																>
-																	{"Designed by "}
-																	<Link2
-																		suppressHydrationWarning={true}
-																		href={"https://www.webestica.com/"}
-																		motionChild={true}
-																		nodeId={"EBOE8s_HQ"}
-																		openInNewTab={false}
-																		preserveParams={false}
-																		relValues={[]}
-																		scopeId={"xeMe_T2Nl"}
-																		smoothScroll={false}
-																	>
-																		<motion2.a
-																			suppressHydrationWarning={true}
-																			className={"framer-styles-preset-67xr9n"}
-																			data-styles-preset={"PRyYBiQYq"}
-																		>
-																			{"Webestica"}
-																		</motion2.a>
-																	</Link2>
-																	{", Powered by "}
-																	<Link2
-																		suppressHydrationWarning={true}
-																		href={"https://www.framer.com/"}
-																		motionChild={true}
-																		nodeId={"EBOE8s_HQ"}
-																		openInNewTab={true}
-																		relValues={[]}
-																		scopeId={"xeMe_T2Nl"}
-																		smoothScroll={false}
-																	>
-																		<motion2.a
-																			suppressHydrationWarning={true}
-																			className={"framer-styles-preset-67xr9n"}
-																			data-styles-preset={"PRyYBiQYq"}
-																		>
-																			{"Framer"}
-																		</motion2.a>
-																	</Link2>
+																	{"Developed by Tech Kidz Africa"}
 																</motion2.p>
 															</React2.Fragment>
 														),
@@ -1590,45 +1552,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 															"var(--extracted-r6o4lv, var(--token-3c675309-91c5-4b64-a956-9189118d694b, rgb(244, 240, 229)))",
 													}}
 												>
-													{"Designed by "}
-													<Link2
-														suppressHydrationWarning={true}
-														href={"https://www.webestica.com/"}
-														motionChild={true}
-														nodeId={"EBOE8s_HQ"}
-														openInNewTab={false}
-														preserveParams={false}
-														relValues={[]}
-														scopeId={"xeMe_T2Nl"}
-														smoothScroll={false}
-													>
-														<motion2.a
-															suppressHydrationWarning={true}
-															className={"framer-styles-preset-67xr9n"}
-															data-styles-preset={"PRyYBiQYq"}
-														>
-															{"Webestica"}
-														</motion2.a>
-													</Link2>
-													{", Powered by "}
-													<Link2
-														suppressHydrationWarning={true}
-														href={"https://www.framer.com/"}
-														motionChild={true}
-														nodeId={"EBOE8s_HQ"}
-														openInNewTab={true}
-														relValues={[]}
-														scopeId={"xeMe_T2Nl"}
-														smoothScroll={false}
-													>
-														<motion2.a
-															suppressHydrationWarning={true}
-															className={"framer-styles-preset-67xr9n"}
-															data-styles-preset={"PRyYBiQYq"}
-														>
-															{"Framer"}
-														</motion2.a>
-													</Link2>
+													{"Developed by Tech Kidz Africa"}
 												</motion2.p>
 											</React2.Fragment>
 										</RichText>
@@ -1731,7 +1655,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 														height: "100%",
 														id: "shNVU7kNi",
 														layoutId: "shNVU7kNi",
-														tAd8hENoz: "https://www.facebook.com/",
+														tAd8hENoz: "https://ke.linkedin.com/company/tech-kidz-africa",
 														variant: matchVariant("RfxJdhik5"),
 														width: "100%",
 													})}
@@ -1821,7 +1745,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 														height: "100%",
 														id: "ef1C9Vql8",
 														layoutId: "ef1C9Vql8",
-														tAd8hENoz: "https://x.com/",
+														tAd8hENoz: "https://x.com/techkidzafrica",
 														variant: matchVariant("RfxJdhik5"),
 														width: "100%",
 													})}
@@ -1911,7 +1835,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 														height: "100%",
 														id: "mSKss5lS4",
 														layoutId: "mSKss5lS4",
-														tAd8hENoz: "https://in.linkedin.com/",
+														tAd8hENoz: "https://www.youtube.com/@techkidzafrica",
 														variant: matchVariant("RfxJdhik5"),
 														width: "100%",
 													})}
@@ -2001,7 +1925,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 														height: "100%",
 														id: "NxmRVi0hw",
 														layoutId: "NxmRVi0hw",
-														tAd8hENoz: "https://in.linkedin.com/",
+														tAd8hENoz: "https://www.instagram.com/techkidzafrica/",
 														variant: matchVariant("RfxJdhik5"),
 														width: "100%",
 													})}

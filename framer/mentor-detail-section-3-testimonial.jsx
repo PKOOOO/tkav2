@@ -351,7 +351,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 														data-styles-preset={"UXoQEMm1m"}
 														dir={"auto"}
 													>
-														{"What"}
+														{"Our"}
 													</motion.h2>
 												</React.Fragment>
 											</RichText>
@@ -376,7 +376,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 														data-styles-preset={"UXoQEMm1m"}
 														dir={"auto"}
 													>
-														{"families"}
+														{"success"}
 													</motion.h2>
 												</React.Fragment>
 											</RichText>
@@ -415,7 +415,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 																	"var(--extracted-1of0zx5, var(--token-1d403a9e-a47a-49fa-b259-3726165583a7, rgb(73, 126, 100)))",
 															}}
 														>
-															{"say"}
+															{"Stories"}
 														</motion.h2>
 													</React.Fragment>
 												</RichText>
@@ -506,11 +506,11 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 											>
 												{_jsx(stdin_default, {
 													suppressHydrationWarning: true,
-													bLdPVDbAB: "Parent \xB7 Mathematics",
+													bLdPVDbAB: "KSEF Chairman, Mombasa County",
 													height: "100%",
 													id: "fdG02DhOD",
 													layoutId: "fdG02DhOD",
-													mUwwmeoSV: "Sophia Taylor",
+													mUwwmeoSV: "Mohammed Noor",
 													style: {
 														height: "100%",
 														width: "100%",
@@ -518,7 +518,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 													u9rPBJOGz:
 														"var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea, rgb(201, 224, 242))",
 													vzedQzXjZ:
-														"\u201CTwo terms with Maya and my son went from dreading math tests to asking for extra practice.\u201D",
+														"“Through Tech Kidz Africa’s work in retooling teachers, we’ve seen a remarkable improvement in the quality of innovation projects from junior secondary schools, with many advancing to the national level.”",
 													width: "100%",
 												})}
 											</SmartComponentScopedContainerWithFX>
@@ -562,7 +562,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 											>
 												{_jsx(stdin_default, {
 													suppressHydrationWarning: true,
-													bLdPVDbAB: "Parent \xB7 English",
+													bLdPVDbAB: "Regional Director, Coast Region, Communications Authority of Kenya",
 													dAtjPtYy7: addImageAlt(
 														{
 															pixelHeight: 100,
@@ -574,7 +574,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 													height: "100%",
 													id: "sYlzl1LKs",
 													layoutId: "sYlzl1LKs",
-													mUwwmeoSV: "Daniel Cooper",
+													mUwwmeoSV: "Bernard Maraga",
 													style: {
 														height: "100%",
 														width: "100%",
@@ -582,7 +582,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 													u9rPBJOGz:
 														"var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898, rgb(246, 215, 232))",
 													vzedQzXjZ:
-														"\u201CThe monthly reports are gold. I finally know what's happening in my daughter's learning and where she needs support.\u201D",
+														"“As the Communication Authority of Kenya, we remain committed to working closely with Tech Kidz Africa, particularly on critical areas like online safety, responsible use of AI and child protection, which are essential as learners acquire digital skills.”",
 													width: "100%",
 												})}
 											</SmartComponentScopedContainerWithFX>
@@ -629,7 +629,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 											>
 												{_jsx(stdin_default, {
 													suppressHydrationWarning: true,
-													bLdPVDbAB: "Parent \xB7 Coding",
+													bLdPVDbAB: "SSP, OGW - OIC, Shimo LaTewa Borstal Institution & Boys Education Centre",
 													dAtjPtYy7: addImageAlt(
 														{
 															pixelHeight: 100,
@@ -641,14 +641,14 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 													height: "100%",
 													id: "c3gNh_0le",
 													layoutId: "c3gNh_0le",
-													mUwwmeoSV: "Stella Adams",
+													mUwwmeoSV: "Prof. Jostinah Wawasi Mwang’ombe",
 													style: {
 														height: "100%",
 														width: "100%",
 													},
 													u9rPBJOGz:
 														"var(--token-9f7780f5-af12-4101-9125-2580d35c4118, rgb(249, 216, 192))",
-													vzedQzXjZ: `\u201CShe took the coding class "for fun" now she's building her own website and exploring ideas at 13.\u201D`,
+													vzedQzXjZ: "“As an institution with children in conflict with the law, we have experienced meaningful inclusion through Tech Kidz Africa and the Raspberry Pi Foundation. Learners in our center have gained digital literacy skills…”",
 													width: "100%",
 												})}
 											</SmartComponentScopedContainerWithFX>

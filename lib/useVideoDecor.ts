@@ -34,6 +34,8 @@ type Decor = {
     match: string
     /** Restrict a shared Framer image slot to one page when needed. */
     route?: string
+    /** As `route`, for a decoration that belongs to more than one page. */
+    routes?: string[]
     /**
      * Skip this decoration on these routes. The CTA band is shared across every
      * programme page, so a still swapped out on a single route would otherwise
@@ -75,6 +77,15 @@ const DECOR: Decor[] = [
         src: '/decor/ladybug.webm',
         webkitSrc: '/decor/ladybug.hevc.mp4',
     },
+    // The crab again, standing in for the boy on the right of the Home
+    // closing CTA. No route needed: this asset id exists only in
+    // `section-1-main.jsx`, which is the Home page and nothing else. The
+    // still it falls back to is set in globals.css beside the slot's sizing.
+    {
+        match: 'ANM2K8tN9rhRoCqmvsMpUwpl1c',
+        src: '/decor/crab.webm',
+        webkitSrc: '/decor/crab.hevc.mp4',
+    },
     // Replace the bag in the bootcamp article hero with the same ladybug.
     {
         match: 'DWEcQoU7ZlWatrV5Xz5SpuLe43Y',
@@ -89,21 +100,35 @@ const DECOR: Decor[] = [
         src: '/decor/ladybug.webm',
         webkitSrc: '/decor/ladybug.hevc.mp4',
     },
-    // The festival crab, now at the foot of the article rather than in its hero
-    // -- the same placement the crab has in the CTA band on /program. It is
-    // mounted by components/FestivalCrab.tsx as a plain `/decor/crab.png`, so
-    // this one rule covers every breakpoint; the hero's bag slot is hidden
-    // outright in globals.css and no longer needs a rule of its own.
+    // The ladybug stands in for the photograph on the right of the Mentor CTA
+    // band, so it needs the clip too. No route: the band comes from
+    // `cta-mentor.jsx`, the only generated file carrying this asset id, and it
+    // renders on the listing *and* on every `/mentor/<slug>` page -- which the
+    // exact `/mentor` this used to carry left as a still.
+    {
+        match: '3fIhq7ij32qpJo01OGJstWOA3M',
+        src: '/decor/ladybug.webm',
+        webkitSrc: '/decor/ladybug.hevc.mp4',
+    },
+    // The Gallery CTA's sun becomes the same animated ladybug, with its PNG
+    // still as the fallback where transparent video cannot play.
+    {
+        match: '0mOuRBxsXQ3DUi47WJAsPsvML4',
+        route: '/gallery',
+        src: '/decor/ladybug.webm',
+        webkitSrc: '/decor/ladybug.hevc.mp4',
+    },
+    // The locally mounted crab on the festival article and the Contact FAQ uses
+    // the same clip and fallback as the generated Program CTA.
     {
         match: '/decor/crab.png',
-        route: '/blogs/codeinnovators',
+        routes: ['/contact', '/blogs/codeinnovators'],
         src: '/decor/crab.webm',
         webkitSrc: '/decor/crab.hevc.mp4',
     },
 ]
 
 const FLAG = 'data-video-decor'
-
 /**
  * A 64x64 two-frame VP9 clip whose left half is transparent and right half is
  * opaque red, 661 bytes inline. It is the only honest way to ask this question.
@@ -128,39 +153,47 @@ function supportsAlphaVideo(): Promise<boolean> {
         const video = document.createElement('video')
         video.muted = true
         video.playsInline = true
+        video.loop = true
         video.preload = 'auto'
-        // Anything unexpected -- a decode failure, a browser that never fires
-        // the event, a future codec change -- resolves false and keeps the PNG,
-        // which is the branch that always looks right.
-        const timer = setTimeout(() => resolve(false), 2000)
+
+        let settled = false
+        let poll = 0
+        const timer = window.setTimeout(() => done(false), 6000)
         const done = (result: boolean) => {
-            clearTimeout(timer)
+            if (settled) return
+            settled = true
+            window.clearTimeout(timer)
+            window.clearInterval(poll)
+            video.pause()
             resolve(result)
+        }
+        const sample = () => {
+            if (settled) return
+            try {
+                const canvas = document.createElement('canvas')
+                canvas.width = canvas.height = 2
+                const ctx = canvas.getContext('2d', { willReadFrequently: true })
+                if (!ctx) return done(false)
+                ctx.clearRect(0, 0, 2, 2)
+                ctx.drawImage(video, 0, 0, 1, 1, 0, 0, 1, 1)
+                ctx.drawImage(video, 63, 0, 1, 1, 1, 0, 1, 1)
+                const pixels = ctx.getImageData(0, 0, 2, 1).data
+                // A loaded video can still hand canvas a blank frame. Wait for
+                // the red half to decode before deciding every mascot's fate.
+                if (pixels[7] === 0) return
+                done(pixels[3] === 0)
+            } catch {
+                done(false)
+            }
         }
 
         video.addEventListener('error', () => done(false), { once: true })
-        video.addEventListener(
-            'loadeddata',
-            () => {
-                try {
-                    const canvas = document.createElement('canvas')
-                    canvas.width = canvas.height = 2
-                    const ctx = canvas.getContext('2d', { willReadFrequently: true })
-                    if (!ctx) return done(false)
-                    ctx.clearRect(0, 0, 2, 2)
-                    // Left column of the clip (transparent) and right (red).
-                    ctx.drawImage(video, 0, 0, 1, 1, 0, 0, 1, 1)
-                    ctx.drawImage(video, 63, 0, 1, 1, 1, 0, 1, 1)
-                    const pixels = ctx.getImageData(0, 0, 2, 1).data
-                    const transparent = pixels[3] === 0
-                    const decoded = pixels[7] > 0
-                    done(transparent && decoded)
-                } catch {
-                    done(false)
-                }
-            },
-            { once: true },
-        )
+        video.addEventListener('loadeddata', () => {
+            sample()
+            if (settled) return
+            poll = window.setInterval(sample, 100)
+            void video.play().catch(() => {})
+        }, { once: true })
 
         video.src = PROBE
         video.load()
@@ -168,19 +201,8 @@ function supportsAlphaVideo(): Promise<boolean> {
     return probe
 }
 
-/**
- * Sources this browser has already proved it cannot use -- a 404 because nobody
- * has built the HEVC files yet, a decode failure, or alpha that did not survive.
- *
- * Giving up permanently is the point. Everything here is driven by a
- * MutationObserver, and dropping a failed <video> is itself a mutation: without
- * this the observer wakes, re-scans, finds the slot empty again and re-attaches,
- * which turns one missing file into an endless stream of requests for it.
- *
- * Module scope, so one failure settles it for every slot and every route change
- * for the rest of the session.
- */
-const broken = new Set<string>()
+/** A failed slot should not suppress the same video on another page. */
+const failedImages = new WeakSet<HTMLImageElement>()
 
 /**
  * Does this element's current frame still have the transparency it was encoded
@@ -218,7 +240,7 @@ function attach(
     verify: boolean,
 ) {
     const wrapper = img.parentElement
-    if (!wrapper || broken.has(src) || wrapper.querySelector(`video[${FLAG}]`)) return
+    if (!wrapper || failedImages.has(img) || wrapper.querySelector(`video[${FLAG}]`)) return
 
     const video = document.createElement('video')
     video.setAttribute(FLAG, decor.match)
@@ -244,7 +266,9 @@ function attach(
     })
 
     const giveUp = () => {
-        broken.add(src)
+        failedImages.add(img)
+        observer.unobserve(video)
+        img.style.visibility = ''
         video.remove()
     }
 
@@ -252,23 +276,61 @@ function attach(
     // is absent until someone runs the workflow -- just leaves the PNG alone.
     video.addEventListener('error', giveUp, { once: true })
 
-    // Only take over once there are real frames to show.
-    video.addEventListener(
-        'playing',
-        () => {
-            if (verify && !alphaSurvived(video)) {
-                giveUp()
-                return
-            }
-            video.style.opacity = '1'
-            img.style.visibility = 'hidden'
-        },
-        { once: true },
-    )
+    let revealed = false
+    let attempts = 0
+    let frameRequest = 0
+    const reveal = () => {
+        if (!video.isConnected || revealed) return
+        revealed = true
+        video.style.opacity = '1'
+        img.style.visibility = 'hidden'
+    }
+    const checkFrame = (request: number) => {
+        if (request !== frameRequest || !video.isConnected || video.paused || revealed) return
+        if (alphaSurvived(video)) {
+            reveal()
+            return
+        }
+        if (++attempts >= 3) {
+            giveUp()
+            return
+        }
+        scheduleFrameCheck()
+    }
+    const scheduleFrameCheck = () => {
+        const request = ++frameRequest
+        if (typeof video.requestVideoFrameCallback === 'function') {
+            video.requestVideoFrameCallback(() => checkFrame(request))
+        } else {
+            setTimeout(() => checkFrame(request), 80)
+        }
+    }
+
+    // WebKit can emit `playing` before its first HEVC frame is available to
+    // canvas. Validate decoded frames, and retry after an offscreen pause.
+    video.addEventListener('pause', () => { frameRequest++ })
+    video.addEventListener('playing', () => {
+        if (revealed) return
+        if (verify) scheduleFrameCheck()
+        else reveal()
+    })
 
     wrapper.appendChild(video)
     observer.observe(video)
-    void video.play().catch(() => {})
+
+    void video.play().catch((error: DOMException) => {
+        setTimeout(() => {
+            if (!video.paused) return
+            // iOS refuses autoplay outright in Low Power Mode, and no amount of
+            // muting or `playsInline` changes that -- but it does allow play()
+            // once the user has interacted with the page. So wait for the first
+            // touch and try again; until then the still is the correct picture.
+            if (error.name !== 'NotAllowedError') return
+            const retry = () => { void video.play().catch(() => {}) }
+            document.addEventListener('pointerdown', retry, { once: true, passive: true })
+            document.addEventListener('touchstart', retry, { once: true, passive: true })
+        }, 500)
+    })
 }
 
 export function useVideoDecor(resetKey?: string) {
@@ -277,18 +339,32 @@ export function useVideoDecor(resetKey?: string) {
         let observer: MutationObserver | null = null
         let cancelled = false
 
-        // Decoding a looping video the reader has scrolled past is pure waste,
-        // and browsers do not pause offscreen <video> on their own.
+        // Keep the small desktop clips running so they are already moving when
+        // scrolled into view. On phones, pause offscreen playback to save power.
         const visibility = new IntersectionObserver(
             (entries) => {
                 for (const entry of entries) {
                     const video = entry.target as HTMLVideoElement
-                    if (entry.isIntersecting) void video.play().catch(() => {})
-                    else video.pause()
+                    if (window.innerWidth >= 768 || entry.isIntersecting) {
+                        void video.play().catch(() => {})
+                    } else {
+                        video.pause()
+                    }
                 }
             },
             { rootMargin: '200px' },
         )
+        const onResize = () => {
+            for (const video of document.querySelectorAll<HTMLVideoElement>(`video[${FLAG}]`)) {
+                if (window.innerWidth >= 768) {
+                    void video.play().catch(() => {})
+                } else {
+                    visibility.unobserve(video)
+                    visibility.observe(video)
+                }
+            }
+        }
+        window.addEventListener('resize', onResize)
 
         // Set once the probe settles: which file each slot should get, and
         // whether it has to prove its own alpha before being shown.
@@ -298,6 +374,7 @@ export function useVideoDecor(resetKey?: string) {
             if (!pick) return
             for (const decor of DECOR) {
                 if (decor.route && decor.route !== resetKey) continue
+                if (decor.routes && !(resetKey && decor.routes.includes(resetKey))) continue
                 if (resetKey && decor.exceptRoutes?.includes(resetKey)) continue
                 const chosen = pick(decor)
                 if (!chosen) continue
@@ -348,6 +425,7 @@ export function useVideoDecor(resetKey?: string) {
             cancelAnimationFrame(frame)
             observer?.disconnect()
             visibility.disconnect()
+            window.removeEventListener('resize', onResize)
             // Hand the slots back exactly as they were found.
             for (const video of document.querySelectorAll<HTMLVideoElement>(`video[${FLAG}]`)) {
                 const img = video.parentElement?.querySelector('img')

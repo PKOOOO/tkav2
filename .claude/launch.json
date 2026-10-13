@@ -4,8 +4,20 @@
     {
       "name": "tka-v2",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["dev"],
+      "runtimeArgs": [
+        "dev"
+      ],
       "port": 3000
+    },
+    {
+      "name": "tka-v2-prod",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "start",
+        "--port",
+        "3100"
+      ],
+      "port": 3100
     }
   ]
 }

@@ -61,3 +61,19 @@ export const mentorProfiles: Mentor[] = [
 ]
 
 export const findMentorProfile = (slug: string) => mentorProfiles.find((mentor) => mentor.slug === slug)
+
+/**
+ * The four mentors that came with the Framer template -- Maya Chen, David
+ * Okafor, Sarah Whitmore, Alex Rivera. They are invented people with invented
+ * bios, and `alex-rivera` is still used as the layout template for the real
+ * profiles above, so they cannot simply be dropped from `mentorProfiles`.
+ *
+ * Nothing links to them: `/mentor` renders `components/TeamGrid.tsx`, which
+ * lists the real team. But `generateStaticParams` builds a page for every entry
+ * here, so without this list four orphaned pages describing fictional staff --
+ * one of which still names BrightPath -- would be live and indexable. They are
+ * kept out of the sitemap and marked `noindex` in the route's metadata.
+ */
+export const TEMPLATE_MENTOR_SLUGS = mentors.map((mentor) => mentor.slug)
+
+export const isTemplateMentor = (slug: string) => TEMPLATE_MENTOR_SLUGS.includes(slug)

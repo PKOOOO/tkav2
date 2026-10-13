@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useSyncExternalStore } from 'react'
 import type { ReactNode } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
+import { useRouter } from 'nextjs-toploader/app'
 import { UnframerProvider } from 'unframer'
 
 import { useSmoothScroll } from '@/lib/useSmoothScroll'

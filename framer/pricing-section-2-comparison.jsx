@@ -316,7 +316,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 														}}
 													>
 														{
-															"Comprehensive Comparison of Group, Private, and Intensive "
+															"Comprehensive Comparison of School programs, Private, and Intensive "
 														}
 														<motion.span
 															suppressHydrationWarning={true}
@@ -440,7 +440,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 																	"--framer-text-alignment": "center",
 																}}
 															>
-																{"Group"}
+																{"School programs"}
 															</motion.h3>
 														</React.Fragment>
 													</RichText>
@@ -645,7 +645,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 																	"--framer-text-alignment": "center",
 																}}
 															>
-																{"2"}
+																{"5"}
 															</motion.p>
 														</React.Fragment>
 													</RichText>
@@ -948,7 +948,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 																	"--framer-text-alignment": "center",
 																}}
 															>
-																{"Up to 4"}
+																{"Up to 30"}
 															</motion.p>
 														</React.Fragment>
 													</RichText>

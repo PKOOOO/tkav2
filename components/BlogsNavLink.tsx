@@ -6,8 +6,8 @@ import Link from 'next/link'
 import styles from './BlogsNavLink.module.css'
 
 /**
- * The exported navigation has no link-list prop. Add one React-owned link to
- * its existing Center slot, leaving the generated navigation untouched.
+ * The exported navigation has no link-list prop. Add the React-owned route
+ * links to its existing Center slot, leaving the generated navigation untouched.
  * The observer handles mobile open/close remounts.
  */
 export default function BlogsNavLink() {
@@ -26,11 +26,18 @@ export default function BlogsNavLink() {
 
     if (!slot) return null
     return createPortal(
-        <p className={styles.item}>
-            <Link href="/blogs" aria-label="Blogs" aria-current={location.pathname.startsWith('/blogs') ? 'page' : undefined}>
-                Blogs
-            </Link>
-        </p>,
+        <>
+            <p className={styles.item}>
+                <Link href="/gallery" aria-current={location.pathname === '/gallery' ? 'page' : undefined}>
+                    Gallery
+                </Link>
+            </p>
+            <p className={styles.item}>
+                <Link href="/blogs" aria-current={location.pathname.startsWith('/blogs') ? 'page' : undefined}>
+                    Blogs
+                </Link>
+            </p>
+        </>,
         slot,
     )
 }

@@ -72,7 +72,45 @@ export type LegalPage = {
     Content?: string
 }
 
-const cms = data as unknown as {
+/**
+ * The Framer project is a copy of a template called BrightPath, and the CMS
+ * content came with it. Four cells in the snapshot still name it:
+ *
+ *   Legal Pages[0]  privacy policy ......  8 mentions
+ *   Legal Pages[1]  terms & conditions .. 16 mentions
+ *   Mentor[0]       Maya Chen's bio .....  1
+ *   Program[0]      the same bio, flattened onto the programme by the export
+ *
+ * The legal pages are the ones that matter: they render in full at
+ * `/legal-pages/privacy-policy` and `/legal-pages/terms-conditions` and name
+ * BrightPath as the party collecting the data.
+ *
+ * This renames and nothing else -- no clause is reworded, and the copy is
+ * otherwise still the template's. The right fix is replacing those documents
+ * with Tech Kidz Africa's own; until then it should at least name the right
+ * company.
+ *
+ * Applied to the whole snapshot rather than per collection because each string
+ * is duplicated between a named field and its `byId` twin, and only `byId`
+ * reaches the rendered page while only the named field reaches
+ * `generateMetadata` -- patching one and not the other is exactly the
+ * disagreement `lib/cms-overrides.ts` warns about. A blanket pass cannot miss
+ * a pair.
+ */
+const renameBrand = <T,>(value: T): T => {
+    if (typeof value === 'string') {
+        return (value.includes('BrightPath') ? value.replaceAll('BrightPath', 'Tech Kidz Africa') : value) as T
+    }
+    if (Array.isArray(value)) return value.map(renameBrand) as T
+    if (value && typeof value === 'object') {
+        return Object.fromEntries(
+            Object.entries(value).map(([key, entry]) => [key, renameBrand(entry)]),
+        ) as T
+    }
+    return value
+}
+
+const cms = renameBrand(data) as unknown as {
     Program: Program[]
     Mentor: Mentor[]
     'Legal Pages': LegalPage[]

@@ -29,6 +29,22 @@
     overflow-x: clip;
 }
 
+/* Keep the shared navigation above page artwork and visible while scrolling.
+ * The mobile menu extends below the nav as an absolute panel, so the nav must
+ * own a stacking layer above the page for its links to stay unobstructed. */
+.unframer-page > nav {
+    position: sticky !important;
+    top: 0;
+    z-index: 1000;
+    flex-shrink: 0;
+}
+
+/* The desktop Framer variant is transparent; a sticky bar needs an opaque
+ * surface so sections cannot show through its links as they pass beneath. */
+.unframer-page > nav[data-framer-name="Desktop"] {
+    background-color: rgb(238, 244, 250) !important;
+}
+
 /* Keep the four Home program photographs aligned with their detail pages. The
  * first card has its existing animated Scratch sprite overlay. */
 .unframer-page[data-route="/"] a[href="/program/robotics-and-tinkering"] img[alt="Program Image"] {
@@ -45,6 +61,223 @@
 }
 .unframer-page[data-route="/"] a[href="/program/digital-literacy-skills"] img[alt="Program Icon"] {
     content: url("/brand/program-digital-literacy-icon.svg");
+}
+
+/* Keep the Home intro message, advisor button and artwork clear on phones. */
+@media (max-width: 767px) {
+    .unframer-page[data-route="/"] .framer-jss6mg {
+        padding-bottom: 250px !important;
+    }
+
+    .unframer-page[data-route="/"] .framer-jss6mg .framer-1xelerp-container {
+        display: none !important;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+ * About "Our Partners" -- the second copy of the Teach section.
+ *
+ * `lib/useAboutPartners.ts` rewrites that copy and stamps the `data-` hooks
+ * used below; everything visual is here so the hook stays structural. The card
+ * is Framer's step card -- same ground, radius, padding and the same -6/0/+6
+ * tilt across a row -- holding a logo and nothing else. The step number, the
+ * title and the body copy are all hidden; the partner is named only by the
+ * logo's `alt`, which is what carries it to assistive tech.
+ *
+ * The original partner sources in `public/brand/` are several MB
+ * together and benefit from conversion before serving. Seven are an SVG wrapping two PNGs, an RGB layer and a luminance
+ * mask that compose to the cutout. `com` is a lone opaque RGB with no mask, so
+ * its white ground is keyed out on a soft threshold to keep the type's
+ * antialiasing. `rasp` is the one genuine vector and stays SVG -- its artwork
+ * filled 87%x58% of its canvas, which would have rendered it visibly smaller
+ * than its neighbours, so its viewBox is retrimmed to the real alpha bounds.
+ *
+ * There is no rasteriser on this machine. The PNGs were lifted out with PIL,
+ * which is lossless since they are embedded whole, and `rasp`'s bounds were
+ * measured by drawing it to a canvas in the browser. 5MB -> 276KB.
+ * ------------------------------------------------------------------------- */
+
+/* Three columns is the track count the section is
+ * authored with. The authored 30px/80px gaps are left alone -- that 80px is
+ * what stops the tilted cards below from touching.
+ *
+ * `minmax(0, 1fr)`, not `1fr`: a bare `1fr` floors at the track's min-content,
+ * and a wide wordmark stole width from its neighbour -- 190px against 141px on
+ * a phone. The explicit 0 floor keeps every column equal. */
+.unframer-page[data-route="/about"] [data-about-partners] [data-partner-grid] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+/* Framer's appear effect is one-shot and writes its state inline, so a card
+ * cloned before the section scrolled into view keeps `opacity: 0` forever and
+ * nothing ever animates it back. See the `reactStrictMode` note in CLAUDE.md
+ * for the same trap.
+ *
+ * `grid-column`: the third card is authored `span 2` -- that is what makes the
+ * tablet layout two cards over one wide one. Inherited by the clones it gave
+ * double-width cards and a five-row grid. Every partner cell is one track. */
+.unframer-page[data-route="/about"] [data-about-partners] [data-partner-card] {
+    opacity: 1 !important;
+    grid-column: auto !important;
+}
+
+/* Nineteen partners over three columns leaves one on its own in the last row, hard
+ * against the left edge. `:last-child:nth-child(3n + 1)` is true only when the
+ * final card starts a row -- it stops matching the moment a partner is added
+ * or removed, so nothing has to be renumbered by hand.
+ *
+ * Column 2 of 3 is the middle, so the orphan sits under the gap between the
+ * two above it. Not applied below 640px, where the grid is a single track and
+ * asking for column 2 would invent a second one. */
+@media (min-width: 640px) {
+    .unframer-page[data-route="/about"] [data-about-partners] [data-partner-card]:last-child:nth-child(3n + 1) {
+        grid-column: 2 !important;
+    }
+}
+
+/* The tilt is the step cards' signature: Framer writes -6deg / 0 / +6deg
+ * across the three, inline, as the resting state of the appear animation.
+ * Restating it in a cycle of three keeps that rhythm however the partners
+ * wrap -- across a row on a desktop, down the column on a phone -- and it has
+ * to be restated rather than inherited, because the clones copy whichever
+ * angle the card they were cloned from happened to hold.
+ *
+ * The angle is also published as `--partner-tilt`, because the reveal below
+ * has to rebuild the whole transform and would otherwise drop the rotation.
+ *
+ * Rotating a card by 6deg throws its corners above and below its own box --
+ * about 20px for a 388px-wide one, 16px at 310px. The authored row gap is
+ * sized for a section that is only ever one row deep, so it has to grow here:
+ * the original never puts two tilted cards next to each other (it has exactly
+ * three, tilt-straight-tilt), while nine of them repeatedly do. The 80px
+ * column gap already clears the sideways throw. */
+.unframer-page[data-route="/about"] [data-about-partners] [data-partner-grid] {
+    row-gap: 56px !important;
+}
+
+.unframer-page[data-route="/about"] [data-about-partners] [data-partner-card]:nth-child(3n + 1) {
+    --partner-tilt: -6deg;
+    transform: rotate(-6deg) !important;
+}
+
+.unframer-page[data-route="/about"] [data-about-partners] [data-partner-card]:nth-child(3n + 2) {
+    --partner-tilt: 0deg;
+    transform: none !important;
+}
+
+.unframer-page[data-route="/about"] [data-about-partners] [data-partner-card]:nth-child(3n + 3) {
+    --partner-tilt: 6deg;
+    transform: rotate(6deg) !important;
+}
+
+/* Appear-on-scroll, matching the step cards exactly: opacity 0 to 1 and a 30px
+ * rise, 0.4s on cubic-bezier(.44, 0, .56, 1), each card 0.15s behind the one
+ * to its left. Those numbers are Framer's own -- `animation` / `transition3-5`
+ * in framer/about-section-3-teach.jsx -- not an approximation.
+ *
+ * It has to be rebuilt here rather than inherited. unframer registers its
+ * appear effects with an IntersectionObserver when the component mounts, and
+ * a cloned node was never registered, so nothing would ever reveal it. The
+ * hook drives it instead: `data-partner-anim` on the section once the observer
+ * is live, `data-shown` on each card as it comes into view.
+ *
+ * Gating the hidden state on `data-partner-anim` is what makes that safe. If
+ * the hook does not run, or throws before observing, the attribute is absent,
+ * this rule never matches and every card simply stays visible -- the same
+ * fail-to-visible principle as the mascot videos in lib/useVideoDecor.ts. */
+.unframer-page[data-route="/about"] [data-about-partners][data-partner-anim] [data-partner-card] {
+    transition:
+        opacity 0.4s cubic-bezier(0.44, 0, 0.56, 1) var(--partner-delay, 0s),
+        transform 0.4s cubic-bezier(0.44, 0, 0.56, 1) var(--partner-delay, 0s);
+}
+
+.unframer-page[data-route="/about"] [data-about-partners][data-partner-anim] [data-partner-card]:not([data-shown]) {
+    opacity: 0 !important;
+    transform: translateY(30px) rotate(var(--partner-tilt, 0deg)) !important;
+}
+
+/* Someone who has asked for less motion gets the finished state outright. */
+@media (prefers-reduced-motion: reduce) {
+    .unframer-page[data-route="/about"] [data-about-partners][data-partner-anim] [data-partner-card] {
+        transition: none !important;
+    }
+
+    .unframer-page[data-route="/about"] [data-about-partners][data-partner-anim] [data-partner-card]:not([data-shown]) {
+        opacity: 1 !important;
+        transform: rotate(var(--partner-tilt, 0deg)) !important;
+    }
+}
+
+/* Logo only -- no step number, no title, no body copy. "Content" holds the
+ * title and the paragraph together, so hiding it and the badge leaves the
+ * panel with the logo as its only child.
+ *
+ * The panel keeps its authored ground, radius and padding; only the alignment
+ * changes, because a lone logo centres rather than sitting where a badge would.
+ *
+ * The height is the step card's own, measured live by the hook and published
+ * as `--partner-card-height`. It cannot be a constant: a step card sizes to
+ * its body copy, so it is 324px on a desktop row and some other figure at
+ * every width. Falling back to `auto` means that if the measurement ever fails
+ * the card hugs its logo rather than collapsing. */
+.unframer-page[data-route="/about"] [data-about-partners] [data-partner-card] [data-framer-name="Step"],
+.unframer-page[data-route="/about"] [data-about-partners] [data-partner-card] [data-framer-name="Content"] {
+    display: none !important;
+}
+
+.unframer-page[data-route="/about"] [data-about-partners] [data-partner-card] > * {
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: var(--partner-card-height, auto) !important;
+}
+
+/* Fit each logo to a box rather than pinning its height.
+ *
+ * A common height is wrong here because the set runs from a 6.34:1 wordmark
+ * (Bulkstream) to a 0.97:1 crest (Mombasa County). At a shared 64px the
+ * wordmarks spanned the full 328px card while the crests came out 62px wide --
+ * the same height, a fifth of the area, and they read as tiny.
+ *
+ * With both axes capped and `auto` on each, the browser scales every logo to
+ * the largest size that fits 328 x 200 without distorting it: wide marks go
+ * width-limited to the full card, upright ones go height-limited at ~200px
+ * and roughly 190-250px wide. The card is untouched -- only the artwork grows.
+ *
+ * Safe to leave `height: auto` even though an undecoded image has no intrinsic
+ * size: the panel's min-height holds the card open regardless, and these load
+ * eagerly. */
+.unframer-page[data-route="/about"] [data-about-partners] img[data-partner-logo] {
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 200px !important;
+    object-fit: contain !important;
+    margin: 0 auto !important;
+    flex: 0 0 auto !important;
+}
+
+/* "Our Partners" is two words in a three-word heading, so the middle one is
+ * emptied. An empty h2 still takes a grid cell and its gap. */
+.unframer-page[data-route="/about"] [data-about-partners] h2:empty {
+    display: none !important;
+}
+
+/* One full-width column on phones, which is how the step section lays itself
+ * out at this width: a single 310px track with the cards square on to it. The
+ * partners follow, so a partner card is the same 310 x 304 box in the same
+ * place, carrying the same tilt and the same measured height as the step card
+ * above it.
+ *
+ * 40px of row gap rather than the authored 20px, for the reason given above:
+ * the cycle of three puts a +6deg card directly above a -6deg one here, which
+ * the original -- three cards, tilt-straight-tilt -- never does. 20px would
+ * leave them overlapping by ~11px. */
+@media (max-width: 639px) {
+    .unframer-page[data-route="/about"] [data-about-partners] [data-partner-grid] {
+        grid-template-columns: minmax(0, 1fr) !important;
+        row-gap: 40px !important;
+    }
 }
 
 /* Let the About navigation flow into its pale-blue hero, as on the other
@@ -65,9 +298,15 @@
     line-height: 1.3 !important;
     color: #123661 !important;
 }
-/* Keep the Framer footer figure slot and show the original de.svg composition. */
+/* Keep the Framer footer figure slot and show the de.svg composition.
+ *
+ * Serves public/decor/de.webp, not the brand/de.svg source. That source is a
+ * 10MB Canva export wrapping a 3872x2581 photo plus its alpha mask, and a
+ * `content: url()` is invisible to Next's image optimizer -- it would reach the
+ * browser whole. scripts/extract-decor-cutouts.py does the composite and the
+ * viewBox crop up front, which is the same 193KB result at 1600px. */
 .unframer-page[data-route="/about"] section img[src*="yJN4KT0Zi7MeLjgjwXSbtNMRtJA"] {
-    content: url("/brand/de.svg");
+    content: url("/decor/de.webp");
     object-position: center bottom !important;
 }
 
@@ -247,6 +486,297 @@
     background-color: #fff !important;
     border-radius: 20px !important;
     transform: rotate(2deg) !important;
+}
+
+/* Let the Contact FAQ crab hang past its section.
+ *
+ * It is pulled 14px below the section edge so its legs overlap the footer, but
+ * that section is `overflow: hidden`, which clipped the overhang flat against
+ * the boundary -- reading as if the footer were painted over it. Nothing here
+ * is a z-index problem: the slot already sits at z-index 2, above the footer's
+ * `auto`. Selected by the crab it contains, so no generated class is involved. */
+.unframer-page[data-route="/contact"] section:has(img[src="/decor/crab.png"]) {
+    overflow: visible !important;
+}
+
+/* Mentor CTA band: the ladybug in place of the photograph on the right.
+ *
+ * No `[data-route]` qualifier, unlike the rules below it, and that is the whole
+ * point: this asset id exists in exactly one generated file, `cta-mentor.jsx`,
+ * which both `/mentor` and every `/mentor/<slug>` render. Scoping by the slot's
+ * shape therefore reaches the band wherever it appears, where the route scope
+ * these started with reached the listing only and left the mentor pages with
+ * the stock photograph. Everything still keyed to `[data-route="/mentor"]`
+ * below is genuinely listing-only -- that band drops its booking card, so it is
+ * a different composition with different numbers.
+ *
+ * The slot is `fitImageDimension`, so unframer writes the photograph's 0.892
+ * ratio inline and would letterbox the ladybug inside it -- restated to the
+ * ladybug's own 1.2426, the same figure the Program CTA slot carries. The clip
+ * is mounted by lib/useVideoDecor.ts, keyed to this same asset id. */
+.unframer-page img[src*="3fIhq7ij32qpJo01OGJstWOA3M"] {
+    content: url("/decor/ladybug.png");
+    object-fit: contain !important;
+}
+.unframer-page div:has(> div > img[src*="3fIhq7ij32qpJo01OGJstWOA3M"]) {
+    aspect-ratio: 1.2426 / 1 !important;
+    /* The slot was `width: auto` off the photograph's 0.892 ratio, so swapping
+     * in the wider ladybug kept the 514px height and grew the width to 639 --
+     * a mascot the size of the person it replaced. Width drives it now, near
+     * the 204px the same ladybug gets in the Program CTA. */
+    width: clamp(170px, 18vw, 250px) !important;
+    height: auto !important;
+}
+
+/* Removing the booking card took ~190px out of this band and left it shallow
+ * against its neighbours. Hold a height that fits its contents, but only where
+ * there is room -- on a phone the band should still size to its own content.
+ *
+ * 600, not the 561 it measured before: the photograph's slot is anchored to the
+ * band's bottom and stands 580px tall, so at 561 its top 19px pushed past the
+ * band and the `overflow: hidden` sheared it off. The band has to clear the
+ * figure it contains, with a little room to spare. */
+@media (min-width: 810px) {
+    .unframer-page[data-route="/mentor"] section:has(img[src*="3fIhq7ij32qpJo01OGJstWOA3M"]) {
+        min-height: 600px !important;
+    }
+
+    /* Lift the mascot off the band's floor here too. Framer anchors the slot at
+     * `bottom: -20px`, and this band -- unlike the phone one -- keeps its
+     * `overflow: hidden`, so that overhang was sheared flat and took the bottom
+     * 11% of the mascot with it. `top: auto` first: the slot carries top +
+     * bottom + height together, and the start edge wins until it is released.
+     * Same 16px as the phone rule, so the two breakpoints agree.
+     *
+     * Unscoped for the same reason as the swap above: the overhang is authored
+     * into the slot, so it shears on the mentor pages exactly as it did here. */
+    .unframer-page div:has(> div > img[src*="3fIhq7ij32qpJo01OGJstWOA3M"]) {
+        top: auto !important;
+        bottom: 16px !important;
+    }
+}
+
+/* The third edge of the same overhang. Only the Tablet variant authors
+ * `right: -30px` -- Desktop sits the mascot flush at 0, which against a
+ * full-bleed band reads as deliberate -- so between 810 and 1199 the band's
+ * `overflow: hidden` was taking 30px off a 184px-wide mascot, a sixth of it,
+ * straight down its right side. Hence the upper bound: widening this to every
+ * breakpoint would pull the Desktop mascot off an edge it is meant to touch.
+ *
+ * 1199 for the same reason the band's floor above stops at 1200 -- that is
+ * where unframer's `xl` key swaps the variant, so anything wider is already
+ * authoring `right: 0` and has nothing to correct.
+ *
+ * `left: auto` first, exactly as the phone rule does it -- the slot carries
+ * left + right + width together and the start edge wins until released -- and
+ * the same 16px, so all three breakpoints now agree. */
+@media (min-width: 810px) and (max-width: 1199px) {
+    .unframer-page div:has(> div > img[src*="3fIhq7ij32qpJo01OGJstWOA3M"]) {
+        left: auto !important;
+        right: 16px !important;
+    }
+
+    /* ...and on the mentor pages, stand it on the booking card rather than
+     * behind it. The band authors its figures *behind* that card -- which is
+     * why the photograph this replaced was only ever a torso and a stack of
+     * books -- and at Desktop width the card stops 227px short of the band's
+     * edge, so the mascot clears it anyway. At Tablet the card runs nearly the
+     * full width and the mascot is a tenth of the photograph's size, so
+     * "partly behind" became "swallowed": 156px of a 170px mascot at 810,
+     * easing only to 45 of 216 by 1199. Just its feet and one eye showed.
+     *
+     * 154 = 138 + 16. The card does not sit on the band's floor -- it is 97px
+     * tall and floats 41px above it, putting its top edge 138px up, and both
+     * numbers hold steady across this whole range. Add the same 16px gap the
+     * floor and the right edge already use and the mascot's base rests just
+     * above the card, reading as perched there on purpose. Measure the card's
+     * top, not its height: 113px (height + gap) still buried the mascot's feet
+     * 25px into it.
+     *
+     * The listing is deliberately excluded: that band hides the booking card
+     * entirely (the rule below), so there would be nothing under the mascot to
+     * stand on and this would simply leave it floating. */
+    .unframer-page[data-route^='/mentor/'] div:has(> div > img[src*='3fIhq7ij32qpJo01OGJstWOA3M']) {
+        bottom: 154px !important;
+    }
+}
+
+/* 768-809 is a seam, and it is deliberately left alone -- the note is here so
+ * the next person does not re-derive it.
+ *
+ * The mentor CSS splits phone from tablet at 810, Framer's own design
+ * breakpoint, but the *variant* swaps at unframer's `md` = 768. So this 42px
+ * window -- which is exactly iPad portrait -- renders the Tablet band while
+ * the phone rules above size and place the mascot, and the tablet card is
+ * nearly full width, so it covers about two thirds of a 128px mascot.
+ *
+ * The lift used above cannot rescue it: the description's text ends 40px above
+ * the card's top edge and the mascot is 103px tall, so there is no gap to put
+ * it in. Every placement here is behind the card, over that paragraph, or
+ * outside the band. The listing resolves the same squeeze by hiding the
+ * paragraph below 810; doing that here would drop real copy from the mentor
+ * pages, which is a content call rather than a layout one. Left as it was. */
+
+/* On phones, put the booking card *behind* both figures instead of over them.
+ *
+ * Framer stacks this band in two layers: "BG Decor" holds the two figures at
+ * `z-index: 1`, and "Container" holds the heading, the paragraph and the card
+ * at `z-index: 2`. The `z-index: 3` the ladybug's own slot carries cannot beat
+ * that -- "BG Decor" is positioned with a z-index, so it opens a stacking
+ * context and its children are sealed inside it. One value on the layer is the
+ * only lever, and it moves both figures together, which is what was asked for.
+ *
+ * 767, not the 809 the phone rules above use. That split is Framer's design
+ * breakpoint; this one has to follow the *variant*, which swaps at unframer's
+ * `md` = 768. On the Phone variant the figures sit strictly below the text --
+ * measured at 320, 390 and 767, the only thing either one overlaps is the card
+ * -- so raising the layer is free. One step up, the Tablet variant stands the
+ * photograph 400px tall across the full height of the band, straight through
+ * the heading, and lifting it there would bury "Meet for free anytime" behind
+ * a shoulder.
+ *
+ * Safe for the button underneath: both slots already compute
+ * `pointer-events: none`, so "Book the intro session" still takes the tap
+ * through them. Verified by hit-testing the link's centre, not assumed. */
+@media (max-width: 767px) {
+    .unframer-page[data-route^='/mentor/']
+        section:has(img[src*='KITCFqoLDqQXdqMCCYX4dCTzRNo'])
+        [data-framer-name='BG Decor'] {
+        z-index: 3 !important;
+    }
+
+    /* ...and slide the button out from under the photograph, which is what
+     * makes the layer above affordable. Centred in the card it ran 83 -> 307
+     * and the two heads covered everything left of 135, so it read "...ook the
+     * intro session".
+     *
+     * There is room because the slot is much wider than the figure inside it.
+     * The photograph's box is 250px, but at the button's own rows the opaque
+     * silhouette stops at x 135 -- that height is just the tops of two heads,
+     * and the laptop that fills the slot's full width sits below. Right-aligned
+     * inside the card's 20px padding the button lands at 126 -> 350, putting
+     * its *text* at 156, a clear 21px past the photograph; only 9px of its
+     * left padding stays tucked behind, which is the effect that was wanted.
+     *
+     * The ladybug is not in the way: its slot starts at y 483 and the button
+     * ends at 482, so they pass within a pixel without touching.
+     *
+     * `Bottom > Right` -- the child combinator matters. "Right" is also the
+     * name of the column holding the ladybug over in "BG Decor", and the
+     * descendant form would catch both. `align-self` on this flex child, not
+     * margins on the link: the card is a centring flex column, so this is the
+     * one property it is already listening to. */
+    .unframer-page[data-route^='/mentor/']
+        section:has(img[src*='KITCFqoLDqQXdqMCCYX4dCTzRNo'])
+        [data-framer-name='Bottom'] > [data-framer-name='Right'] {
+        align-self: flex-end !important;
+    }
+}
+
+/* No call-to-action in this band, at any width -- the heading and the mascot
+ * carry it. "Bottom" is the whole booking row: the navy panel, the "4.9 / 5
+ * based on 200+ reviews" copy and the Framer button beside it. Hiding the row
+ * takes all three.
+ *
+ * This replaced a set of rules that stripped the panel back to just the button
+ * and centred it; with the button gone too, none of that has anything left to
+ * act on. */
+.unframer-page[data-route="/mentor"] section:has(img[src*="3fIhq7ij32qpJo01OGJstWOA3M"]) [data-framer-name="Bottom"] {
+    display: none !important;
+}
+
+/* Mentor CTA band on phones.
+ *
+ * Three separate things, none of them stacking order: the band is
+ * `overflow: hidden`, so the ladybug's 20px overhang was sheared off at the
+ * boundary and read as sitting behind the footer; it is still large for a
+ * 390px screen; and the photograph is `object-fit: cover` in a landscape box,
+ * so a centred crop takes the top off the faces. */
+@media (max-width: 809px) {
+    .unframer-page[data-route="/mentor"] section:has(img[src*="3fIhq7ij32qpJo01OGJstWOA3M"]) {
+        overflow: visible !important;
+    }
+
+    /* Bring the ladybug fully inside the band. Framer authors this slot to
+     * overhang deliberately -- `right: -30px`, `bottom: -20px` against its
+     * containing block, which is the "Right" column whose edges ARE the band's
+     * -- so on a phone it hung 30px past the viewport (sheared by the page's
+     * `overflow-x: clip`) and 20px down into the navy footer. That overlap is
+     * what reads as the mascot sitting in the footer with its legs cut off.
+     *
+     * `left`/`top` are set to `auto` first because the slot is over-constrained:
+     * it carries left + right + width and top + bottom + height together, and in
+     * a left-to-right box the start edge wins outright -- setting `right` and
+     * `bottom` alone changes nothing. With the start edges released, these two
+     * take effect: 16px clear of the band's floor and of the screen edge. The
+     * gap is deliberate rather than flush -- the mascot's own base is flat, so
+     * resting it exactly on the navy boundary still reads as it bleeding into
+     * the footer. */
+    .unframer-page div:has(> div > img[src*="3fIhq7ij32qpJo01OGJstWOA3M"]) {
+        width: 128px !important;
+        left: auto !important;
+        right: 12px !important;
+        top: auto !important;
+        bottom: 16px !important;
+    }
+
+    /* The intro paragraph competes with the mascot for the same space on a
+     * phone, so the heading carries the band on its own here.
+     *
+     * Scoped to the "Description" wrapper, NOT to `[data-framer-name="Container"]
+     * p`: a Framer button keeps its label in a `p.framer-text` too, and the
+     * broad selector collapsed any such button to its bare padding box. */
+    .unframer-page[data-route="/mentor"] section:has(img[src*="3fIhq7ij32qpJo01OGJstWOA3M"]) [data-framer-name="Description"] p {
+        display: none !important;
+    }
+
+    .unframer-page[data-route="/mentor"] section img[src*="KITCFqoLDqQXdqMCCYX4dCTzRNo"] {
+        /* Spend the crop on the lower half so the heads stay in frame. */
+        object-position: 50% 18% !important;
+    }
+}
+
+/* The same shear, on the mentor DETAIL pages -- the "Meet for free anytime"
+ * band. The listing fix above is scoped to `[data-route="/mentor"]`, which
+ * `/mentor/<slug>` does not match, so the band went uncorrected there; it also
+ * keeps its booking card, so it is a different height and needs its own number.
+ *
+ * `public/decor/peter.webp` is trimmed to its alpha bounds, so the boy's hair
+ * reaches row 0 of the asset with no headroom to give up. The slot is anchored
+ * to the band's floor, so every pixel the slot stands taller than the band is
+ * taken off the top of his head and the mentor's, sheared flat by the band's
+ * `overflow: hidden`. Measured on /mentor/diana-wamboi:
+ *
+ *   Desktop (>=1280)  band 561  slot 580  ->  19px off the heads
+ *   Tablet  810-1279  band 412  slot 400  ->  12px clear, fine
+ *   Tablet   768-809  band 394  slot 400  ->  6px off
+ *   Phone    <=767    band 624  slot 200  ->  fine
+ *
+ * Hence a floor per variant rather than one value: the slot height is what the
+ * Framer variant sets, and the two differ by 180px. Both land 20px clear, the
+ * same margin the listing band above was given.
+ *
+ * 1200, and it has to be 1200. The variant boundary is unframer's `xl` key, not
+ * a Tailwind screen -- `components/breakpoints.ts` maps base/sm to Phone, md/lg
+ * to Tablet, xl/2xl to Desktop, and unframer fixes xl at 1200. Written as 1280
+ * these two queries leave an 80px window where the Desktop variant renders its
+ * 580px slot while the band is still held at the Tablet floor, and the shear
+ * comes straight back -- measured at exactly the same 18.6px.
+ *
+ * `min-height`, not padding: the band is `justify-content: center` with
+ * `padding: 100px 0`, so the extra height splits evenly above and below the
+ * heading and the booking card, and the bottom-anchored figure keeps its own
+ * lower edge exactly on the navy footer's boundary. */
+@media (min-width: 1200px) {
+    .unframer-page[data-route^='/mentor/'] section:has(img[src*='KITCFqoLDqQXdqMCCYX4dCTzRNo']) {
+        min-height: 600px !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .unframer-page[data-route^='/mentor/'] section:has(img[src*='KITCFqoLDqQXdqMCCYX4dCTzRNo']) {
+        min-height: 420px !important;
+    }
 }
 
 /* On phones: the figure fills the band's left edge, corner to corner, so the
@@ -686,10 +1216,126 @@ img[src*="caAEwISYX2lifI52VyCRE1uWq8"] {
     object-position: 50% 0% !important;
 }
 
+/* Home closing CTA — the crab in place of the boy on the right.
+ *
+ * Still frame here, motion in lib/useVideoDecor.ts, which mounts crab.webm
+ * over this same asset id. Both are needed: the PNG is what shows on WebKit
+ * and on any failed decode, exactly as it does for the Program and About
+ * bands that already run this clip.
+ *
+ * The slot is `fitImageDimension="width"`, so unframer writes the boy's 0.653
+ * portrait ratio inline and the landscape crab would be cropped to a sliver of
+ * itself inside it. Restated to crab.png's own 414x332.
+ *
+ * Width-driven, not height-driven. The slot is stretched by `top: 30px` +
+ * `bottom: -1px` -- a 482px height -- and at the crab's ratio that would make
+ * it 601px wide, nearly double the boy it replaces and far too big for a
+ * mascot. Pinning the width and letting the height follow keeps it in the
+ * 300px range the figure was.
+ *
+ * `top: auto` first, then `bottom`: the slot carries top + bottom + height
+ * together, and the start edge wins until it is released -- the same
+ * over-constrained box the mentor CTA mascot sits in. */
+.unframer-page[data-route='/'] img[src*='ANM2K8tN9rhRoCqmvsMpUwpl1c'] {
+    content: url('/decor/crab.png');
+    object-fit: contain !important;
+}
+
+.unframer-page[data-route='/'] div:has(> div > img[src*='ANM2K8tN9rhRoCqmvsMpUwpl1c']) {
+    aspect-ratio: 414 / 332 !important;
+    width: clamp(200px, 24vw, 340px) !important;
+    height: auto !important;
+    top: auto !important;
+    bottom: 0 !important;
+}
+
+/* Footer social row — two of the four glyphs the template shipped are for
+ * platforms Tech Kidz Africa is not on.
+ *
+ * The row is Facebook / X / Dribbble / Instagram; the accounts that actually
+ * exist are X, YouTube, LinkedIn and Instagram. X and Instagram keep their own
+ * glyph and just get a real href (see scripts/patch-text-overrides.mjs); the
+ * other two slots are re-pointed here, Facebook's -> LinkedIn and Dribbble's
+ * -> YouTube, giving LinkedIn / X / YouTube / Instagram.
+ *
+ * `content: url()` rather than editing the generated `src`: unframer's Image
+ * rewrites the src it is given with its own sizing query, and this is the same
+ * swap-the-artwork-leave-the-markup trick the rest of this file uses.
+ *
+ * The replacements are drawn to the row's own idiom so they sit level with the
+ * two originals -- 24px viewBox, `fill: none`, 1.5 stroke in #f4f0e5, rounded
+ * joins -- which was read off the shipped SVGs rather than guessed. */
+.unframer-page img[src*="nFoFt5fF1LSuiCXQniqnpZ4Xpw"] {
+    content: url("/brand/social-linkedin.svg");
+}
+
+.unframer-page img[src*="e90rMmyKXl9idIZ8AuF4PEjRk"] {
+    content: url("/brand/social-youtube.svg");
+}
+
 /* Home and About learning spaces photograph. */
 .unframer-page[data-route="/"] img[src*="zkeQsPolMXishLm6DHO92DjwGQ"],
 .unframer-page[data-route="/about"] img[src*="zkeQsPolMXishLm6DHO92DjwGQ"] {
     content: url("/brand/kids.jpg");
+}
+
+/* "Our success Stories" — drop the portrait beside each attribution.
+ *
+ * The three quotes are now from named, identifiable people (a county KSEF
+ * chairman, a Communications Authority regional director, a prison-institution
+ * OIC) and we have no photographs of them. What the card ships is a hot-linked
+ * Framer stock portrait, so leaving it puts a stranger's face against a real
+ * person's name and title — a fabricated likeness, not a layout detail.
+ *
+ * It has to be hidden here rather than unset in the export: the quotes and
+ * attributions are rewritten by `scripts/patch-text-overrides.mjs`, but simply
+ * omitting that card's `dAtjPtYy7` prop does not clear the image — the card
+ * falls back to its own built-in portrait, which is exactly what the first
+ * mentor-page card was already doing.
+ *
+ * `Avatar` is a flex child of the attribution row with a 16px gap, so removing
+ * it from flow closes up cleanly and the name slides left; there is no hole to
+ * patch afterwards. Delete this block the day real photographs exist — set
+ * them as `dAtjPtYy7` in the patch script instead.
+ *
+ * Scoped by shape, through the section, and that pair is exact: `Avatar`
+ * appears three times on each of the two pages carrying this band (Home and
+ * every mentor detail page) and nowhere else on either. */
+[data-framer-name='Testimonial'] [data-framer-name='Avatar'] {
+    display: none !important;
+}
+
+/* ...and let the quote box grow to the quote.
+ *
+ * Framer sized this text to exactly eight lines (230.375px) and added
+ * `-webkit-line-clamp: 8` to cut off anything longer. The clamp does not fire:
+ * it needs `display: -webkit-box`, and the generated rule leaves the element
+ * `flow-root`. So the box stays eight lines tall while the text runs to
+ * thirteen, `overflow` is `visible`, and the overspill paints straight down
+ * through the attribution. The old copy was ~100 characters and never reached
+ * the limit; these three are 250-390, and two of them cleared it easily --
+ * measured 152px and 165px of quote sitting on top of the name, and 39px of it
+ * past the card's rounded edge.
+ *
+ * Height first, then the clamp. `height: auto` alone fixes it in Chrome today,
+ * but modern engines are growing support for `line-clamp` on ordinary block
+ * containers, at which point the declaration Framer already wrote would start
+ * truncating these quotes mid-sentence. Neutralising it here means the fix
+ * does not quietly become a bug on a browser update.
+ *
+ * Nothing else needs touching: the card's painted panel is a content-sized
+ * flex column, so it grows with the text on its own -- which is why the three
+ * cards already stand at different heights.
+ *
+ * Selected through `Bottom` (the row of cards) so the section's own heading
+ * block, which is also called "Top", is left alone. */
+[data-framer-name='Testimonial']
+    [data-framer-name='Bottom']
+    [data-framer-name='Top']
+    > div {
+    height: auto !important;
+    -webkit-line-clamp: none !important;
+    line-clamp: none !important;
 }
 
 /* Programme heroes — the photograph beside the headline on /program/[slug].
@@ -991,7 +1637,52 @@ div:has(> div > img[src*="KITCFqoLDqQXdqMCCYX4dCTzRNo"]) {
     display: none !important;
 }
 
-/* Keep Framer's original About clip and poster out of the first paint. */
+/* Invite mobile visitors to enable sound on the autoplaying About video. */
+.about-video-sound-hint {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 9px 13px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 999px;
+    background: rgba(0, 37, 77, 0.86);
+    color: #fff;
+    font: 600 13px/1.2 Inter, sans-serif;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    animation: about-sound-hint-pulse 1.6s ease-in-out infinite;
+}
+
+.about-video-sound-hint svg {
+    width: 20px;
+    height: 20px;
+    flex: none;
+}
+
+.about-video-sound-hint[hidden] {
+    display: none !important;
+}
+
+.about-video-sound-hint:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+
+@keyframes about-sound-hint-pulse {
+    50% { opacity: 0.55; transform: scale(0.96); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about-video-sound-hint { animation: none; }
+}
+
+/* Keep the local poster behind the About video until its first frame arrives. */
+.unframer-page[data-route="/about"] div:has(> video[src="/decor/video.mp4"]),
 .unframer-page[data-route="/about"] div:has(> video[src*="FnTwkwh1zMIK062vyZfEtx5gGlA"]),
 .unframer-page[data-route="/about"] div:has(> video[data-about-hero-video]) {
     background: #c7d2ce url("/decor/about-video-poster.jpg") center / cover no-repeat;

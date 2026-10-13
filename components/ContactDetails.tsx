@@ -9,6 +9,19 @@ import styles from './ContactDetails.module.css'
 
 const EMAIL = 'info@techkidzafrica.co.ke'
 const ADDRESS = 'Bustani Close, Off Links Road, Nyali'
+/**
+ * Only the contact card's own lines live here now.
+ *
+ * The five FAQ answers used to be in this map as well, which meant they were
+ * corrected on `/contact` and nowhere else -- this hook is scoped to that
+ * route, and the same FAQ also renders on `/pricing` and on Home, where it
+ * kept the template's copy. They are now rewritten at source for all three
+ * instances by `scripts/patch-text-overrides.mjs`, so repeating them here
+ * would be a second, route-limited copy of text that already has an owner.
+ *
+ * The footer's email, hours and address went the same way. What is left is
+ * the contact hero's card, which is still generated with the placeholders.
+ */
 const COPY: Record<string, string> = {
     'Mon–Sat, 9:00–19:00': 'Mon–Sat, 8:00 AM–5:00 PM',
     'Open Mon–Sat, 9:00–19:00': 'Open Mon–Sat, 8:00 AM–5:00 PM',

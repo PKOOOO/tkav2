@@ -1,0 +1,99 @@
+/* Keep the Academy Framer composition and motion, with Tech Kidz Africa's
+   palette and typography. */
+.page {
+    width: 100%;
+    overflow-x: clip;
+    background: #eef4fa;
+    color: #002b5b;
+    font-family: "Instrument Sans", "Instrument Sans Placeholder", sans-serif;
+    --token-5df68e9f-e24a-4ecb-befd-33d1c68e9cc5: #fff;
+    --token-2e05fd84-0398-4f77-b7f8-653963237f4c: #002b5b;
+    --token-04a41402-c0a0-4134-a7f9-91b3efa447a8: #41597a;
+    --token-46129beb-16b7-43e5-9e0a-f794fe49ada0: #eef4fa;
+    --token-cb609fc9-9bba-41cb-9e84-7ec59992f867: #eef4fa;
+    --token-0c9942aa-5698-400e-8590-c0350c38d992: #6a1383;
+    --token-cd80abbd-1239-451a-8ac5-f55b318281d0: #530e68;
+    --token-d49a409f-3ea9-448a-97f4-030eb9168086: #8b3ba8;
+    --token-cee565fc-bbab-45ea-be39-cbe41f9721f1: #38b6ff;
+    --token-84fa87f5-a27c-4b35-b0d9-24f532c6b2dd: #e6d6f0;
+    --token-47e30837-d07f-4175-81b6-7299720a6411: #dfeaf6;
+    --token-455709ec-11c5-4153-a2d8-88c800b9dc18: #dfeaf6;
+    --token-a52a9b7c-b9ca-4eaf-a3fa-2347ec91bf88: #e6d6f0;
+    --token-ce4085cd-baba-49f5-9160-c3c75d795ccb: rgba(0, 43, 91, .2);
+    --token-6eb04566-dab7-4d55-9114-8c95ad515a48: #8b3ba8;
+    --token-cf471e39-fa95-4a61-921b-d595b7bd1e92: #8b3ba8;
+    --token-7e0b6c59-56f7-4466-8722-9e74bd3b1982: #eef4fa;
+}
+
+.page > * {
+    width: 100% !important;
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+}
+
+.page :global(.unframer) {
+    max-width: none;
+}
+
+.page :global(:is(p, a, button, span)) {
+    font-family: "Instrument Sans", "Instrument Sans Placeholder", sans-serif !important;
+}
+
+.page :global(:is(h1, h2, h3, h4, h5, h6)),
+.page :global(:is(h1, h2, h3, h4, h5, h6) *) {
+    font-family: "Bricolage Grotesque", "Bricolage Grotesque Placeholder", sans-serif !important;
+}
+
+.page :global(:is(a, button):focus-visible) {
+    outline: 2px solid #6a1383;
+    outline-offset: 4px;
+}
+
+/* The exported gallery frame is fixed at its desktop height and centers a
+   1200px child absolutely, even for the Phone variant. Let the responsive
+   Framer gallery take its own height so every photo remains visible. */
+.page :global(.framer-jyCCe) {
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.page :global(.framer-jyCCe .framer-15w3965-container) {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    transform: none !important;
+}
+
+.page > .lastPhoto {
+    width: min(calc(100% - 40px), 580px) !important;
+    margin: 0 auto;
+}
+
+.lastPhoto img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+/* The learner artwork sits behind the CTA's diagonal purple panel.
+   Clip only the desktop/tablet cutout; the phone CTA has no diagonal. */
+@media (min-width: 768px) {
+    .page :global(.framer-CGdyQ .framer-wwg9z3) {
+        clip-path: polygon(0 0, 100% 0, 43% 100%, 0 100%);
+    }
+}
+
+/* Replace the CTA sun with the ladybug still; useVideoDecor mounts its
+   transparent moving clip over this image when the browser can play it. */
+.page :global(.framer-CGdyQ .framer-kxntg4 img[src*="0mOuRBxsXQ3DUi47WJAsPsvML4"]) {
+    content: url("/decor/ladybug.png");
+}
+
+/* Keep Framer's original five-second in-and-out loop on the slot, while
+   giving the ladybug enough room to read clearly at tablet and desktop widths. */
+.page :global(.framer-CGdyQ .framer-kxntg4) {
+    width: clamp(112px, 11vw, 144px) !important;
+}

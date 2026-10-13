@@ -68,9 +68,15 @@ lib/
 framer/                  **generated** by `pnpm framer`
 public/
   brand/                 unprocessed sources — logos, photographs, mascot clips
+                         (26 files are also served directly; the rest is source
+                         material kept out of the deploy — see .vercelignore)
   decor/ hero/           the processed assets actually served
 scripts/                 bind-cms.mjs, export-cms.mjs, export-cms.framer.js
   encode-decor.py        rebuilds public/decor/*.webm from public/brand/*.webm
+  extract-team.py        rebuilds public/team/*.webp from the brand/ portraits
+  extract-decor-cutouts.py  same, for the non-portrait cut-outs → public/decor/
+  optimize-brand-photos.py  shrinks the photos globals.css serves from brand/
+.vercelignore            keeps the 200MB of sources out of the deployment
 .github/workflows/
   decor-alpha-mp4.yml    the macOS-only half of the same encode — see below
 next.config.ts           reactStrictMode: false — required, see Gotchas
@@ -357,6 +363,16 @@ hot-linked images.
 - `lib/cms.json` is a **snapshot**. Content edited in Framer does not appear
   until `pnpm cms`.
 - After `pnpm framer`, hard-reload before concluding anything is broken.
+- **An asset swapped in by `content: url()` is never optimized.** The override
+  layer is the only way to replace generated artwork, but it is a CSS property,
+  so `next/image` never sees the file: no resize, no WebP, no `srcset`. Whatever
+  is on disk is exactly what a phone downloads. The replacements therefore have
+  to be sized by hand before they land in `public/` — that is what
+  `scripts/optimize-brand-photos.py` and `scripts/extract-decor-cutouts.py` are
+  for. The sources behind them are Canva exports at camera resolution (6960x4640
+  photographs; `.svg` files that are really a 3872x2581 PNG plus an alpha mask in
+  base64), so dropping one in unprocessed costs 10MB a slot and nothing warns
+  you. `du -sh public` is the check.
 - **Four ways a block silently renders empty**, none of which log anything: the
   component is not ticked; its CMS field is an embed the export dropped; the
   bound value is an array where `RichText` wants a single element; or React

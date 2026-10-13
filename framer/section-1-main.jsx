@@ -2279,7 +2279,7 @@ var Component4 = /* @__PURE__ */ React4.forwardRef(function (props, ref) {
 													data-styles-preset={"aKvt8sYYy"}
 													dir={"auto"}
 												>
-													{"learning"}
+													{"coding"}
 												</motion4.h2>
 											</React4.Fragment>
 										</RichText4>
@@ -2430,7 +2430,7 @@ var Component4 = /* @__PURE__ */ React4.forwardRef(function (props, ref) {
 												}}
 											>
 												{
-													"Meet a mentor, find your level, and get a personal learning plan no commitment, no card required."
+													"Meet a mentor, find your level, and get a personal coding plan — no commitment, no card required."
 												}
 											</motion4.p>
 										</React4.Fragment>
@@ -6348,7 +6348,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 													data-styles-preset={"UXoQEMm1m"}
 													dir={"auto"}
 												>
-													{"the"}
+													{""}
 												</motion5.h2>
 											</React5.Fragment>
 										</RichText5>
@@ -8091,7 +8091,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 														data-styles-preset={"UXoQEMm1m"}
 														dir={"auto"}
 													>
-														{"What"}
+														{"Our"}
 													</motion5.h2>
 												</React5.Fragment>
 											</RichText5>
@@ -8116,7 +8116,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 														data-styles-preset={"UXoQEMm1m"}
 														dir={"auto"}
 													>
-														{"families"}
+														{"success"}
 													</motion5.h2>
 												</React5.Fragment>
 											</RichText5>
@@ -8155,7 +8155,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 																	"var(--extracted-1of0zx5, var(--token-1d403a9e-a47a-49fa-b259-3726165583a7, rgb(73, 126, 100)))",
 															}}
 														>
-															{"say"}
+															{"Stories"}
 														</motion5.h2>
 													</React5.Fragment>
 												</RichText5>
@@ -8248,7 +8248,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 											>
 												{_jsx5(stdin_default12, {
 													suppressHydrationWarning: true,
-													bLdPVDbAB: "Parent \xB7 Mathematics",
+													bLdPVDbAB: "KSEF Chairman, Mombasa County",
 													dAtjPtYy7: addImageAlt(
 														{
 															pixelHeight: 100,
@@ -8260,7 +8260,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 													height: "100%",
 													id: "HIpkk2MXV",
 													layoutId: "HIpkk2MXV",
-													mUwwmeoSV: "Sophia Taylor",
+													mUwwmeoSV: "Mohammed Noor",
 													style: {
 														height: "100%",
 														width: "100%",
@@ -8268,7 +8268,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 													u9rPBJOGz:
 														"var(--token-78006fc2-4aed-468c-a9d5-0eb0993d6aea, rgb(201, 224, 242))",
 													vzedQzXjZ:
-														"\u201CTwo terms with Maya and my son went from dreading math tests to asking for extra practice.\u201D",
+														"“Through Tech Kidz Africa’s work in retooling teachers, we’ve seen a remarkable improvement in the quality of innovation projects from junior secondary schools, with many advancing to the national level.”",
 													width: "100%",
 												})}
 											</SmartComponentScopedContainerWithFX2>
@@ -8312,7 +8312,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 											>
 												{_jsx5(stdin_default12, {
 													suppressHydrationWarning: true,
-													bLdPVDbAB: "Parent \xB7 English",
+													bLdPVDbAB: "Regional Director, Coast Region, Communications Authority of Kenya",
 													dAtjPtYy7: addImageAlt(
 														{
 															pixelHeight: 100,
@@ -8324,7 +8324,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 													height: "100%",
 													id: "D22ak1_DT",
 													layoutId: "D22ak1_DT",
-													mUwwmeoSV: "Daniel Cooper",
+													mUwwmeoSV: "Bernard Maraga",
 													style: {
 														height: "100%",
 														width: "100%",
@@ -8332,7 +8332,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 													u9rPBJOGz:
 														"var(--token-d0e4cb96-2373-4292-a52b-0c70e08d9898, rgb(246, 215, 232))",
 													vzedQzXjZ:
-														"\u201CThe monthly reports are gold. I finally know what's happening in my daughter's learning.\u201D",
+														"“As the Communication Authority of Kenya, we remain committed to working closely with Tech Kidz Africa, particularly on critical areas like online safety, responsible use of AI and child protection, which are essential as learners acquire digital skills.”",
 													width: "100%",
 												})}
 											</SmartComponentScopedContainerWithFX2>
@@ -8379,7 +8379,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 											>
 												{_jsx5(stdin_default12, {
 													suppressHydrationWarning: true,
-													bLdPVDbAB: "Parent \xB7 Coding",
+													bLdPVDbAB: "SSP, OGW - OIC, Shimo LaTewa Borstal Institution & Boys Education Centre",
 													dAtjPtYy7: addImageAlt(
 														{
 															pixelHeight: 100,
@@ -8391,14 +8391,14 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 													height: "100%",
 													id: "N3f87zGJ8",
 													layoutId: "N3f87zGJ8",
-													mUwwmeoSV: "Stella Adams",
+													mUwwmeoSV: "Prof. Jostinah Wawasi Mwang’ombe",
 													style: {
 														height: "100%",
 														width: "100%",
 													},
 													u9rPBJOGz:
 														"var(--token-9f7780f5-af12-4101-9125-2580d35c4118, rgb(249, 216, 192))",
-													vzedQzXjZ: `\u201CShe took the coding class "for fun". Now she's building her own website and exploring ideas at 13.\u201D`,
+													vzedQzXjZ: "“As an institution with children in conflict with the law, we have experienced meaningful inclusion through Tech Kidz Africa and the Raspberry Pi Foundation. Learners in our center have gained digital literacy skills…”",
 													width: "100%",
 												})}
 											</SmartComponentScopedContainerWithFX2>
@@ -8791,16 +8791,16 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 													>
 														{_jsx5(stdin_default13, {
 															suppressHydrationWarning: true,
-															AwzJEdurJ: "Groups of max 4",
-															Fj80Jlaio: "$149",
-															G3zABwSLu: "/ month",
-															gU9f4qP3I: "Small-group sessions, twice a week.",
+															AwzJEdurJ: "Groups of up to 30 learners",
+															Fj80Jlaio: "Talk to support",
+															G3zABwSLu: "",
+															gU9f4qP3I: "Whole-class sessions, twice a week.",
 															height: "100%",
 															id: "m6YzKd1Xi",
 															JBchdjipD: "",
 															layoutId: "m6YzKd1Xi",
 															LJgQOnm9S: "Monthly progress report",
-															rPYXfJmS9: "Group",
+															rPYXfJmS9: "School programs",
 															rsXoR_HY8: resolvedLinks12[0],
 															style: {
 																height: "100%",
@@ -8896,9 +8896,9 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 													>
 														{_jsx5(stdin_default13, {
 															suppressHydrationWarning: true,
-															AwzJEdurJ: "One-on-one sessions",
-															Fj80Jlaio: "$289",
-															G3zABwSLu: "/ month",
+															AwzJEdurJ: "1 learner per session",
+															Fj80Jlaio: "Talk to support",
+															G3zABwSLu: "",
 															gU9f4qP3I:
 																"A dedicated mentor, fully personal pace.",
 															height: "100%",
@@ -8913,7 +8913,7 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 																width: "100%",
 															},
 															U5Z617BJa: "Custom learning plan",
-															UJoKm97Jo: "2 sessions / week",
+															UJoKm97Jo: "5 sessions / week",
 															variant: matchVariant2("g2PfwTGSa"),
 															width: "100%",
 															ziFpHbzZ7: "QJ8kw8szL",
@@ -9003,8 +9003,8 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 														{_jsx5(stdin_default13, {
 															suppressHydrationWarning: true,
 															AwzJEdurJ: "Private sessions",
-															Fj80Jlaio: "$449",
-															G3zABwSLu: "/ month",
+															Fj80Jlaio: "Talk to support",
+															G3zABwSLu: "",
 															gU9f4qP3I:
 																"Exam sprints and fast catch-up blocks.",
 															height: "100%",
@@ -9293,17 +9293,17 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 												{_jsx5(stdin_default2, {
 													suppressHydrationWarning: true,
 													cSEHqsEip:
-														"Yes, no lock-in, no fees. You can pause for up to 30 days or cancel anytime. Just give us 24 hours' notice before your next scheduled session and we'll handle everything for you.",
+														"If you need to reschedule, pause, or stop sessions, contact us at info@techkidzafrica.co.ke. We’ll explain the options for your child’s program and help with the next step.",
 													Fymv0_Zvc: "Can we pause or cancel anytime?",
 													H6bBZRZOD:
-														"A 45-minute session where a mentor gets to know you, finds the right starting level, and builds a personal learning plan. You keep the plan whether you sign up or not.",
+														"Your child meets a Tech Kidz Africa mentor and tries an age-appropriate coding, robotics, or digital skills activity. We learn what interests them, then recommend a program and the best next step.",
 													height: "100%",
 													id: "by1Elj_pT",
 													IXxCcNeJ6: "How do you track progress?",
 													iz8dLER8f: "How does the free first session work?",
 													layoutId: "by1Elj_pT",
 													Q4ZZO31fL:
-														"After each session your mentor logs notes and milestones reached. You'll see a clear summary in your dashboard, and your mentor will review it with you at the start of every next session.",
+														"We look at what learners can make and explain—not just what they have covered. Mentors review their games, apps, websites, or robots, help them improve each project, and share their progress with families.",
 													style: {
 														width: "100%",
 													},
@@ -9311,10 +9311,10 @@ var Component5 = /* @__PURE__ */ React5.forwardRef(function (props, ref) {
 													UKJn2h870: "Who are the mentors?",
 													variant: matchVariant2("qTuhmXSEb"),
 													wdAkIO5Do:
-														"One-on-one gives you a pace and plan built entirely around you, while group sessions add peer energy at a lower cost. Your mentor will recommend the best fit after the free first session.",
+														"Group sessions let learners build and solve problems together. If your child would benefit from individual support, ask us about one-on-one availability and we’ll help you choose a suitable option.",
 													width: "100%",
 													x_pLEqbCc:
-														"All mentors are vetted educators with subject expertise and at least two years of teaching experience. They go through structured onboarding and receive regular feedback to keep quality high.",
+														"Our team includes software engineers, robotics trainers, and learning facilitators. Mentors such as Pius Khainja, Peter Lagat, and Clemence Kibet help learners turn ideas into games, websites, apps, and working robots.",
 													...addPropertyOverrides5(
 														{
 															GSMZWlFXW: {

@@ -8,8 +8,11 @@ import styles from './MentorDetail.module.css'
 
 import Hero, { __bindCmsFields as bindHero } from '@/framer/mentor-detail-section-1-hero.jsx'
 import Session, { __bindCmsFields as bindSession } from '@/framer/mentor-detail-section-2-session.jsx'
-import Testimonial from '@/framer/mentor-detail-section-3-testimonial.jsx'
 import Cta from '@/framer/cta-mentor.jsx'
+
+/* `mentor-detail-section-3-testimonial.jsx` used to render here, between the
+   session list and the CTA. It moved to /about, below "Our Partners" --
+   see components/routes/About.tsx. The generated file keeps its name. */
 
 /**
  * `__bindCmsFields` assigns module-level vars inside the generated component, so
@@ -30,7 +33,6 @@ export default function MentorDetail({ slug }: { slug: string }) {
         <>
             <Hero.Responsive variants={RESPONSIVE} className={styles.hero} />
             <Session.Responsive variants={RESPONSIVE} />
-            <Testimonial.Responsive variants={RESPONSIVE} />
             <Cta.Responsive variants={RESPONSIVE} />
         </>
     )

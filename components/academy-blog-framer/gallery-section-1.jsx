@@ -396,7 +396,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
 										}}
 									>
 										{
-											"Capturing joyful moments, creativity, and learning at Bloomy."
+											"Capturing curiosity, creativity, and hands-on learning at Tech Kidz Africa."
 										}
 									</motion.p>
 								</React.Fragment>

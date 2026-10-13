@@ -11,14 +11,29 @@
 # copies are also archived outside it, at ~/Desktop/tka-v2-asset-sources.
 #
 # This is an explicit deny-list rather than an allow-list on purpose. A new file
-# dropped into public/brand/ and referenced from globals.css will deploy; with an
+# dropped into public/brand/ and referenced from somewhere will deploy; with an
 # allow-list it would 404 in production and render as a blank slot, which is the
-# far more expensive mistake. Regenerate the list below with:
+# far more expensive mistake.
 #
-#   comm -13 <(sort served.txt) <(ls public/brand | sort)
+# The files NOT listed here are served directly and must keep deploying. Two
+# ways of deriving that list are wrong, and both were tried:
 #
-# The 26 files NOT listed here are served directly by a `content: url(/brand/...)`
-# rule in app/globals.css and must keep deploying.
+#   1. **Grepping only app/globals.css.** The eight gallery photos a.jpg-h.jpg
+#      are not in any stylesheet -- they are hard-coded as `src: "/brand/a.jpg"`
+#      inside components/academy-blog-framer/chunks/chunk-SX5HLRXN.js, a patched
+#      Framer chunk. Excluding them shipped a /gallery with eight broken images
+#      while every local check passed, because locally nothing is ignored.
+#      Search the WHOLE tree, not the CSS.
+#
+#   2. **Grepping without stripping comments.** cloud.svg, perez.svg, peter.svg
+#      and story.jpg appear only inside `/* ... */` in globals.css; ladybug.webm
+#      and robo.jpg only in `//` comments; lady.webm and output.webm only as
+#      script inputs in scripts/encode-decor.py. All eight are correctly
+#      excluded -- a naive grep says otherwise and would re-add 24MB.
+#
+# So: a file deploys only if a live, non-comment `/brand/<name>` appears outside
+# scripts/. Verify a change here against a real deployment, not a local build --
+# .vercelignore has no effect on `next dev` or `next build`.
 
 public/brand/1.jpg
 public/brand/11.svg
@@ -40,29 +55,21 @@ public/brand/4.svg
 public/brand/5.svg
 public/brand/Crab.png
 public/brand/LadyBug.png
-public/brand/a.jpg
 public/brand/avril.svg
-public/brand/b.jpg
 public/brand/bii.svg
 public/brand/bost.svg
 public/brand/bulk.svg
-public/brand/c.jpg
 public/brand/clem.svg
 public/brand/close.svg
 public/brand/cloud.svg
 public/brand/code.svg
 public/brand/com.svg
 public/brand/crab.hevc.mp4
-public/brand/d.jpg
 public/brand/de.svg
 public/brand/diana.svg
-public/brand/e.jpg
 public/brand/ed.svg
-public/brand/f.jpg
-public/brand/g.jpg
 public/brand/girl-laptop-left.png
 public/brand/girl.svg
-public/brand/h.jpg
 public/brand/hebron.svg
 public/brand/hussesin.svg
 public/brand/justin.svg

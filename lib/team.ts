@@ -38,7 +38,7 @@ export const CARD_TOKENS = [
 ]
 
 export const team: TeamMember[] = [
-    { slug: 'paul-akwabi', name: 'Paul Akwabi', role: 'Co-founder & CEO', featured: true },
+    { slug: 'paul-akwabi', name: 'Paul Akwabi', role: 'Founder', featured: true },
     { slug: 'hebron-mwagodi', name: 'Hebron Mwagodi', role: 'Programs, M&E and Partnerships' },
     { slug: 'brian-bii', name: 'Brian Bii', role: 'Marketing, Strategy and Partnerships' },
     { slug: 'najla-yusuf', name: 'Najla Yusuf', role: 'Admin, Hub Manager, Finance and Partnerships' },

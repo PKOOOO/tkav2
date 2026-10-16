@@ -4,6 +4,9 @@ import './globals.css'
 import '@/framer/styles.css'
 import 'lenis/dist/lenis.css'
 
+import { Analytics } from '@vercel/analytics/next'
+
+import PageViewBeacon from '@/components/PageViewBeacon'
 import Shell from '@/components/Shell'
 import StructuredData from '@/components/StructuredData'
 import NextTopLoader from 'nextjs-toploader'
@@ -78,6 +81,26 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
             <body>
                 <NextTopLoader color="#6a1383" height={3} showSpinner={false} shadow={false} />
                 <Shell>{children}</Shell>
+                {/*
+                 * Two counters on purpose, and they are not redundant.
+                 *
+                 * `Analytics` is Vercel's, enabled on the project; it needs no
+                 * database and its dashboard is already behind the Vercel
+                 * login. `PageViewBeacon` fills our own Neon tables, which is
+                 * what /admin and the AI summary read.
+                 *
+                 * Keeping both means each is a check on the other. A beacon
+                 * that silently stops firing -- or double-counts a
+                 * client-side navigation -- is close to undetectable from one
+                 * set of numbers alone, and this site navigates entirely
+                 * client-side, which is exactly where that goes wrong.
+                 *
+                 * Both sit outside <Shell>, which gates the whole Framer tree
+                 * on mount; inside it they would not run until that gate
+                 * opened, and would miss a visitor who left quickly.
+                 */}
+                <Analytics />
+                <PageViewBeacon />
             </body>
         </html>
     )

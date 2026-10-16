@@ -1,12 +1,17 @@
 import { after } from 'next/server'
 
 import {
+    browserFrom,
     cleanPath,
     deviceFrom,
+    hostnameFrom,
     isBot,
+    osFrom,
     recordPageView,
     referrerHost,
+    routeFrom,
     sessionHash,
+    utmFrom,
 } from '@/lib/analytics'
 import { hasDb } from '@/lib/db'
 
@@ -56,6 +61,10 @@ export async function POST(request: Request) {
     }
 
     const payload = body as { path?: unknown; referrer?: unknown }
+
+    // Order matters: the campaign tags have to be read off the raw value before
+    // `cleanPath` throws the query string away.
+    const utm = utmFrom(payload?.path)
     const path = cleanPath(payload?.path)
     if (!path) return noContent
 
@@ -73,9 +82,16 @@ export async function POST(request: Request) {
         try {
             await recordPageView({
                 path,
+                route: routeFrom(path),
+                hostname: hostnameFrom(request.headers.get('host')),
                 referrerHost: referrerHost(payload?.referrer),
                 device: deviceFrom(userAgent),
+                browser: browserFrom(userAgent),
+                os: osFrom(userAgent),
                 country: country && country.length <= 4 ? country : null,
+                utmSource: utm.source,
+                utmMedium: utm.medium,
+                utmCampaign: utm.campaign,
                 sessionHash: hash,
             })
         } catch (error) {

@@ -1,5 +1,6 @@
 import { pruneRaw, reportingDays, rollupDay, RETENTION_DAYS } from '@/lib/analytics'
 import { hasDb } from '@/lib/db'
+import { canGenerateInsight, generateInsight } from '@/lib/insight'
 
 /**
  * Nightly aggregation: fold raw page views into the daily rollups, then drop
@@ -48,11 +49,32 @@ export async function GET(request: Request) {
         }
         const pruned = await pruneRaw()
 
+        /**
+         * The AI note shares this cron rather than having its own, because
+         * Vercel's cron allowance is small and the two always want to run
+         * together anyway.
+         *
+         * Its failure is reported, not thrown: the rollups and the prune have
+         * already committed by this point, and losing a 500 over a missing API
+         * key or a rate limit would make the cron look like it did nothing. The
+         * dashboard treats a missing note as "no note yet", which is also what
+         * it shows before the first run.
+         */
+        const insight = canGenerateInsight()
+            ? await generateInsight(today).catch((error) => {
+                  console.error('[analytics] insight failed:', error)
+                  return { ok: false as const, reason: 'threw' }
+              })
+            : { ok: false as const, reason: 'ANTHROPIC_API_KEY is not set' }
+
         return Response.json({
             ok: true,
             rolled,
             pruned,
             retentionDays: RETENTION_DAYS,
+            insight: insight.ok
+                ? { generated: !insight.cached, model: insight.model }
+                : { generated: false, reason: insight.reason },
         })
     } catch (error) {
         console.error('[analytics] rollup failed:', error)

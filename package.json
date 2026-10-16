@@ -11,6 +11,7 @@
     "cms": "node scripts/export-cms.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.134.0",
     "@base-ui/react": "^1.8.0",
     "@neondatabase/serverless": "^1.2.0",
     "@tabler/icons-react": "^3.48.0",

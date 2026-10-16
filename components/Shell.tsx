@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useRouter } from 'nextjs-toploader/app'
 import { UnframerProvider } from 'unframer'
 
-import { useSmoothScroll } from '@/lib/useSmoothScroll'
+import { SCROLL_DURATION, useSmoothScroll } from '@/lib/useSmoothScroll'
 import { useCompactSections } from '@/lib/useCompactSections'
 import { useVideoDecor } from '@/lib/useVideoDecor'
 import CustomCursor from '@/components/CustomCursor'
@@ -41,7 +41,23 @@ export default function Shell({ children }: { children: ReactNode }) {
     const router = useRouter()
     const pathname = usePathname()
 
-    useSmoothScroll(pathname)
+    /**
+     * `/admin` is not part of the Framer site: it renders no Framer components
+     * and wants none of this chrome. Wrapped in the shell it inherited the site
+     * navigation and footer above and below the dashboard, the custom cursor,
+     * Lenis smooth scrolling, the `.unframer-page > * { width: 100% }` rule
+     * from globals.css, and -- worst of all -- the mount gate, which left it
+     * blank until hydration for no benefit, since none of the two reasons that
+     * gate exists (unframer's server-side font fetch, the breakpoint DOM
+     * surgery) apply to a page with no Framer content.
+     */
+    const bare = pathname === '/admin' || pathname.startsWith('/admin/')
+
+    // Every hook runs on every route. This component renders all of them, so
+    // skipping one on some paths would change the hook order between renders.
+    // The Framer-specific hooks below query `.unframer-page` and no-op when it
+    // is absent; Lenis cannot, so it is told explicitly.
+    useSmoothScroll(pathname, SCROLL_DURATION, !bare)
     useCompactSections(pathname)
     useVideoDecor(pathname)
 
@@ -88,6 +104,9 @@ export default function Shell({ children }: { children: ReactNode }) {
     // client": it returns the server snapshot during hydration, so the first
     // client render still matches the server, and only then flips.
     const mounted = useSyncExternalStore(subscribe, () => true, () => false)
+
+    // After every hook, so the hook order is identical on every route.
+    if (bare) return <>{children}</>
 
     return (
         <UnframerProvider navigate={navigate}>

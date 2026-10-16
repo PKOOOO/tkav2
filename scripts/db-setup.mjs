@@ -61,6 +61,30 @@ const STATEMENTS = [
     // The rollup reads a day's worth of rows by time, and the pruner deletes by
     // time; both are covered by this one index.
     ['page_view.ts index', 'create index if not exists page_view_ts_idx on page_view (ts)'],
+    /**
+     * Added after the first version shipped, which is why these are `alter`
+     * rather than part of the `create` above -- `add column if not exists`
+     * leaves rows already collected in place, with NULL for the new
+     * dimensions. The dashboard therefore has to treat NULL as "unknown"
+     * rather than assume every row has every field; `(none)` in the UI is a
+     * real category, not a bug.
+     *
+     * `route` is the Next pattern (`/program/[slug]`) next to `path`, the
+     * literal URL (`/program/robotics-and-tinkering`). Both are wanted: paths
+     * tell you which course is read, routes tell you whether course pages as a
+     * group matter.
+     */
+    [
+        'page_view new dimensions',
+        `alter table page_view
+            add column if not exists hostname     text,
+            add column if not exists route        text,
+            add column if not exists browser      text,
+            add column if not exists os           text,
+            add column if not exists utm_source   text,
+            add column if not exists utm_medium   text,
+            add column if not exists utm_campaign text`,
+    ],
     [
         'page_view_daily',
         `create table if not exists page_view_daily (

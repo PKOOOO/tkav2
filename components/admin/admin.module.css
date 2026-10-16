@@ -1,0 +1,505 @@
+/*
+ * Palette for /admin, taken from the site's own live colour tokens rather than
+ * the `theme` export in lib/cms.ts -- that one is the Framer template's
+ * original ivory/forest/orange scheme, which globals.css overrides and which
+ * appears nowhere on the real site.
+ *
+ * These are the resolved values of the `--token-*` variables, read out of the
+ * running page. Hard-coded rather than referencing the tokens because those
+ * are defined inside the generated Framer stylesheet's scope, and /admin
+ * deliberately renders nothing from the Framer tree.
+ */
+.shell {
+    --ink: #002b5b;          /* Dark Blue -- headings */
+    --ink-deep: #00376f;     /* Deepest Blue */
+    --brand: #1c5796;        /* Brand Blue -- links, active state */
+    --muted: #41597a;        /* Muted Navy -- secondary text */
+    --accent: #6a1383;       /* Vivid Purple -- the site's accent */
+    --accent-soft: #e6d6f0;  /* Soft Violet */
+    --sky: #38b6ff;          /* Light Blue */
+    --wash: #eef4fa;         /* Ice Blue -- page background */
+    --edge: #dfeaf6;         /* Pale Blue -- borders, bar troughs */
+    --card: #ffffff;
+
+    min-height: 100vh;
+    background: var(--wash);
+    color: var(--ink);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 40px) 72px;
+}
+
+.inner {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+/* ---------- header ---------- */
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.title {
+    margin: 0;
+    font-size: clamp(24px, 3.4vw, 34px);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ---------- window picker ---------- */
+
+.windows {
+    display: inline-flex;
+    background: var(--card);
+    border: 1px solid var(--edge);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 2px;
+}
+
+.window {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 550;
+    padding: 7px 13px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.window:hover:not(.windowOn) {
+    background: var(--wash);
+    color: var(--ink);
+}
+
+.windowOn {
+    background: var(--ink);
+    color: #fff;
+}
+
+.signOut {
+    appearance: none;
+    background: var(--card);
+    border: 1px solid var(--edge);
+    border-radius: 10px;
+    color: var(--muted);
+    font: inherit;
+    font-size: 13px;
+    padding: 8px 14px;
+    cursor: pointer;
+}
+
+.signOut:hover {
+    color: var(--ink);
+    border-color: #c6dcf0;
+}
+
+/* ---------- stat tiles ---------- */
+
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.tile {
+    background: var(--card);
+    border: 1px solid var(--edge);
+    border-radius: 14px;
+    padding: 18px 20px 20px;
+}
+
+.tileLabel {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.tileValue {
+    margin: 10px 0 0;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 650;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+}
+
+.tileHint {
+    margin: 8px 0 0;
+    font-size: 12.5px;
+    color: var(--muted);
+}
+
+/* ---------- cards ---------- */
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--edge);
+    border-radius: 14px;
+    padding: 18px 20px 20px;
+    margin-bottom: 14px;
+}
+
+.cardHead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.cardTitle {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+}
+
+.cardMeta {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* ---------- insight ---------- */
+
+.insight {
+    background: linear-gradient(180deg, #f7f1fb 0%, var(--card) 100%);
+    border: 1px solid var(--accent-soft);
+}
+
+.insightBody {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-deep);
+    white-space: pre-wrap;
+}
+
+.insightBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 650;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.insightDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* ---------- chart ---------- */
+
+.chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 148px;
+    padding-top: 6px;
+}
+
+.bar {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    gap: 2px;
+}
+
+.barViews,
+.barVisitors {
+    border-radius: 3px 3px 0 0;
+    min-height: 2px;
+    transition: height 0.25s;
+}
+
+.barViews {
+    background: var(--edge);
+}
+
+.barVisitors {
+    background: var(--brand);
+}
+
+.chartAxis {
+    display: flex;
+    gap: 3px;
+    margin-top: 8px;
+}
+
+.chartTick {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    font-size: 10.5px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.legend {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.legendItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}
+
+/* ---------- panel groups (tabs) ---------- */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 14px;
+}
+
+.tabs {
+    display: inline-flex;
+    gap: 2px;
+    flex-wrap: wrap;
+}
+
+.tab {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 550;
+    padding: 5px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.tab:hover:not(.tabOn) {
+    background: var(--wash);
+    color: var(--ink);
+}
+
+.tabOn {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+/* ---------- breakdown rows ---------- */
+
+.rows {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 10px;
+    border-radius: 7px;
+    overflow: hidden;
+    font-size: 13.5px;
+}
+
+/* The proportion bar is a background layer so the label sits on top of it
+ * rather than beside it -- keeps long paths readable at narrow widths. */
+.rowFill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    background: var(--edge);
+    border-radius: 7px;
+    z-index: 0;
+}
+
+.rowLabel,
+.rowValue {
+    position: relative;
+    z-index: 1;
+}
+
+.rowLabel {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--ink-deep);
+}
+
+.rowValue {
+    flex: 0 0 auto;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.rowValue span {
+    font-weight: 400;
+    color: var(--muted);
+    margin-left: 7px;
+}
+
+.empty {
+    margin: 0;
+    padding: 18px 2px;
+    color: var(--muted);
+    font-size: 13.5px;
+}
+
+/* ---------- login ---------- */
+
+.loginShell {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: #eef4fa;
+    font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.loginCard {
+    width: 100%;
+    max-width: 380px;
+    background: #fff;
+    border: 1px solid #dfeaf6;
+    border-radius: 16px;
+    padding: 30px 28px;
+}
+
+.loginTitle {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 650;
+    color: #002b5b;
+    letter-spacing: -0.01em;
+}
+
+.loginHint {
+    margin: 8px 0 22px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: #41597a;
+}
+
+.field {
+    display: block;
+    margin-bottom: 14px;
+}
+
+.fieldLabel {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #41597a;
+    margin-bottom: 7px;
+}
+
+.input {
+    width: 100%;
+    box-sizing: border-box;
+    font: inherit;
+    font-size: 15px;
+    color: #002b5b;
+    background: #fff;
+    border: 1px solid #dfeaf6;
+    border-radius: 10px;
+    padding: 11px 13px;
+}
+
+.input:focus {
+    outline: 2px solid #38b6ff;
+    outline-offset: 1px;
+    border-color: #38b6ff;
+}
+
+.submit {
+    width: 100%;
+    appearance: none;
+    border: 0;
+    border-radius: 10px;
+    background: #6a1383;
+    color: #fff;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.submit:hover:not(:disabled) {
+    background: #530e68;
+}
+
+.submit:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.error {
+    margin: 0 0 14px;
+    font-size: 13.5px;
+    color: #8a1a1a;
+    background: #fdf0f0;
+    border: 1px solid #f6d9d9;
+    border-radius: 9px;
+    padding: 10px 12px;
+}
+
+.backLink {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #41597a;
+    text-decoration: none;
+}
+
+.backLink:hover {
+    color: #1c5796;
+    text-decoration: underline;
+}

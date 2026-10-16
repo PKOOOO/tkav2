@@ -34,6 +34,12 @@ export default function PageViewBeacon() {
     useEffect(() => {
         if (!pathname || sent.current === pathname) return
 
+        // The dashboard is not site content. Counting it would mean every
+        // check of the numbers inflated the numbers -- and on a site with
+        // ~45 views a day, an operator reading /admin a few times would be a
+        // visible share of the traffic they are trying to read.
+        if (pathname === '/admin' || pathname.startsWith('/admin/')) return
+
         // Keep development traffic out of the production table. The same
         // DATABASE_URL is used locally, so without this every `pnpm dev` page
         // load would show up in the dashboard as real traffic. Set
@@ -52,7 +58,13 @@ export default function PageViewBeacon() {
                 ? document.referrer
                 : null
 
-        const body = JSON.stringify({ path: pathname, referrer })
+        // Sent with the query string attached, even though the stored path has
+        // it stripped: the server reads `utm_source`/`utm_medium`/
+        // `utm_campaign` off it first, and those only ever arrive as query
+        // parameters. Deduping still keys on `pathname` alone, so arriving at
+        // the same page under two different campaign tags is one view, not two.
+        const search = window.location.search
+        const body = JSON.stringify({ path: pathname + search, referrer })
 
         try {
             if (navigator.sendBeacon) {

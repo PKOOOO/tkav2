@@ -65,6 +65,104 @@ export function cleanPath(raw: unknown): string | null {
     return path
 }
 
+/**
+ * Collapse a literal URL into the Next route that served it.
+ *
+ * Stored alongside `path` because the two answer different questions: `path`
+ * says which course was read, `route` says whether course pages matter as a
+ * group. Without this, every one of the 8 courses and 12 mentors is its own
+ * row and the long tail buries the shape of the traffic.
+ *
+ * Derived from a list rather than from the Next manifest: the manifest is not
+ * reachable from a route handler at runtime. Keep it in step with the dynamic
+ * segments in `app/` -- a missed entry is not an error, the path simply reports
+ * as its own route.
+ */
+const DYNAMIC_PREFIXES = ['/program/', '/mentor/', '/blogs/', '/legal-pages/']
+
+export function routeFrom(path: string): string {
+    for (const prefix of DYNAMIC_PREFIXES) {
+        if (path.startsWith(prefix) && path.length > prefix.length) {
+            return `${prefix}[slug]`
+        }
+    }
+    return path
+}
+
+/**
+ * Browser family from the UA. Order is the whole trick: Edge's UA contains
+ * "Chrome", Chrome's contains "Safari", and every iOS browser contains
+ * "Safari" -- so the most specific marker has to be tested first or everything
+ * collapses into Safari.
+ */
+export function browserFrom(userAgent: string | null): string {
+    const ua = userAgent ?? ''
+    if (/Edg[A-Z]?\//.test(ua)) return 'Edge'
+    if (/OPR\/|Opera/.test(ua)) return 'Opera'
+    if (/SamsungBrowser/.test(ua)) return 'Samsung Internet'
+    if (/Firefox\/|FxiOS/.test(ua)) return 'Firefox'
+    // On iOS every engine is WebKit and Chrome identifies as CriOS.
+    if (/CriOS/.test(ua)) return 'Chrome'
+    if (/Chrome\/|Chromium/.test(ua)) return 'Chrome'
+    if (/Safari\//.test(ua)) return 'Safari'
+    return 'Other'
+}
+
+/** Operating system from the UA. Android before Linux -- Android UAs say both. */
+export function osFrom(userAgent: string | null): string {
+    const ua = userAgent ?? ''
+    if (/Windows/.test(ua)) return 'Windows'
+    if (/Android/.test(ua)) return 'Android'
+    if (/iPhone|iPad|iPod/.test(ua)) return 'iOS'
+    if (/CrOS/.test(ua)) return 'ChromeOS'
+    if (/Mac OS X|Macintosh/.test(ua)) return 'macOS'
+    if (/Linux|X11/.test(ua)) return 'Linux'
+    return 'Other'
+}
+
+/**
+ * Campaign tags, read from the query string before `cleanPath` discards it.
+ *
+ * Only these three keys are kept, and each is length-capped. A query string is
+ * attacker-controlled and routinely carries things that must not be stored --
+ * email addresses in `?email=`, session tokens, full search terms. Reading an
+ * allow-list rather than everything is what keeps that out of the table.
+ */
+export function utmFrom(raw: unknown): {
+    source: string | null
+    medium: string | null
+    campaign: string | null
+} {
+    const empty = { source: null, medium: null, campaign: null }
+    if (typeof raw !== 'string') return empty
+
+    const queryStart = raw.indexOf('?')
+    if (queryStart === -1) return empty
+
+    let params: URLSearchParams
+    try {
+        params = new URLSearchParams(raw.slice(queryStart + 1))
+    } catch {
+        return empty
+    }
+
+    const take = (key: string) => {
+        const value = params.get(key)?.trim()
+        if (!value || value.length > 120) return null
+        return value.toLowerCase()
+    }
+
+    return { source: take('utm_source'), medium: take('utm_medium'), campaign: take('utm_campaign') }
+}
+
+/** Which host served the view -- apex vs www vs a preview deployment. */
+export function hostnameFrom(raw: string | null): string | null {
+    if (!raw) return null
+    const host = raw.split(':')[0].toLowerCase().trim()
+    if (!host || host.length > 120 || /[^a-z0-9.\-[\]]/.test(host)) return null
+    return host
+}
+
 /** Only the referrer's host is kept -- a full external URL can carry PII in its query. */
 export function referrerHost(raw: unknown): string | null {
     if (typeof raw !== 'string' || !raw.trim()) return null
@@ -101,17 +199,30 @@ export async function sessionHash(ip: string, userAgent: string | null): Promise
 
 export type PageViewInput = {
     path: string
+    route: string
+    hostname: string | null
     referrerHost: string | null
     device: string
+    browser: string
+    os: string
     country: string | null
+    utmSource: string | null
+    utmMedium: string | null
+    utmCampaign: string | null
     sessionHash: string
 }
 
 export async function recordPageView(view: PageViewInput): Promise<void> {
     const sql = db()
     await sql`
-        insert into page_view (path, referrer_host, device, country, session_hash)
-        values (${view.path}, ${view.referrerHost}, ${view.device}, ${view.country}, ${view.sessionHash})
+        insert into page_view (
+            path, route, hostname, referrer_host, device, browser, os, country,
+            utm_source, utm_medium, utm_campaign, session_hash
+        ) values (
+            ${view.path}, ${view.route}, ${view.hostname}, ${view.referrerHost},
+            ${view.device}, ${view.browser}, ${view.os}, ${view.country},
+            ${view.utmSource}, ${view.utmMedium}, ${view.utmCampaign}, ${view.sessionHash}
+        )
     `
 }
 

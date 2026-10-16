@@ -9,10 +9,23 @@ import Lenis from 'lenis'
  */
 export const SCROLL_DURATION = 2
 
-export function useSmoothScroll(resetKey?: string, duration = SCROLL_DURATION) {
+/**
+ * `enabled` exists for routes that are not part of the Framer site -- `/admin`
+ * in particular. Lenis attaches to `document` and drives a `requestAnimationFrame`
+ * loop whether or not any Framer content is on the page, so unlike
+ * `useCompactSections` and `useVideoDecor` (which query `.unframer-page` and
+ * quietly find nothing) it cannot opt itself out. It has to be told.
+ *
+ * It is a parameter rather than an early `return` in the caller because the
+ * caller is one component rendering every route: skipping the hook on some
+ * paths would change the hook order between renders, which React rejects.
+ */
+export function useSmoothScroll(resetKey?: string, duration = SCROLL_DURATION, enabled = true) {
     const lenisRef = useRef<Lenis | null>(null)
 
     useEffect(() => {
+        if (!enabled) return
+
         const lenis = new Lenis({ duration })
         lenisRef.current = lenis
 
@@ -41,7 +54,7 @@ export function useSmoothScroll(resetKey?: string, duration = SCROLL_DURATION) {
             lenis.destroy()
             lenisRef.current = null
         }
-    }, [duration])
+    }, [duration, enabled])
 
     // Framer jumps to the top on navigation; without this a short page keeps
     // the previous page's scroll offset and opens part-way down.

@@ -104,19 +104,19 @@ const getMentorTool = betaTool({
 const searchArticlesTool = betaTool({
     name: 'search_articles',
     description:
-        'Search the articles, including their full body text, not just titles and summaries. Bootcamps, holiday programmes, festivals and anything tied to a specific month or season are announced in articles rather than kept as structured records — so call this for any question about dates, seasons, bootcamps, holiday activities or events, even when nothing obviously matches a programme. Omit the query to list every article.',
+        'Search the articles, including their full body text, not just titles and summaries. Bootcamps, holiday programmes, festivals and anything tied to a specific month or season are announced in articles rather than kept as structured records — so call this for any question about dates, seasons, bootcamps, holiday activities or events, even when nothing obviously matches a programme. Each result carries `matchedTerms`, the words of your query it actually contains — check them, because an article can match on one word and miss the rest (a question about the December holidays matches the November bootcamp on "holiday" alone). Returns `matched: false` with every article when your words found nothing: that means "your search terms did not match", NOT "nothing has been announced" — read the list before concluding anything. Omit the query to list every article.',
     inputSchema: {
         type: 'object',
         properties: {
             query: {
                 type: 'string',
-                description: 'Words to look for, e.g. "bootcamp", "November", "holiday", "festival".',
+                description:
+                    'Words to look for, e.g. "bootcamp", "holiday", "November", "festival". Individual words work better than a long phrase.',
             },
         },
         additionalProperties: false,
     },
-    run: ({ query }) =>
-        json({ articles: query ? searchArticles(query) : listArticles() }),
+    run: ({ query }) => json(query ? searchArticles(query) : { matched: true, articles: listArticles() }),
 })
 
 const getArticleTool = betaTool({

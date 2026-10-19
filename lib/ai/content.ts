@@ -274,30 +274,120 @@ export function getArticle(query: string) {
     }
 }
 
-/** Searches summaries *and* bodies, for the reason in `getArticle`. */
-export function searchArticles(query: string) {
-    const needle = query.trim().toLowerCase()
-    if (!needle) return listArticles()
+/**
+ * Words that carry no search signal. Deliberately short: anything that might
+ * actually appear in an article -- "school", "holiday", "robotics", "ages" --
+ * has to survive.
+ */
+const STOPWORDS = new Set([
+    'the', 'a', 'an', 'and', 'or', 'for', 'in', 'on', 'at', 'of', 'to', 'is', 'are', 'was',
+    'any', 'anything', 'something', 'next', 'this', 'that', 'these', 'those', 'my', 'our',
+    'your', 'do', 'does', 'did', 'you', 'we', 'have', 'has', 'there', 'about', 'with',
+    'coming', 'upcoming', 'available', 'offer', 'got', 'can', 'would', 'please', 'tell',
+    // Two-letter words, listed because the length floor is 2 and not 3 -- see
+    // the token filter below for why it had to come down.
+    'am', 'as', 'be', 'by', 'go', 'he', 'if', 'it', 'me', 'no', 'so', 'up', 'us',
+])
 
-    return blogPosts
-        .filter((post) => {
-            const haystack = [
-                post.title,
-                post.summary,
-                post.topic,
-                ...post.sections.flatMap((s) => [s.heading, ...s.paragraphs, ...(s.points ?? [])]),
-            ]
-                .join(' ')
-                .toLowerCase()
-            return haystack.includes(needle)
+const haystackFor = (post: (typeof blogPosts)[number]) =>
+    [
+        post.title,
+        post.summary,
+        post.topic,
+        ...post.sections.flatMap((s) => [s.heading, ...s.paragraphs, ...(s.points ?? [])]),
+    ]
+        .join(' ')
+        .toLowerCase()
+
+/**
+ * Searches summaries *and* bodies, for the reason in `getArticle`.
+ *
+ * **Tokenised, not a substring match.** The first version did
+ * `haystack.includes(query)`, which looks reasonable until the assistant passes
+ * a natural phrase. Asked "anything for the next school holiday?", it searched
+ * `"next school holiday"` -- a string that appears in no article -- got zero
+ * results, and correctly told the visitor nothing had been announced. The
+ * November Holiday Tech Bootcamp was sitting right there: its title contains
+ * "Holiday" and its body contains "school", but never those words adjacent.
+ * The tool lied to the model, and the model passed the lie on.
+ *
+ * So the query is split into words, stopwords are dropped, and a post matches
+ * if any word matches -- ranked by how many do.
+ *
+ * `matched: false` with the full list is returned rather than an empty array,
+ * because "no post matched your words" and "nothing has been announced" are
+ * very different claims and only the assistant can tell which to make. Handing
+ * it everything lets it judge; handing it nothing invites the wrong answer.
+ */
+export function searchArticles(query: string) {
+    const summarise = (post: (typeof blogPosts)[number]) => ({
+        slug: post.slug,
+        title: post.title,
+        url: `/blogs/${post.slug}`,
+        summary: post.summary,
+        topic: post.topic,
+    })
+
+    /**
+     * Two characters, not three. A three-character floor silently dropped
+     * every token in "ai", "3d" and "vr" -- and an empty token list used to
+     * mean "no query given", so the search reported all six articles as
+     * matching a question about AI. That is the original substring bug
+     * inverted: instead of hiding a real answer it manufactured five false
+     * ones, which is worse, because the model has no way to tell. The cost of
+     * the lower floor is a handful of two-letter English words, which is what
+     * the tail of STOPWORDS is for.
+     */
+    const tokens = query
+        .toLowerCase()
+        .split(/[^a-z0-9]+/)
+        .filter((word) => word.length >= 2 && !STOPWORDS.has(word))
+
+    // A query was given and carried no usable word, so nothing was actually
+    // searched for. `matched: false` says that; `true` would claim six hits.
+    if (!tokens.length) return { matched: false, articles: blogPosts.map(summarise) }
+
+    /**
+     * Matches a token, trying a de-pluralised form too.
+     *
+     * Without this, "holidays" misses an article that says "holiday" -- and
+     * the damage is worse than a miss. Asked about "school holidays", "school"
+     * matched a different article while "holidays" matched nothing, so the
+     * wrong post scored 1, the right post scored 0, and the search returned
+     * the wrong answer *confidently* instead of falling back to the full list.
+     */
+    const matches = (haystack: string, token: string) => {
+        if (haystack.includes(token)) return true
+        if (token.length > 4 && token.endsWith('es') && haystack.includes(token.slice(0, -2))) return true
+        if (token.length > 3 && token.endsWith('s') && haystack.includes(token.slice(0, -1))) return true
+        return false
+    }
+
+    const scored = blogPosts
+        .map((post) => {
+            const haystack = haystackFor(post)
+            return { post, terms: tokens.filter((token) => matches(haystack, token)) }
         })
-        .map((post) => ({
-            slug: post.slug,
-            title: post.title,
-            url: `/blogs/${post.slug}`,
-            summary: post.summary,
-            topic: post.topic,
-        }))
+        .filter((row) => row.terms.length > 0)
+        .sort((a, b) => b.terms.length - a.terms.length)
+
+    if (!scored.length) {
+        return { matched: false, articles: blogPosts.map(summarise) }
+    }
+
+    /**
+     * `matchedTerms` is reported so a partial match cannot pass itself off as
+     * a full one. Asked about the *December* holidays, this returns the
+     * November bootcamp -- correctly, it is the only holiday article -- but on
+     * the strength of "holiday" alone, with "december" matching nothing. Told
+     * which word landed, the assistant can say "nothing in December, but there
+     * is one running in November"; told only that the article matched, it is
+     * one short step from announcing a December bootcamp that does not exist.
+     */
+    return {
+        matched: true,
+        articles: scored.map((row) => ({ ...summarise(row.post), matchedTerms: row.terms })),
+    }
 }
 
 export const practicalInfo = () => ({

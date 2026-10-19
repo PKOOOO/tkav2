@@ -2,42 +2,37 @@
 
 import { useCallback, useRef, useState } from 'react'
 
-export type ChatMessage = { id: string; role: 'user' | 'assistant'; content: string }
+export type ToolCall = { name: string; complete: boolean }
+export type ChatMessage = {
+    id: string
+    role: 'user' | 'assistant'
+    content: string
+    tools: ToolCall[]
+}
 export type ChatStatus = 'idle' | 'sending' | 'streaming'
 
 const ENDPOINT = '/api/chat'
 
 /**
- * Drives the chat: message list, send, and consuming the SSE stream from
- * `app/api/chat/route.ts`.
+ * Consumes the SSE stream from `app/api/chat/route.ts` and keeps the message
+ * list.
  *
- * Hand-rolled rather than `useChat` from the AI SDK. That hook is the reason
- * the previous site's chat UI was short, but its stable line is now `ai@7` /
- * `@ai-sdk/react@4` -- two majors past the betas that site pinned, and a
- * different API generation. Consuming seven framed event types off a
- * `fetch` body is less code than adopting an SDK whose current shape would
- * have to be re-learned, and it keeps the official Anthropic SDK as the only
- * model dependency.
+ * This stands in for `useChat` from `@ai-sdk/react`, which the previous site
+ * used. That package's stable line is now `@ai-sdk/react@4` against the
+ * `3.0.0-beta` it pinned -- a different API generation -- so the transport is
+ * hand-rolled while the *UI* is ported as-is. Each assistant message therefore
+ * carries the same two things the previous site's renderer expected: the text,
+ * and the tool calls that produced it.
  */
 export function useChatStream() {
     const [messages, setMessages] = useState<ChatMessage[]>([])
     const [status, setStatus] = useState<ChatStatus>('idle')
-    const [activity, setActivity] = useState<string | null>(null)
     const abortRef = useRef<AbortController | null>(null)
-
-    const reset = useCallback(() => {
-        abortRef.current?.abort()
-        abortRef.current = null
-        setMessages([])
-        setStatus('idle')
-        setActivity(null)
-    }, [])
 
     const stop = useCallback(() => {
         abortRef.current?.abort()
         abortRef.current = null
         setStatus('idle')
-        setActivity(null)
     }, [])
 
     const send = useCallback(
@@ -49,24 +44,26 @@ export function useChatStream() {
                 id: `u${Date.now()}`,
                 role: 'user',
                 content: prompt,
+                tools: [],
             }
             const replyId = `a${Date.now()}`
 
-            // Snapshot the history to send *before* adding the empty reply, so
-            // the request never contains a blank assistant turn.
+            // Snapshot history before adding the empty reply, so the request
+            // never contains a blank assistant turn.
             const history = [...messages, userTurn].map(({ role, content }) => ({ role, content }))
 
-            setMessages((prev) => [...prev, userTurn, { id: replyId, role: 'assistant', content: '' }])
+            setMessages((prev) => [
+                ...prev,
+                userTurn,
+                { id: replyId, role: 'assistant', content: '', tools: [] },
+            ])
             setStatus('sending')
-            setActivity(null)
 
             const controller = new AbortController()
             abortRef.current = controller
 
-            const appendToReply = (chunk: string) =>
-                setMessages((prev) =>
-                    prev.map((m) => (m.id === replyId ? { ...m, content: m.content + chunk } : m)),
-                )
+            const patchReply = (fn: (m: ChatMessage) => ChatMessage) =>
+                setMessages((prev) => prev.map((m) => (m.id === replyId ? fn(m) : m)))
 
             try {
                 const response = await fetch(ENDPOINT, {
@@ -77,11 +74,13 @@ export function useChatStream() {
                 })
 
                 if (!response.ok || !response.body) {
-                    const fallback =
-                        response.status === 429
-                            ? 'That’s a lot of questions at once — give it a moment and try again.'
-                            : 'Sorry, I couldn’t answer just now. Please try again.'
-                    appendToReply(fallback)
+                    patchReply((m) => ({
+                        ...m,
+                        content:
+                            response.status === 429
+                                ? 'That’s a lot of questions at once — give it a moment and try again.'
+                                : 'Sorry, I couldn’t answer just now. Please try again.',
+                    }))
                     setStatus('idle')
                     return
                 }
@@ -91,14 +90,6 @@ export function useChatStream() {
                 const reader = response.body.getReader()
                 const decoder = new TextDecoder()
                 let buffer = ''
-                /**
-                 * Tracks whether any text has landed yet in this reply. The
-                 * model can emit a sentence, call a tool, then carry on — which
-                 * arrives as two text runs with nothing between them and reads
-                 * as "...enrolment is ongoing.It covers a great mix". A tool
-                 * event after text therefore inserts a paragraph break.
-                 */
-                let hasText = false
 
                 while (true) {
                     const { done, value } = await reader.read()
@@ -106,8 +97,8 @@ export function useChatStream() {
 
                     buffer += decoder.decode(value, { stream: true })
 
-                    // SSE frames are separated by a blank line; a frame can
-                    // straddle two network chunks, so only complete ones are parsed.
+                    // Frames are separated by a blank line and can straddle two
+                    // network chunks, so only complete frames are parsed.
                     const frames = buffer.split('\n\n')
                     buffer = frames.pop() ?? ''
 
@@ -123,48 +114,58 @@ export function useChatStream() {
                         }
 
                         if (event.type === 'text' && event.text) {
-                            hasText = true
-                            setActivity(null)
-                            appendToReply(event.text)
-                        } else if (event.type === 'tool') {
-                            if (hasText) appendToReply('\n\n')
-                            setActivity(labelFor(event.name))
+                            const chunk = event.text
+                            patchReply((m) => ({
+                                ...m,
+                                // Any tool still showing a spinner has clearly
+                                // finished once the answer starts arriving.
+                                tools: m.tools.map((t) => ({ ...t, complete: true })),
+                                content: m.content + chunk,
+                            }))
+                        } else if (event.type === 'tool' && event.name) {
+                            const name = event.name
+                            patchReply((m) => ({
+                                ...m,
+                                tools: [...m.tools, { name, complete: false }],
+                                /*
+                                 * A tool call arriving after text means the
+                                 * model said something, looked something up,
+                                 * then carried on -- two text runs with
+                                 * nothing between them, which renders as
+                                 * "...ideal for a 10 year old.For your 10 year
+                                 * old...". A blank line makes markdown treat
+                                 * them as separate paragraphs.
+                                 */
+                                content: m.content && !m.content.endsWith('\n\n')
+                                    ? `${m.content}\n\n`
+                                    : m.content,
+                            }))
                         } else if (event.type === 'error' && event.message) {
-                            appendToReply((hasText ? '\n\n' : '') + event.message)
+                            const message = event.message
+                            patchReply((m) => ({
+                                ...m,
+                                tools: m.tools.map((t) => ({ ...t, complete: true })),
+                                content: m.content ? `${m.content}\n\n${message}` : message,
+                            }))
                         }
                     }
                 }
             } catch (error) {
                 if ((error as Error)?.name !== 'AbortError') {
-                    appendToReply('Sorry, the connection dropped. Please try again.')
+                    patchReply((m) => ({
+                        ...m,
+                        content: m.content || 'Sorry, the connection dropped. Please try again.',
+                    }))
                 }
             } finally {
+                // Never leave a chip spinning if the stream ended early.
+                patchReply((m) => ({ ...m, tools: m.tools.map((t) => ({ ...t, complete: true })) }))
                 abortRef.current = null
-                setActivity(null)
                 setStatus('idle')
             }
         },
         [messages, status],
     )
 
-    return { messages, status, activity, send, stop, reset }
-}
-
-/** Turns a tool name into something a visitor would recognise. */
-function labelFor(name?: string): string {
-    switch (name) {
-        case 'list_programmes':
-        case 'get_programme':
-            return 'Checking the programmes…'
-        case 'list_mentors':
-        case 'get_mentor':
-            return 'Looking up the team…'
-        case 'search_articles':
-        case 'get_article':
-            return 'Searching the articles…'
-        case 'get_practical_info':
-            return 'Finding the details…'
-        default:
-            return 'Looking that up…'
-    }
+    return { messages, status, send, stop }
 }

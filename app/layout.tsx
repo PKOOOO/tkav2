@@ -6,7 +6,10 @@ import 'lenis/dist/lenis.css'
 
 import { Analytics } from '@vercel/analytics/next'
 
-import ChatLauncher from '@/components/chat/ChatLauncher'
+import { ChatSheet } from '@/components/chat/ChatSheet'
+import { FloatingChatTrigger } from '@/components/chat/FloatingChatTrigger'
+import { MainContentWrapper } from '@/components/chat/MainContentWrapper'
+import { ChatStoreProvider } from '@/lib/store/chat-store-provider'
 import PageViewBeacon from '@/components/PageViewBeacon'
 import Shell from '@/components/Shell'
 import StructuredData from '@/components/StructuredData'
@@ -81,7 +84,23 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
             </head>
             <body>
                 <NextTopLoader color="#6a1383" height={3} showSpinner={false} shadow={false} />
-                <Shell>{children}</Shell>
+                {/*
+                 * The chat owns one piece of the page layout, which is why the
+                 * provider wraps the site rather than sitting beside it: when
+                 * the sheet opens, `MainContentWrapper` gives everything inside
+                 * it a 380px right margin at `xl` and up, so the site shrinks
+                 * to sit *beside* the panel instead of being covered by it.
+                 * The sheet and the launcher share the same store, so all three
+                 * have to be inside the provider.
+                 */}
+                <ChatStoreProvider>
+                    <MainContentWrapper>
+                        <Shell>{children}</Shell>
+                    </MainContentWrapper>
+
+                    <ChatSheet />
+                    <FloatingChatTrigger />
+                </ChatStoreProvider>
                 {/*
                  * Two counters on purpose, and they are not redundant.
                  *
@@ -102,12 +121,6 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
                  */}
                 <Analytics />
                 <PageViewBeacon />
-                {/*
-                 * Outside <Shell> for the same reason as the two above: Shell
-                 * gates the Framer tree on mount, and a help button that only
-                 * appears after hydration is one people miss.
-                 */}
-                <ChatLauncher />
             </body>
         </html>
     )

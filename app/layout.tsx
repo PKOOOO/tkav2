@@ -6,6 +6,7 @@ import 'lenis/dist/lenis.css'
 
 import { Analytics } from '@vercel/analytics/next'
 
+import ChatLauncher from '@/components/chat/ChatLauncher'
 import PageViewBeacon from '@/components/PageViewBeacon'
 import Shell from '@/components/Shell'
 import StructuredData from '@/components/StructuredData'
@@ -101,6 +102,12 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
                  */}
                 <Analytics />
                 <PageViewBeacon />
+                {/*
+                 * Outside <Shell> for the same reason as the two above: Shell
+                 * gates the Framer tree on mount, and a help button that only
+                 * appears after hydration is one people miss.
+                 */}
+                <ChatLauncher />
             </body>
         </html>
     )

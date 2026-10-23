@@ -28,6 +28,7 @@ export function useChatStream() {
     const [messages, setMessages] = useState<ChatMessage[]>([])
     const [status, setStatus] = useState<ChatStatus>('idle')
     const abortRef = useRef<AbortController | null>(null)
+    const sessionIdRef = useRef<string | null>(null)
 
     const stop = useCallback(() => {
         abortRef.current?.abort()
@@ -59,6 +60,7 @@ export function useChatStream() {
             ])
             setStatus('sending')
 
+            sessionIdRef.current ??= crypto.randomUUID()
             const controller = new AbortController()
             abortRef.current = controller
 
@@ -69,7 +71,7 @@ export function useChatStream() {
                 const response = await fetch(ENDPOINT, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ messages: history }),
+                    body: JSON.stringify({ messages: history, sessionId: sessionIdRef.current }),
                     signal: controller.signal,
                 })
 

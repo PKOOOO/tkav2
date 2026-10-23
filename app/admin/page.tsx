@@ -14,7 +14,7 @@ import { hasDb } from '@/lib/db'
  * actually protects it.
  */
 export const metadata: Metadata = {
-    title: 'Analytics',
+    title: 'Admin workspace',
     robots: { index: false, follow: false },
 }
 

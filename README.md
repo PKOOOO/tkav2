@@ -34,3 +34,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Admin chat history
+
+The `/admin` dashboard has a **Chats** tab that lists chatbot sessions and their full transcripts. New completed exchanges are stored in the `chat_message` table; conversations from before this feature was enabled were not saved and cannot appear here.
+
+After configuring `DATABASE_URL`, run `node scripts/db-setup.mjs --write` once for each database used by the app. The admin page and chat history API require the existing `ADMIN_PASSWORD` session. Do not expose the chat history API publicly or use it without the admin login.

@@ -115,6 +115,25 @@ const STATEMENTS = [
             created_at timestamptz not null default now()
         )`,
     ],
+    [
+        'chat_message',
+        `create table if not exists chat_message (
+            id         bigserial primary key,
+            session_id uuid        not null,
+            role       text        not null check (role in ('user', 'assistant')),
+            content    text        not null,
+            created_at timestamptz not null default now()
+        )`,
+    ],
+    [
+        'chat_message.session index',
+        'create index if not exists chat_message_session_idx on chat_message (session_id, id)',
+    ],
+    [
+        'chat_message.recent index',
+        'create index if not exists chat_message_recent_idx on chat_message (created_at desc)',
+    ],
+
 ]
 
 function loadEnv() {

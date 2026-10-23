@@ -1,4 +1,6 @@
 import { assistantConfigured, sanitiseTurns, streamReply } from '@/lib/ai/assistant'
+import { saveExchange, validSessionId } from '@/lib/chat-history'
+import { hasDb } from '@/lib/db'
 
 /**
  * The chat endpoint. Streams the assistant's reply as Server-Sent Events.
@@ -77,11 +79,27 @@ export async function POST(request: Request) {
         return Response.json({ error: 'messages must be a non-empty array of turns' }, { status: 400 })
     }
 
+    const suppliedId = (body as { sessionId?: unknown })?.sessionId
+    const sessionId = validSessionId(suppliedId) ? suppliedId : crypto.randomUUID()
+    const question = turns[turns.length - 1].content
+
     const stream = new ReadableStream<Uint8Array>({
         async start(controller) {
+            let answer = ''
+            let completed = false
             try {
                 for await (const event of streamReply(turns)) {
+                    if (event.type === 'text') answer += event.text
+                    if (event.type === 'done') completed = true
                     controller.enqueue(sse(event))
+                }
+                // Persistence is best effort so a database issue cannot interrupt the reply.
+                if (completed && answer.trim() && hasDb()) {
+                    try {
+                        await saveExchange(sessionId, question, answer.trim())
+                    } catch (error) {
+                        console.error('[chat] could not save exchange:', error)
+                    }
                 }
             } catch (error) {
                 console.error('[chat] route stream failed:', error)

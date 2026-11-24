@@ -318,6 +318,19 @@ const REPLACEMENTS = {
 			to: 'info@techkidzafrica.co.ke',
 			expect: 2,
 		},
+		// The template has no phone line at all, so this inserts one: a second
+		// paragraph inside the email's RichText, styled with the same link
+		// preset. It anchors on the email paragraph closing straight into the
+		// Fragment's end -- once the phone paragraph sits between them the
+		// pattern stops matching, which is what makes a re-run a no-op.
+		// A plain <a>, not Link2: Shell's click handler already lets `tel:`
+		// through to the browser. Number kept in step with PHONE in lib/site.ts.
+		{
+			what: 'phone number',
+			find: /(\{"info@techkidzafrica\.co\.ke"\}\s*<\/motion2\.a>\s*<\/Link2>\s*<\/motion2\.p>)(\s*<\/React2\.Fragment>)/g,
+			to: '$1\n<motion2.p suppressHydrationWarning={true} className={"framer-styles-preset-7580yq"} data-styles-preset={"ESdyUGyJl"} dir={"auto"}><a className={"framer-styles-preset-xtze3j"} data-styles-preset={"n_Xqd0ECz"} href={"tel:+254780754126"}>{"0780 754126"}</a></motion2.p>$2',
+			expect: 1,
+		},
 		{
 			what: 'opening hours',
 			find: /\{"Open Mon\\u2013Sat, 9:00\\u201319:00"\}/g,

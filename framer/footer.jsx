@@ -803,6 +803,7 @@ var Component2 = /* @__PURE__ */ React2.forwardRef(function (props, ref) {
 															</motion2.a>
 														</Link2>
 													</motion2.p>
+<motion2.p suppressHydrationWarning={true} className={"framer-styles-preset-7580yq"} data-styles-preset={"ESdyUGyJl"} dir={"auto"}><a className={"framer-styles-preset-xtze3j"} data-styles-preset={"n_Xqd0ECz"} href={"tel:+254780754126"}>{"0780 754126"}</a></motion2.p>
 												</React2.Fragment>
 											</RichText>
 											<RichText

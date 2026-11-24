@@ -121,7 +121,7 @@
     grid-column: auto !important;
 }
 
-/* Nineteen partners over three columns leaves one on its own in the last row, hard
+/* A partner count of 3n + 1 leaves one on its own in the last row, hard
  * against the left edge. `:last-child:nth-child(3n + 1)` is true only when the
  * final card starts a row -- it stops matching the moment a partner is added
  * or removed, so nothing has to be renumbered by hand.

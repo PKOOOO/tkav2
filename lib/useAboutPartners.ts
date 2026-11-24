@@ -28,6 +28,7 @@ const PARTNERS = [
     { src: '/decor/partner-17.webp', name: 'Kenya Coast National Polytechnic' },
     { src: '/decor/partner-18.webp', name: 'Government of Taita Taveta County' },
     { src: '/decor/partner-19.webp', name: 'Elimu Pi Robotics' },
+    { src: '/decor/partner-cyberiad.webp', name: 'Cyberiad Labs' },
 ] as const
 
 /**
@@ -63,8 +64,8 @@ function cardAncestor(title: Element, section: Element): HTMLElement | null {
  * reads with `querySelector` -- the first -- so the two never touch the same
  * nodes.
  *
- * The section ships three step cards and there are nineteen partners, so the last
- * card is cloned sixteen times. That is the one piece of real DOM surgery: the
+ * The section ships three step cards and there are twenty partners, so the last
+ * card is cloned seventeen times. That is the one piece of real DOM surgery: the
  * step number, the body copy and the heading are hidden by CSS instead, keyed
  * to the `data-` attributes stamped on here.
  */

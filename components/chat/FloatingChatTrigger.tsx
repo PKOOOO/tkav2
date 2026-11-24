@@ -1,18 +1,21 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { MessageSquare, Sparkles } from 'lucide-react'
 
 import { useChatActions, useIsChatOpen } from '@/lib/store/chat-store-provider'
 
 /**
- * The floating launcher, ported from the previous Tech Kidz Africa site —
- * including the gradient, the two animated rings, the sparkle badge and the
- * "Talk to Us" tooltip. The gradient is the site's own three brand colours:
- * `#80569e` → `#6a1383` → `#38b6ff`.
+ * The floating launcher: the site's walking ladybug robot, with the "Talk to
+ * Us" tooltip from the previous Tech Kidz Africa site.
  *
- * It hides itself while the sheet is open (the sheet has its own close button)
- * and toggles rather than only opening, as the original did.
+ * The motion is not done here. The <img> is the still, and `lib/useVideoDecor.ts`
+ * mounts the same ladybug clip the Program CTA band plays over it -- found via
+ * `data-video-decor-host` and the `#chat` fragment -- falling back to this
+ * still wherever transparent video cannot play.
+ *
+ * Hidden rather than unmounted while the sheet is open: the decor hook only
+ * rescans on navigation and on `.unframer-page` mutations, so a remounted
+ * launcher would come back as a still until the next route change.
  */
 export function FloatingChatTrigger() {
     const { toggleChat } = useChatActions()
@@ -20,27 +23,16 @@ export function FloatingChatTrigger() {
     const pathname = usePathname()
 
     // `/admin` is a dashboard, not a page for site visitors.
-    if (isOpen) return null
     if (pathname === '/admin' || pathname.startsWith('/admin/')) return null
 
     return (
         <div
-            className="group fixed right-6 bottom-6 z-[45]"
+            className={`group fixed right-6 bottom-6 z-[45] ${isOpen ? 'hidden' : ''}`}
             style={{ bottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px))' }}
+            data-video-decor-host
         >
-            {/* Animated rings */}
-            <div className="absolute inset-0 animate-ping rounded-full bg-gradient-to-br from-[#80569e] to-[#38b6ff] opacity-20 blur-2xl [animation-duration:2s]" />
-            <div className="absolute inset-0 animate-pulse rounded-full bg-gradient-to-br from-[#6a1383] to-[#38b6ff] opacity-30 blur-xl [animation-duration:3s]" />
-
-            {/* Sparkle badge */}
-            <div className="absolute -top-1 -right-1 z-10">
-                <div className="flex size-6 animate-bounce items-center justify-center rounded-full bg-gradient-to-br from-[#38b6ff] to-[#6a1383] shadow-lg [animation-duration:2s]">
-                    <Sparkles className="size-3 text-white" aria-hidden />
-                </div>
-            </div>
-
-            {/* Tooltip */}
-            <div className="pointer-events-none absolute right-0 bottom-full mb-2 scale-90 rounded-lg border border-white/40 bg-white/90 px-3 py-1.5 text-sm font-medium whitespace-nowrap text-[#002b5b] opacity-0 shadow-[0_8px_32px_0_rgba(0,43,91,0.2)] backdrop-blur-xl transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-100 group-hover:opacity-100">
+            {/* "Talk to Us" label, always shown; lifts slightly on hover. */}
+            <div className="pointer-events-none absolute right-0 bottom-full mb-2 rounded-lg border border-white/40 bg-white/90 px-3 py-1.5 text-sm font-medium whitespace-nowrap text-[#002b5b] shadow-[0_8px_32px_0_rgba(0,43,91,0.2)] backdrop-blur-xl transition-transform duration-300 group-hover:-translate-y-1">
                 Talk to Us
                 <div className="absolute -bottom-1 right-6 size-2 rotate-45 border-r border-b border-white/40 bg-white/90" />
             </div>
@@ -49,9 +41,18 @@ export function FloatingChatTrigger() {
                 type="button"
                 onClick={toggleChat}
                 aria-label="Talk to us"
-                className="relative flex size-16 items-center justify-center rounded-full bg-gradient-to-br from-[#80569e] via-[#6a1383] to-[#38b6ff] shadow-[0_0_40px_rgba(106,19,131,0.4)] transition-all duration-500 hover:scale-110 hover:rotate-12 hover:shadow-[0_0_60px_rgba(106,19,131,0.6)]"
+                className="relative block size-20 transition-transform duration-300 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6a1383]"
             >
-                <MessageSquare className="size-7 text-white transition-transform group-hover:scale-110" aria-hidden />
+                {/* The video is appended into this span, absolutely inset. */}
+                <span className="absolute inset-0 block drop-shadow-[0_6px_12px_rgba(0,43,91,0.35)]">
+                    <img
+                        src="/decor/ladybug.png#chat"
+                        alt=""
+                        aria-hidden
+                        draggable={false}
+                        className="size-full object-contain"
+                    />
+                </span>
             </button>
         </div>
     )

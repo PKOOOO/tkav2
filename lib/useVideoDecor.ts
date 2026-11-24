@@ -118,6 +118,15 @@ const DECOR: Decor[] = [
         src: '/decor/ladybug.webm',
         webkitSrc: '/decor/ladybug.hevc.mp4',
     },
+    // The floating chat launcher (components/chat/FloatingChatTrigger.tsx),
+    // which lives outside `.unframer-page` on every route -- hence the
+    // `[data-video-decor-host]` half of the selector in `scan`. The `#chat`
+    // fragment keeps this entry apart from the bootcamp one above.
+    {
+        match: 'ladybug.png#chat',
+        src: '/decor/ladybug.webm',
+        webkitSrc: '/decor/ladybug.hevc.mp4',
+    },
     // The locally mounted crab on the festival article and the Contact FAQ uses
     // the same clip and fallback as the generated Program CTA.
     {
@@ -379,7 +388,7 @@ export function useVideoDecor(resetKey?: string) {
                 const chosen = pick(decor)
                 if (!chosen) continue
                 const images = document.querySelectorAll<HTMLImageElement>(
-                    `.unframer-page img[src*="${decor.match}"]`,
+                    `.unframer-page img[src*="${decor.match}"], [data-video-decor-host] img[src*="${decor.match}"]`,
                 )
                 for (const img of images) {
                     attach(decor, img, visibility, chosen.src, chosen.verify)

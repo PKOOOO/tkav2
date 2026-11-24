@@ -41,7 +41,7 @@ export function FloatingChatTrigger() {
                 type="button"
                 onClick={toggleChat}
                 aria-label="Talk to us"
-                className="relative block size-20 transition-transform duration-300 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6a1383]"
+                className="relative block size-14 sm:size-20 transition-transform duration-300 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6a1383]"
             >
                 {/* The video is appended into this span, absolutely inset. */}
                 <span className="absolute inset-0 block drop-shadow-[0_6px_12px_rgba(0,43,91,0.35)]">

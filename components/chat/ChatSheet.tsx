@@ -60,7 +60,9 @@ export function ChatSheet() {
     }, [messages, isLoading])
 
     useEffect(() => {
-        if (isOpen) inputRef.current?.focus()
+        // Not on touch screens: focusing raises the keyboard the instant the
+        // panel opens, which on iOS scrolls the header (and its X) away.
+        if (isOpen && window.matchMedia('(pointer: fine)').matches) inputRef.current?.focus()
     }, [isOpen])
 
     useEffect(() => {
@@ -88,12 +90,21 @@ export function ChatSheet() {
                 type="button"
                 aria-label="Close chat"
                 onClick={closeChat}
-                className="fixed inset-0 z-40 bg-[#002b5b]/50 2xl:hidden"
+                className="fixed inset-0 z-[9998] bg-[#002b5b]/50 2xl:hidden"
             />
 
-            <div className="fixed top-0 right-0 z-50 flex h-full w-full flex-col border-l border-[#dfeaf6] bg-white shadow-xl overscroll-contain xl:w-[380px]">
+            {/*
+             * z-[9999]: Framer's sticky navigation sits above an ordinary z-50
+             * and covered this header -- and its close button -- on phones.
+             * `h-dvh` rather than `h-full`, so the panel follows iOS Safari's
+             * collapsing toolbars instead of running underneath them.
+             */}
+            <div className="fixed top-0 right-0 z-[9999] flex h-dvh w-full max-w-full flex-col overflow-hidden border-l border-[#dfeaf6] bg-white shadow-xl overscroll-contain xl:w-[380px]">
                 <header className="shrink-0 border-b border-[#dfeaf6]">
-                    <div className="flex h-16 items-center gap-2 px-3">
+                    <div
+                        className="flex h-16 items-center gap-2 px-3"
+                        style={{ marginTop: 'env(safe-area-inset-top, 0px)' }}
+                    >
                         <button
                             type="button"
                             onClick={closeChat}
@@ -102,7 +113,7 @@ export function ChatSheet() {
                         >
                             <X className="size-6" aria-hidden />
                         </button>
-                        <span className="font-semibold text-[#002b5b]">Chat with Tech Kidz Africa</span>
+                        <span className="min-w-0 truncate font-semibold text-[#002b5b]">Chat with Tech Kidz Africa</span>
                     </div>
                 </header>
 
@@ -174,7 +185,7 @@ export function ChatSheet() {
                             aria-label="Your question"
                             maxLength={2000}
                             disabled={isLoading}
-                            className="min-w-0 flex-1 rounded-xl border border-[#dfeaf6] bg-white px-3.5 py-2.5 text-sm text-[#002b5b] outline-none placeholder:text-[#8aa0ba] focus:border-[#38b6ff] focus:ring-2 focus:ring-[#38b6ff]/30 disabled:bg-[#f6f9fc]"
+                            className="min-w-0 flex-1 rounded-xl border border-[#dfeaf6] bg-white px-3.5 py-2.5 text-base text-[#002b5b] sm:text-sm outline-none placeholder:text-[#8aa0ba] focus:border-[#38b6ff] focus:ring-2 focus:ring-[#38b6ff]/30 disabled:bg-[#f6f9fc]"
                         />
                         <button
                             type="submit"
